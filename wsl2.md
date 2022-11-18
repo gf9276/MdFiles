@@ -77,6 +77,7 @@ del d:\wsl-ubuntu-22.04.tar
 
 剩下的看 oh-my-posh.md
 
+搞好后
 
 
 建议设置.json文件为
