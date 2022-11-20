@@ -18,16 +18,26 @@
 
 ## wsl2
 
+先设置 windows for clash，（主要是允许局域网连接）
+![](https://cdn.jsdelivr.net/gh/gf9276/image/clash/20221120134915.png)
+
 wsl2是依托于windows的，具体的config应该就是按照windows走的
 
 在 ~/ 下写一个脚本：
 
+**<font color=#D81D4F >注意：是 ~/ 路径下</font>**
+
 ```
-cd ~/
-touch my_proxy
+cd ~/ && touch my_proxy.sh
 ```
 
-内容如下
+编辑 my_proxy.sh
+
+```
+vi my_proxy.sh
+```
+
+写入内容如下
 
 ```
 #!/bin/sh
@@ -91,7 +101,7 @@ fi
 vi .bashrc
 ```
 
-写入:
+写入(.可以用bash代替，我暂时没找到.的用法):
 
 ```
 # 科学上网的指令映射
