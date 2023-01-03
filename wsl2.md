@@ -437,3 +437,37 @@ del d:\wsl-ubuntu-22.04.tar
     ]
 }
 ```
+
+
+## 出现无法使用的情况
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/L%]TR~I6_K`0NR98OO]YWBQ.png)
+
+### 方法
+
+管理员权限打开 powershell
+
+执行命令
+```
+netsh winsock reset
+```
+
+然后重新打开wsl2
+
+### 另一种方法，但是这种方法我用不了
+
+下载 
+
+```
+http://file2.happyjava.cn/NoLsp.exe
+```
+
+放到 ```C:\windows\system32``` 目录下，执行命令
+
+```
+.\NoLsp.exe C:\windows\system32\wsl.exe
+```
+
+```C:\windows\system32\wsl.exe```对应```wsl.exe```在的目录
+
+但是这个方法我用不了
