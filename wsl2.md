@@ -439,7 +439,7 @@ del d:\wsl-ubuntu-22.04.tar
 ```
 
 
-## 出现无法使用的情况
+## 出现无法使用的情况（Error code: Wsl/Service/0x8007273d）
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/L%]TR~I6_K`0NR98OO]YWBQ.png)
 
@@ -470,3 +470,14 @@ netsh winsock reset
 ```C:\windows\system32\wsl.exe```对应```wsl.exe```在的目录
 
 但是这个方法我用不了
+
+### 最好用的方法
+
+不如重新下载，然后再导入分发包（记得提前导出）
+
+[github问题地址](https://github.com/microsoft/WSL/issues/9331)
+
+* in Add or remove programs: uninstall first "Windows Subsystem for Linux Update" and then "Windows Subsystem for Linux"
+* try to start your distribution again and it will point you to: https://aka.ms/wsl2kernel
+* from there download the wsl_update_x64.msi file and run it , install the WSL kernel
+* start your distribution again
