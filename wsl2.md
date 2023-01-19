@@ -56,7 +56,7 @@ wsl --export Ubuntu-22.04 d:\wsl-ubuntu-22.04.tar
 ```
 wsl --unregister Ubuntu-22.04
 ```
-* 重新导入并安装wsl在G盘
+* 重新导入并安装wsl在D盘
 ```
 wsl --import Ubuntu-22.04 d:\wsl-ubuntu-22.04 d:\wsl-ubuntu-22.04.tar --version 2
 ```
