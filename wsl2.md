@@ -1,6 +1,10 @@
 # wsl2
 
+[官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/)
+
 ## 安装
+
+这是旧版本的安装，新版本貌似直接```wsl install```就好了
 * [参考链接1-bilibili](https://www.bilibili.com/read/cv9561666)
 * [参考链接2-博客园](https://www.cnblogs.com/ittranslator/p/14128570.html)
 * [参考链接3-CSDN](https://blog.csdn.net/li1325169021/article/details/124285018)
