@@ -21,6 +21,10 @@
 先设置 windows for clash，（主要是允许局域网连接）
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/clash/20221120134915.png)
 
+局域网连接里可以看到wsl的IP地址，此时不打开win10的系统代理按钮，wsl2也可以上外网，只需要把clash挂在后台就行了
+![](https://cdn.jsdelivr.net/gh/gf9276/image/clash/20230223152410.png)
+
+
 wsl2是依托于windows的，具体的config应该就是按照windows走的
 
 在 ~/ 下写一个脚本：
