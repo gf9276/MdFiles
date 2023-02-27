@@ -1,4 +1,4 @@
-# conda 
+# conda
 
 ## 安装
 
@@ -62,3 +62,48 @@ conda info                     // 显示相关信息
 conda update conda             // 更新conda
 
 ```
+
+## Windows 系统下 Anaconda Powershell Prompt (miniconda3) 部署到Windows Terminal
+
+直接```添加新配置文件```然后复制cmd的格式，直接这样子设置就行了
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/conda/20230223172351.png)
+
+命令行参数来源于此：
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/conda/20230223172539.png)
+
+## windows下 conda 走代理（蓝色小猫也能用）
+
+### 命令生成
+
+[可以参考这个连接](https://www.cnblogs.com/treasury-manager/p/13952394.html#1%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84)
+
+```
+conda config --set proxy_servers.http http://user:password@xxxx:8080
+conda config --set proxy_servers.https https://user:password@xxxx:8080
+```
+
+没有账号密码的
+```
+conda config --set proxy_servers.http http://127.0.0.1:7890
+conda config --set proxy_servers.https http://127.0.0.1:7890
+```
+
+默认文件路径为```C:\Users\92762\.condarc```
+
+
+## windows 系统下 powershell 加载 conda 的环境
+
+先在 conda 界面下执行
+```
+conda init powershell
+```
+
+随后以管理员模式打开 PowerShell, 执行
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
+[参考这里](http://www.splaybow.com/post/powershellexecps1.html)

@@ -18,3 +18,19 @@ sudo vim /etc/inputrc
 5~ 改 A，6~ 改 B，即可
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20221112164130.png)
+
+### 复制命令
+
+下面四个命令结果相同，都是递归拷贝 packageA 文件及其任意层的结构到 packageB 中:
+```
+cp -r /home/packageA /home/packageB
+cp -r /home/packageA /home/packageB/
+cp -r /home/packageA/ /home/packageB
+cp -r /home/packageA/ /home/packageB/
+```
+
+下面两个命令结果相同，都是不拷贝 packageA 文件，只递归拷贝其任意层的子结构到 packageB 中:
+```
+cp -r packageA/* packageB
+cp -r packageA/* packageB/
+```
