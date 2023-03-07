@@ -498,10 +498,15 @@ exit
 
 ### 设置默认登录用户
 
+
+```
+echo -e "[user]\ndefault=guof" >> /etc/wsl.conf
+```
+
 参考这两个
 
 [导入任何Linux分发版](https://learn.microsoft.com/zh-cn/windows/wsl/use-custom-distro)
 
 [高级设置配置](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#wslconf)（主要是看wsl.conf里的用户设置[user]）
 
-所以ubuntu2204.exe是什么？这玩意可以直接在powershell里设置，我怀疑是微软下载的软件自带的。。。
+所以ubuntu2204.exe是什么？这玩意可以直接在powershell里设置，我怀疑是微软下载的软件自带的。这个的权限高于```/etc/wsl.conf```
