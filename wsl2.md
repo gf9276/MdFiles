@@ -2,6 +2,8 @@
 
 [官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/)
 
+官方文档很好用的
+
 ## 安装
 
 这是旧版本的安装，新版本貌似直接```wsl install```就好了
@@ -485,3 +487,21 @@ netsh winsock reset
 * try to start your distribution again and it will point you to: https://aka.ms/wsl2kernel
 * from there download the wsl_update_x64.msi file and run it , install the WSL kernel
 * start your distribution again
+
+## wsl指令与配置
+
+### 退出
+
+```
+exit
+```
+
+### 设置默认登录用户
+
+参考这两个
+
+[导入任何Linux分发版](https://learn.microsoft.com/zh-cn/windows/wsl/use-custom-distro)
+
+[高级设置配置](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#wslconf)（主要是看wsl.conf里的用户设置[user]）
+
+所以ubuntu2204.exe是什么？这玩意可以直接在powershell里设置，我怀疑是微软下载的软件自带的。。。
