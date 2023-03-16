@@ -496,6 +496,12 @@ netsh winsock reset
 exit
 ```
 
+或者
+
+```
+ctrl+d
+```
+
 ### 设置默认登录用户
 
 

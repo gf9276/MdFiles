@@ -34,3 +34,18 @@ cp -r /home/packageA/ /home/packageB/
 cp -r packageA/* packageB
 cp -r packageA/* packageB/
 ```
+
+### 移动命令
+
+```
+mv IfElseTest1.java chapter03/
+```
+
+### 查看文件夹下的文件数
+
+```
+ls -l | grep "-" | wc -l
+```
+
+### whereis which
+
