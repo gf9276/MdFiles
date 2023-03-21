@@ -107,3 +107,29 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 
 [参考这里](http://www.splaybow.com/post/powershellexecps1.html)
+
+## 打包 conda 环境
+
+### 安装打包的工具
+
+```
+conda install -c conda-forge conda-pack
+```
+
+### 打包将要迁移的环境
+
+```
+conda pack -n 虚拟环境名称 -o output.tar.gz
+```
+
+### 复制压缩文件到新的电脑环境
+
+* 进到conda的安装目录：```/anaconda(或者miniconda)/envs/```
+
+* 在该名目录下创建文件夹
+
+* 解压conda环境：```tar -xzvf output.tar.gz -C /anaconda(或者miniconda)/envs/创建的文件夹/```
+
+* 查看虚拟环境：```conda env list```
+
+
