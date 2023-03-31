@@ -25,6 +25,14 @@ sudo apt install openjdk-11-jdk
 sudo update-alternatives --config java
 ```
 
+### 添加环境变量到 /etc/profile
+
+```
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export JRE_HOME=$JAVA_HOME/jre
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+```
+
 ### 全部删除
 
 注意是全部删除
