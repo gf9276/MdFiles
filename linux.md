@@ -49,3 +49,61 @@ ls -l | grep "-" | wc -l
 
 ### whereis which
 
+
+### 中文，设置中文
+
+* 先更新，后面还是会用到的
+```
+sudo apt update
+```
+
+* 然后安装locales, wsl 的 ubuntu 有的，这一步跳过
+
+```
+sudo apt install locales
+```
+
+* 区域设置
+```
+sudo dpkg-reconfigure locales
+```
+
+出现如下所示，这个界面是让你添加可选时区用的，选三个（空格选中），分别是```en_US.UTF-8```、```zh_CN.GBK```、```zh_CH.UTF-8``` （选几个无所谓的，万一用上了呢），然后回车确定。
+![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331202709.png)
+
+然后出现，这个才是让你选择默认时区的，中文一般选择```zh_CH.UTF-8```
+![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331203242.png)
+
+* 安装语言包和字体，好像只用装一个？
+
+```
+sudo apt install language-pack-zh-hans && sudo apt install ttf-wqy-microhei ttf-wqy-zenhei xfonts-intl-chinese
+```
+
+### 安装gedit，反正不大，安装玩玩
+
+* 执行指令 ```sudo apt-get update && sudo apt install gedit -y```
+
+打开会有警告，无伤大雅
+![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331205033.png)
+
+输入法安装好麻烦，我懒得装了，开玩笑的
+
+### 安装搜狗拼音（没成功）
+
+* 执行指令，安装```fcitx```和搜狗拼音
+```
+sudo apt install fcitx fcitx-googlepinyin -y
+```
+
+* 添加环境变量
+```
+sudo vim /etc/profile
+```
+
+写入
+```
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=\@im=fcitx 
+```
