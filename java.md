@@ -21,13 +21,15 @@ sudo apt install openjdk-11-jdk
 
 ### 获取路径
 
-我只是用这个来获取路径，没用这个进行版本管理，我直接用环境变量了。因为mvn需要用到JAVA_HOME环境变量
+我只是用这个来获取路径，没用这个进行版本管理，我直接用环境变量了。因为mvn需要用到JAVA_HOME环境变量。（最好是两个一起用，保持一致）
 
 ```
 sudo update-alternatives --config java
 ```
 
 ### 添加环境变量到 /etc/profile
+
+请注意，java8的位置不一样的，不过问题好像不大，有软链接
 
 ```
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
@@ -142,17 +144,18 @@ sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-de
 
 * 下载Opencv并且随便找个地方放了，并且解压，我干脆放到 ~/opencv 下了
 
-![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230402205415.png)
-
-顺便把IPPICV也下载了，这玩意不知道为什么开了代理也下载不下来，真tm神奇
+* 顺便把IPPICV也下载了，这玩意不知道为什么开了代理也下载不下来，真tm神奇
 
 ```
 https://github.com/opencv/opencv_3rdparty/tree/ippicv/master_20191018/ippicv
 ```
 
+最终如下图
+![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230402205415.png)
+
 * 改一下ippv的地址
 
-编辑这个叫做 ippicv.cmake 的文件，路径为 ```~/opencv/opencv-4.5.3/3rdparty/ippicv```
+编辑这个叫做 ippicv.cmake 的文件，所在的目录路径为 ```~/opencv/opencv-4.5.3/3rdparty/ippicv```
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230402205534.png)
 
@@ -167,7 +170,7 @@ https://github.com/opencv/opencv_3rdparty/tree/ippicv/master_20191018/ippicv
 cd ~/opencv/opencv-4.5.3 && mkdir build && cd build
 ```
 
-* 开始cmake
+* 开始cmake，这里太奇怪了，不管我怎么设置java版本，这玩意用的都是java11，太诡异了
 ```
 sudo cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D  OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_ENABLE_NONFREE=True ..
 ```
