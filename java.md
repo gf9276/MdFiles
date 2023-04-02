@@ -112,6 +112,8 @@ sudo vim /opt/maven/apache-maven-3.9.1/conf/settings.xml
 
 ## 安装
 
+提前制定好java的版本，编译的时候会用的
+
 [参考链接1](https://zoyi14.smartapps.cn/pages/note/index?slug=90c542ddf54a&origin=share&_swebfr=1&_swebFromHost=heytapbrowser)
 
 
@@ -138,13 +140,31 @@ sudo apt-get install cmake
 sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev libgtk2.0-dev pkg-config
 ```
 
-* 下载Opencv并且随便找个地方放了，并且解压，我干脆放到用户目录下了
+* 下载Opencv并且随便找个地方放了，并且解压，我干脆放到 ~/opencv 下了
 
-![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230331231710.png)
+![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230402205415.png)
+
+顺便把IPPICV也下载了，这玩意不知道为什么开了代理也下载不下来，真tm神奇
+
+```
+https://github.com/opencv/opencv_3rdparty/tree/ippicv/master_20191018/ippicv
+```
+
+* 改一下ippv的地址
+
+编辑这个叫做 ippicv.cmake 的文件，路径为 ```~/opencv/opencv-4.5.3/3rdparty/ippicv```
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230402205534.png)
+
+把ippicv路径改一下，我的是 ```file:/home/guof/opencv/opencv_3rdparty-ippicv-master_20191018/ippicv/```
+
+**<font color=#D81D4F >注意：图里的路劲最后少个/，我忘加了</font>**
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230402210758.png)
 
 * 创建build文件夹
 ```
-cd opencv-4.5.3 && mkdir build && cd build
+cd ~/opencv/opencv-4.5.3 && mkdir build && cd build
 ```
 
 * 开始cmake
@@ -207,6 +227,17 @@ source /etc/bash.bashrc
 
 ```
 pkg-config --modversion opencv4 或者 pkg-config --modversion opencv
+```
+
+
+* 看看有没有.jar文件
+  
+![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230402212308.png)
+
+* 如果显示opencv不在java库中，可以执行
+
+```
+sudo cp -r ~/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 ```
 
 # mysql
