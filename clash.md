@@ -27,7 +27,7 @@
 
 wsl2是依托于windows的，具体的config应该就是按照windows走的
 
-在 ~/ 下写一个脚本：
+在 ~/ 下写一个脚本（加入了ftp）：
 
 **<font color=#D81D4F >注意：是 ~/ 路径下</font>**
 
@@ -54,6 +54,9 @@ PROXY_HTTP="http://${hostip}:${port}"
 set_proxy(){
   export all_proxy="${PROXY_HTTP}"
   export ALL_PROXY="${PROXY_HTTP}"
+  export https_proxy="${PROXY_HTTP}"
+  export http_proxy="${PROXY_HTTP}"
+  export ftp_proxy="${PROXY_HTTP}"
 
   git config --global http.https://github.com.proxy ${PROXY_HTTP}
   git config --global https.https://github.com.proxy ${PROXY_HTTP}
@@ -64,6 +67,10 @@ set_proxy(){
 unset_proxy(){
   unset ALL_PROXY
   unset all_proxy
+  unset https_proxy
+  unset http_proxy
+  unset ftp_proxy
+  
   git config --global --unset http.https://github.com.proxy
   git config --global --unset https.https://github.com.proxy
 
