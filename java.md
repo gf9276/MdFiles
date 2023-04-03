@@ -170,7 +170,7 @@ https://github.com/opencv/opencv_3rdparty/tree/ippicv/master_20191018/ippicv
 cd ~/opencv/opencv-4.5.3 && mkdir build && cd build
 ```
 
-* 开始cmake，这里太奇怪了，不管我怎么设置java版本，这玩意用的都是java11，太诡异了
+* 开始cmake，这里太奇怪了，不管我怎么设置java版本，这玩意用的都是java11，不过java17是没有JNI的，但是JAVA8怎么回事，打不过11，难绷
 ```
 sudo cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D  OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_ENABLE_NONFREE=True ..
 ```
