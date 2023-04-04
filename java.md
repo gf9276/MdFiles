@@ -333,6 +333,17 @@ SHOW DATABASES
 source /path/to/.sql
 ```
 
+### 创建数据库
+
+```
+create DATABASE nan;
+```
+
+### 显示数据库
+```
+SHOW DATABASES;
+```
+
 # minio
 
 ## 安装
