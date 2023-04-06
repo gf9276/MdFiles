@@ -80,6 +80,29 @@ variable=`commands`
 variable=$(commands)
 ```
 
+### echo 变色
+
+[参考链接](https://blog.csdn.net/Dreamhai/article/details/103432525)
+
+例子
+```
+echo -e "\e[36m不是yes, 退出\e[0m"
+```
+
+### 交互 read
+```
+read -ra arr  # 将输入的东西以空格为间隔，输入到数组arr, -r表示进制转义符
+```
+
+### for 循环遍历arr
+```
+for element in ${arr[*]}
+do
+    ###
+done
+```
+
+
 ## ubuntu
 
 ### 上下键补全历史指令
