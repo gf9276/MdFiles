@@ -110,6 +110,8 @@ sudo vim /opt/maven/apache-maven-3.9.1/conf/settings.xml
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230401195604.png)
 
+* [手动导入maven包的方法](https://blog.csdn.net/nickDaDa/article/details/105674344)
+
 # opencv
 
 ## 安装
