@@ -1,10 +1,35 @@
-# oh my posh (windows terminal)
+<!-- TOC -->
+
+- [1. oh-my-posh.md](#1-oh-my-poshmd)
+- [2. 安装](#2-安装)
+  - [2.1. 下载字体](#21-下载字体)
+  - [2.2. 安装oh my posh](#22-安装oh-my-posh)
+    - [2.2.1. windows powershell](#221-windows-powershell)
+    - [2.2.2. wsl](#222-wsl)
+  - [2.3. 修改终端配置文件](#23-修改终端配置文件)
+    - [2.3.1. windows powershell](#231-windows-powershell)
+    - [2.3.2. wsl](#232-wsl)
+- [3. 设置风格（以及遇到的问题）](#3-设置风格以及遇到的问题)
+  - [3.1. night owl](#31-night-owl)
+  - [3.2. 1\_shell](#32-1_shell)
+
+<!-- /TOC -->
+
+
+# 1. oh-my-posh.md
+
+oh my posh 是一个美化终端的东西，主要是用在powershell上的，也支持ubuntu就是了
+
+我主要是用在 windows terminal 上的
+
 博客参考链接如下：[博客参考链接](https://sspai.com/post/69911#!)  
+
 官方文档如下：[oh my posh 官方文档](https://ohmyposh.dev/docs/installation/windows)  
 
-## 安装
+# 2. 安装
 
-### 1、下载字体
+## 2.1. 下载字体
+
 部分 Oh my posh 主题有一些特殊的字符，例如表示系统类型的徽标、GitHub 标志，这些字符需要特殊的字体支持。如果读者看上了一款有这些字符的主题，必须提前下载安装合适的字体，并将它们设置为终端显示的字体。使用[Agave Nerd Fonts](https://www.nerdfonts.com/font-downloads)字体，打开并安装。windows terminal下设置成这样比较好看：
 ```
 "font": 
@@ -17,29 +42,51 @@
 或者默认配置如下图所示：
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/20221109142953.png)
 
-### 2、安装oh my posh
+## 2.2. 安装oh my posh
+
 具体指令查看 [oh my posh 官方文档](https://ohmyposh.dev/docs/installation/windows)。或者直接按照下面的执行
-#### windows powershell  
+
+### 2.2.1. windows powershell  
+
 执行以下指令，下载oh my posh
 ```
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
-#### wsl
+
+### 2.2.2. wsl
+
 直接在wsl里下载oh my posh，打开wsl，回到根目录下，执行指令：
+
 ```
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 ```
-根目录下执行以下指令，下载主题：
+
+```
+chmod +x /usr/local/bin/oh-my-posh
+```
+
+用户目录下执行以下指令，下载主题：
+
 ```
 mkdir ~/.poshthemes
+```
+```
 wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
+```
+```
 unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
+```
+```
 chmod u+rw ~/.poshthemes/*.omp.*
+```
+```
 rm ~/.poshthemes/themes.zip
 ```
-### 3、修改终端配置文件
-#### windows powershell  
+
+## 2.3. 修改终端配置文件
+
+### 2.3.1. windows powershell  
+
 打开PowerShell，键入$Profile，查询配置文件路径，编辑此文件，若没有，则新建一个。一般情况下长这样：  
 ```
 C:\Users\92762\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1  
@@ -48,18 +95,25 @@ C:\Users\92762\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 ```   
 oh-my-posh --init --shell pwsh --config C:\Users\92762\AppData\Local\Programs\oh-my-posh\themes\M365Princess.omp.json | Invoke-Expression  
 ```
-#### wsl
+### 2.3.2. wsl
+
 回到用户路径下，打开.bashrc文件
+
 ```
 cd /home/guof
 vi .bashrc
 ```
+
 在最后写入
+
 ```
 eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/night-owl.omp.json)"
 ```
---config后面是具体的主题路径  
-## 一点问题（已解决）
+
+--config后面是具体的主题路径 
+
+# 3. 设置风格（以及遇到的问题）
+
 不显示base环境，具体我得看看他的指令集。[具体原因](https://github.com/JanDeDobbeleer/oh-my-posh/issues/2792)，我的回答是：Thank you for your reply. The problem has been solved, most of the themes have not been added to the python segment, so the virtual environment of conda cannot be displayed, and I have made a little modification to its code. 查阅[oh my posh 官方文档](https://ohmyposh.dev/docs/installation/windows)，主要内容以下三个：
 
 * Configuration -> segment
@@ -67,13 +121,20 @@ eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/night-owl.omp.json
 * Themes  
 
 第一个查阅具体关键词的含义，第二个查阅关键词type的类型，第三个是各种主题和源码。建议参考源码有[atomicBit](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/atomicBit.omp.json)、[night-owl](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/night-owl.omp.json)、[M365Princess](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/M365Princess.omp.json)、[1_shell](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/1_shell.omp.json)。添加对应的python段，即可显示conda环境。night-owl在vs code下，会出现diamond显示问题（通病），我弄了两种style，一种基于1_shell，一种基于night_owl。
-### night owl
+
+## 3.1. night owl
+
 没有对源码进行更改，windows terminal里使用的背景配色为#051B30。效果如下：  
+
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/20220918212744.png)  
+
 但是在vs code下会有Bug，如下：  
+
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/20220918212942.png)  
+
 所以还是用下面的比较好
-### 1_shell
+
+## 3.2. 1_shell
 对源码进行更改，如下所示：
 ```
 {
@@ -297,7 +358,9 @@ eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/night-owl.omp.json
   "version": 2
 }
 ```
-配色方案为
+
+windows terminal 的配色方案为
+
 ```
         {
             "background": "#292D3E",
@@ -324,12 +387,17 @@ eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/night-owl.omp.json
         }
 ```
 背景色建议改成`15,17,26`（十进制）
+
 当然了，终端字体都需要更改。terminal效果图如下所示：
+
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/terminal_1_shell.png)
-vscode效果图如下所示：
+
+vscode效果图如下所示（别忘了换字体）：
+
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/vscode_1_shell.png)
 
 在~/路径下按照上面代码创建 my_1_shell.omp.json 文件，.bashrc 里添加如下代码：
+
 ```
 # oh my posh 的主题路径
 eval "$(oh-my-posh --init --shell bash --config ~/my_1_shell.omp.json)"

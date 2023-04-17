@@ -1,6 +1,17 @@
-# vscode
+<!-- TOC -->
 
-## 安装
+- [1. vscode.md](#1-vscodemd)
+- [2. 安装vscode](#2-安装vscode)
+- [3. wsl2 关联 vscode](#3-wsl2-关联-vscode)
+- [4. 关于github](#4-关于github)
+
+<!-- /TOC -->
+
+# 1. vscode.md
+
+记录 vscode 的一些设置
+
+# 2. 安装vscode
 
 下载便携版就行，解压到D，
 如改图所示，创建一个 data 文件夹
@@ -13,7 +24,7 @@
 
 换 vscode 版本的时候把 data 复制走就行，很方便的
 
-## wsl2 关联 vscode 
+# 3. wsl2 关联 vscode 
 
 .bashrc 文件夹里添加
 
@@ -26,7 +37,7 @@ export PATH="$PATH:/mnt/d/VSCode-win32-x64-portable/bin"
 
 然后在 wsl2 下用 code . 就可以打开 vscode 了
 
-## github
+# 4. 关于github
 
 很神奇，普通的git上传需要token ssh密钥之类的，为什么vscode 连密码都省了，写不需要token，直接就能用。密码我可能在哪里已经输过了，但是居然连密钥都不需要，很神奇。
 

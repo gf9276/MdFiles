@@ -1,23 +1,46 @@
-# wsl2
+<!-- TOC -->
+
+- [1. wsl2.md](#1-wsl2md)
+- [2. 安装 wsl](#2-安装-wsl)
+  - [2.1. 第一步，启动wsl](#21-第一步启动wsl)
+  - [2.2. 第二步，启动虚拟机平台、重启、下载内核包](#22-第二步启动虚拟机平台重启下载内核包)
+  - [2.3. 第三步，设置 WSL 2 为默认值](#23-第三步设置-wsl-2-为默认值)
+  - [2.4. 第四步，安装一个 Linux 发行版、挪动到其他盘（可选）](#24-第四步安装一个-linux-发行版挪动到其他盘可选)
+  - [2.5. 第五步，直接安装 windows terminal](#25-第五步直接安装-windows-terminal)
+- [3. wsl指令与配置](#3-wsl指令与配置)
+  - [3.1. 挪动到其他盘](#31-挪动到其他盘)
+  - [3.2. 退出](#32-退出)
+  - [3.3. 设置默认登录用户](#33-设置默认登录用户)
+- [4. 坑](#4-坑)
+  - [4.1. 出现无法使用的情况（Error code: Wsl/Service/0x8007273d）](#41-出现无法使用的情况error-code-wslservice0x8007273d)
+    - [4.1.1. 解决方法1](#411-解决方法1)
+    - [4.1.2. 解决方法2](#412-解决方法2)
+    - [4.1.3. 最好用的方法](#413-最好用的方法)
+
+<!-- /TOC -->
+
+# 1. wsl2.md
+
+记录 wsl2 的操作
 
 [官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/)
 
-官方文档很好用的
+**<font color=#D81D4F > 官方文档很好用的，直接看官方文档就行了 —— 20230417 </font>**
 
-## 安装
+# 2. 安装 wsl
 
-这是旧版本的安装，新版本貌似直接```wsl install```就好了
+**这是旧版本的安装，新版本直接```wsl install```或者微软商店安装就好了 —— 20230417**
 * [参考链接1-bilibili](https://www.bilibili.com/read/cv9561666)
 * [参考链接2-博客园](https://www.cnblogs.com/ittranslator/p/14128570.html)
 * [参考链接3-CSDN](https://blog.csdn.net/li1325169021/article/details/124285018)
   
-### 第一步，启动wsl
+## 2.1. 第一步，启动wsl
 不管您想要使用哪个版本的 WSL，都首先需要启用它。为此，请以**管理员身份**打开 **PowerShell** 工具并运行以下命令。小心不要在命令中输入错误或遗漏任何字符：
 ```
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
-### 第二步，启动虚拟机平台、重启、下载内核包
+## 2.2. 第二步，启动虚拟机平台、重启、下载内核包
 WSL 2 需要启用 Windows 10 的 “虚拟机平台” 特性。它独立于 Hyper-V，并提供了一些在 Linux 的 Windows 子系统新版本中可用的更有趣的平台集成。
 要在 Windows 10（2004）上启用虚拟机平台，请以 **管理员身份打开 PowerShell** 并运行：
 ```
@@ -31,52 +54,23 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 * [官方问题提出路径](https://learn.microsoft.com/zh-cn/windows/wsl/troubleshooting)
 * [具体下载路径](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
-### 第三步，设置 WSL 2 为默认值
+## 2.3. 第三步，设置 WSL 2 为默认值
 
 以 **管理员身份打开 PowerShell**，然后运行以下命令以将 WSL 2 设置为 WSL 的默认版本：
 ```
 wsl --set-default-version 2
 ```
 
-### 第四步，安装一个 Linux 发行版、挪动到其他盘（可选）
+## 2.4. 第四步，安装一个 Linux 发行版、挪动到其他盘（可选）
 直接去微软商店搜就行了，Ubuntu 22.04。
 然后直接打开就行，按照他的提示，输入用户名和密码，有点奇怪，有时候是黑色框，有时候出来彩色的，emmm。不过都一样的。彩色的和下面的一样：
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20221109193951.png)
 
-如果想挪动，执行下面的命令
-
-* 查看已安装的子系统版本
-```
-wsl -l -v
-```
-* 关闭wsl
-```
-wsl --shutdown
-```
-* 导出分发版为tar文件到D盘
-```
-wsl --export Ubuntu-22.04 d:\wsl-ubuntu-22.04.tar
-```
-* 注销当前分发版
-```
-wsl --unregister Ubuntu-22.04
-```
-* 重新导入并安装wsl在D盘
-```
-wsl --import Ubuntu-22.04 d:\wsl-ubuntu-22.04 d:\wsl-ubuntu-22.04.tar --version 2
-```
-* 设置默认登陆用户为安装时用户名
-```
-ubuntu2204 config --default-user guof
-```
-* 删除tar文件
-```
-del d:\wsl-ubuntu-22.04.tar
-```
+如果想挪动，去目录找
 
 
-### 第五步，直接安装 windows terminal
+## 2.5. 第五步，直接安装 windows terminal
 
 设置大小为
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20221109193242.png)
@@ -85,8 +79,7 @@ del d:\wsl-ubuntu-22.04.tar
 
 搞好后
 
-
-建议设置.json文件为
+建议设置.json文件为（现在我建议不要直接复制，其实这里改动的主要是颜色卡 —— 20230417）
 ```
 {
     "$help": "https://aka.ms/terminal-documentation",
@@ -445,52 +438,40 @@ del d:\wsl-ubuntu-22.04.tar
 ```
 
 
-## 出现无法使用的情况（Error code: Wsl/Service/0x8007273d）
+# 3. wsl指令与配置
 
-![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/L%]TR~I6_K`0NR98OO]YWBQ.png)
+## 3.1. 挪动到其他盘
 
-### 方法
-
-管理员权限打开 powershell
-
-执行命令
+* 查看已安装的子系统版本
 ```
-netsh winsock reset
+wsl -l -v
+```
+* 关闭wsl
+```
+wsl --shutdown
+```
+* 导出分发版为tar文件到D盘
+```
+wsl --export Ubuntu-22.04 d:\wsl-ubuntu-22.04.tar
+```
+* 注销当前分发版
+```
+wsl --unregister Ubuntu-22.04
+```
+* 重新导入并安装wsl在D盘
+```
+wsl --import Ubuntu-22.04 d:\wsl-ubuntu-22.04 d:\wsl-ubuntu-22.04.tar --version 2
+```
+* 设置默认登陆用户为安装时用户名
+```
+ubuntu2204 config --default-user guof
+```
+* 删除tar文件
+```
+del d:\wsl-ubuntu-22.04.tar
 ```
 
-然后重新打开wsl2
-
-### 另一种方法，但是这种方法我用不了
-
-下载 
-
-[http://file2.happyjava.cn/NoLsp.exe](http://file2.happyjava.cn/NoLsp.exe)
-
-
-放到 ```C:\windows\system32``` 目录下，执行命令
-
-```
-.\NoLsp.exe C:\windows\system32\wsl.exe
-```
-
-```C:\windows\system32\wsl.exe```对应```wsl.exe```在的目录
-
-但是这个方法我用不了
-
-### 最好用的方法
-
-不如重新下载，然后再导入分发包（记得提前导出）
-
-[github问题地址](https://github.com/microsoft/WSL/issues/9331)
-
-* in Add or remove programs: uninstall first "Windows Subsystem for Linux Update" and then "Windows Subsystem for Linux"
-* try to start your distribution again and it will point you to: https://aka.ms/wsl2kernel
-* from there download the wsl_update_x64.msi file and run it , install the WSL kernel
-* start your distribution again
-
-## wsl指令与配置
-
-### 退出
+## 3.2. 退出
 
 ```
 exit
@@ -502,8 +483,7 @@ exit
 ctrl+d
 ```
 
-### 设置默认登录用户
-
+## 3.3. 设置默认登录用户
 
 ```
 echo -e "[user]\ndefault=guof" >> /etc/wsl.conf
@@ -516,3 +496,50 @@ echo -e "[user]\ndefault=guof" >> /etc/wsl.conf
 [高级设置配置](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#wslconf)（主要是看wsl.conf里的用户设置[user]）
 
 所以ubuntu2204.exe是什么？这玩意可以直接在powershell里设置，我怀疑是微软下载的软件自带的。这个的权限高于```/etc/wsl.conf```
+
+# 4. 坑
+
+## 4.1. 出现无法使用的情况（Error code: Wsl/Service/0x8007273d）
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/L%]TR~I6_K`0NR98OO]YWBQ.png)
+
+### 4.1.1. 解决方法1
+
+管理员权限打开 powershell
+
+执行命令
+```
+netsh winsock reset
+```
+
+然后重新打开wsl2
+
+### 4.1.2. 解决方法2
+
+这种方法我用不了
+
+下载 
+
+[http://file2.happyjava.cn/NoLsp.exe](http://file2.happyjava.cn/NoLsp.exe)
+
+
+放到 ```C:\windows\system32``` 目录下，执行命令
+
+```
+.\NoLsp.exe C:\windows\system32\wsl.exe
+```
+
+其中 ```C:\windows\system32\wsl.exe```对应```wsl.exe```在的目录
+
+但是这个方法我用不了
+
+### 4.1.3. 最好用的方法
+
+不如重新下载，然后再导入分发包（记得提前导出）
+
+[github问题地址](https://github.com/microsoft/WSL/issues/9331)
+
+* in Add or remove programs: uninstall first "Windows Subsystem for Linux Update" and then "Windows Subsystem for Linux"
+* try to start your distribution again and it will point you to: https://aka.ms/wsl2kernel
+* from there download the wsl_update_x64.msi file and run it , install the WSL kernel
+* start your distribution again

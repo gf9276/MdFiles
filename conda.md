@@ -1,6 +1,27 @@
-# conda
+<!-- TOC -->
 
-## 安装
+- [1. conda.md](#1-condamd)
+- [2. 安装 conda (linux)](#2-安装-conda-linux)
+- [3. 配置 conda](#3-配置-conda)
+  - [3.1. 换源](#31-换源)
+  - [3.2. Windows 系统下 Anaconda Powershell Prompt (miniconda3) 部署到Windows Terminal](#32-windows-系统下-anaconda-powershell-prompt-miniconda3-部署到windows-terminal)
+  - [3.3. windows下 conda 走代理（蓝色小猫也能用）](#33-windows下-conda-走代理蓝色小猫也能用)
+    - [3.3.1. 命令生成](#331-命令生成)
+  - [3.4. windows 系统下 powershell 加载 conda 的环境](#34-windows-系统下-powershell-加载-conda-的环境)
+- [4. 操作 conda](#4-操作-conda)
+  - [4.1. 一点很简单的指令](#41-一点很简单的指令)
+  - [4.2. 打包 conda 环境](#42-打包-conda-环境)
+    - [4.2.1. 安装打包的工具](#421-安装打包的工具)
+    - [4.2.2. 打包将要迁移的环境](#422-打包将要迁移的环境)
+    - [4.2.3. 复制压缩文件到新的电脑环境](#423-复制压缩文件到新的电脑环境)
+
+<!-- /TOC -->
+
+# 1. conda.md
+
+记录 conda 的一些操作
+
+# 2. 安装 conda (linux)
 
 没什么好说的，几条指令的事情
 
@@ -20,12 +41,17 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 ```
 source ~/.bashrc
+```
+
+```
 conda -h
 ```
 
-## 换源
+# 3. 配置 conda
 
-一般不用换，留在这里以防万一
+## 3.1. 换源
+
+我一般用代理，不用换，留在这里以防万一
 
 [参考链接](https://www.cnblogs.com/sethnie/p/15847897.html)
 
@@ -38,7 +64,7 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --set show_channel_urls yes
 ```
 
-他会自动创建一个 .condarc 文件
+他会自动创建一个 ~/.condarc 文件
 
 执行以下命令，换回默认源
 
@@ -46,24 +72,7 @@ conda config --set show_channel_urls yes
 conda config --remove-key channels
 ```
 
-## 一点很简单的指令
-
-```
-conda list             // 显示conda安装的python包
-conda search xxx       // 搜索python包
-conda install xxx=1.2  // 安装指定安装包版本
-conda install D:xxx    // 安装本地python包（绝对路径）
-conda env list         // 查看当前存在哪些虚拟环境
-conda create --name pytorch python=3.7 // 创建虚拟环境pytorch，python版本为3.7
-conda activate pytorch         // 启用虚拟环境
-conda deactivate               // 退出当前虚拟环境
-conda remove -n pytorch --all  // 删除虚拟环境
-conda info                     // 显示相关信息
-conda update conda             // 更新conda
-
-```
-
-## Windows 系统下 Anaconda Powershell Prompt (miniconda3) 部署到Windows Terminal
+## 3.2. Windows 系统下 Anaconda Powershell Prompt (miniconda3) 部署到Windows Terminal
 
 直接```添加新配置文件```然后复制cmd的格式，直接这样子设置就行了
 
@@ -73,9 +82,9 @@ conda update conda             // 更新conda
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/conda/20230223172539.png)
 
-## windows下 conda 走代理（蓝色小猫也能用）
+## 3.3. windows下 conda 走代理（蓝色小猫也能用）
 
-### 命令生成
+### 3.3.1. 命令生成
 
 [可以参考这个连接](https://www.cnblogs.com/treasury-manager/p/13952394.html#1%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84)
 
@@ -93,7 +102,7 @@ conda config --set proxy_servers.https http://127.0.0.1:7890
 默认文件路径为```C:\Users\92762\.condarc```
 
 
-## windows 系统下 powershell 加载 conda 的环境
+## 3.4. windows 系统下 powershell 加载 conda 的环境
 
 先在 conda 界面下执行
 ```
@@ -108,21 +117,40 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 [参考这里](http://www.splaybow.com/post/powershellexecps1.html)
 
-## 打包 conda 环境
+# 4. 操作 conda
 
-### 安装打包的工具
+## 4.1. 一点很简单的指令
+
+```
+conda list             // 显示conda安装的python包
+conda search xxx       // 搜索python包
+conda install xxx=1.2  // 安装指定安装包版本
+conda install D:xxx    // 安装本地python包（绝对路径）
+conda env list         // 查看当前存在哪些虚拟环境
+conda create --name pytorch python=3.7 // 创建虚拟环境pytorch，python版本为3.7
+conda activate pytorch         // 启用虚拟环境
+conda deactivate               // 退出当前虚拟环境
+conda remove -n pytorch --all  // 删除虚拟环境
+conda info                     // 显示相关信息
+conda update conda             // 更新conda
+
+```
+
+## 4.2. 打包 conda 环境
+
+### 4.2.1. 安装打包的工具
 
 ```
 conda install -c conda-forge conda-pack
 ```
 
-### 打包将要迁移的环境
+### 4.2.2. 打包将要迁移的环境
 
 ```
 conda pack -n 虚拟环境名称 -o output.tar.gz
 ```
 
-### 复制压缩文件到新的电脑环境
+### 4.2.3. 复制压缩文件到新的电脑环境
 
 * 进到conda的安装目录：```/anaconda(或者miniconda)/envs/```
 

@@ -1,11 +1,44 @@
-# git
+<!-- TOC -->
 
-## git 指令
+- [1. git.md](#1-gitmd)
+- [2. git 指令](#2-git-指令)
+  - [2.1. 查看修改git账户信息](#21-查看修改git账户信息)
+  - [2.2. 设置全局（修改和添加都是这样子的）](#22-设置全局修改和添加都是这样子的)
+  - [2.3. 创建版本库](#23-创建版本库)
+  - [2.4. 添加和提交](#24-添加和提交)
+  - [2.5. 版本管理](#25-版本管理)
+    - [2.5.1. 查看版本变化](#251-查看版本变化)
+    - [2.5.2. 回退到上一个版本](#252-回退到上一个版本)
+    - [2.5.3. 选择指定id的版本（可以用于回退或者恢复）](#253-选择指定id的版本可以用于回退或者恢复)
+    - [2.5.4. 如果忘记 commit id 怎么办](#254-如果忘记-commit-id-怎么办)
+  - [2.6. 工作区和暂存区](#26-工作区和暂存区)
+  - [2.7. 管理修改](#27-管理修改)
+  - [2.8. 撤销修改](#28-撤销修改)
+  - [2.9. 删除文件](#29-删除文件)
+- [3. github](#3-github)
+  - [3.1. 创建一个新的仓库](#31-创建一个新的仓库)
+  - [3.2. 关联本地仓库](#32-关联本地仓库)
+  - [3.3. 分支管理](#33-分支管理)
+  - [3.4. 解决冲突](#34-解决冲突)
+  - [3.5. github 做图床](#35-github-做图床)
+    - [3.5.1. 创建仓库](#351-创建仓库)
+    - [3.5.2. 下载个picgo用于上传图片](#352-下载个picgo用于上传图片)
+    - [3.5.3. 获取token](#353-获取token)
+    - [3.5.4. 设置](#354-设置)
+
+<!-- /TOC -->
+# 1. git.md
+
+记录 git 的用法 和 学习 git
+
+这个写的有点乱
+
+# 2. git 指令
 
 [看这个网站(廖雪峰的)](https://www.liaoxuefeng.com/wiki/896043488029600)
 
 
-### 查看修改git账户信息
+## 2.1. 查看修改git账户信息
 
 ```
 git config --global --list   // 查看当前git的配置信息
@@ -13,7 +46,7 @@ git config user.name
 git config user.email   
 ```
 
-### 设置全局（修改和添加都是这样子的）
+## 2.2. 设置全局（修改和添加都是这样子的）
 
 ```
 git config --global user.password ******
@@ -21,66 +54,66 @@ git config --global user.name ******
 git config --global user.email ******
 ```
 
-### 创建版本库
+## 2.3. 创建版本库
 
 直接在目录底下，执行```git init```就可以了
 
-### 添加和提交
+## 2.4. 添加和提交
 
 ```git add file1.txt file2.txt``` 直接将文件添加到仓库，可以是新的文件，也可以是旧的改过的文件
 
 ```git commit -m xxxx``` 将文件提交到仓库 ， ```xxxx```是版本说明，想写什么写什么
 
 
-### 版本管理
+## 2.5. 版本管理
 
-#### 查看版本变化
+### 2.5.1. 查看版本变化
 
-```git log``` --> 显示各个版本的信息
+使用 ```git log``` --> 显示各个版本的信息
 
-#### 回退到上一个版本
+### 2.5.2. 回退到上一个版本
 
-```git reset --hard HEAD^```
+使用 ```git reset --hard HEAD^```
 
 
-#### 选择指定id的版本（可以用于回退或者恢复）
+### 2.5.3. 选择指定id的版本（可以用于回退或者恢复）
 
-```git reset --hard 1094a```，```1094a```就是对应般的 commit  id
+使用 ```git reset --hard 1094a```，```1094a```就是对应般的 commit  id
 
-#### 如果忘记 commit id 怎么办
+### 2.5.4. 如果忘记 commit id 怎么办
 
 执行指令```git reflog```，就可以看到了
 
-### 工作区和暂存区
+## 2.6. 工作区和暂存区
 
-```git add```指令就是将文件添加到暂存区
+使用 ```git add``` 指令就是将文件添加到暂存区
 
-```git commit```指令将暂存区文件提交到工作区
+使用 ```git commit``` 指令将暂存区文件提交到工作区
 
 工作区就是我们在用的，文件所在地
 
-```git status```会告诉你，什么文件修改了，什么文件待添加
+使用 ```git status``` 会告诉你，什么文件修改了，什么文件待添加
 
-### 管理修改
+## 2.7. 管理修改
 
 修改只有在add了之后，commit才有效。
 
-### 撤销修改
+## 2.8. 撤销修改
 
-```git checkout -- readme.txt``` 将工作区内容回退到最近一次add或者commit后的状态
+使用 ```git checkout -- readme.txt``` 将工作区内容回退到最近一次add或者commit后的状态
 
-```git reset HEAD readme.txt``` 抛弃暂存区的修改
+使用 ```git reset HEAD readme.txt``` 抛弃暂存区的修改
 
-### 删除文件
+## 2.9. 删除文件
 
-```git rm test.txt``` git 删除文件，然后再提交即可
+使用 ```git rm test.txt``` git 删除文件，然后再提交即可
 
 想要恢复删除，使用前面的```git commit -- test.txt```就可以了
 
 
-## github
+# 3. github
 
-### 创建一个新的仓库
+## 3.1. 创建一个新的仓库
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/git/20230103155214.png)
 
@@ -89,7 +122,7 @@ git config --global user.email ******
 ok 现在创建完成了
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/git/20230103155352.png)
 
-### 关联本地仓库
+## 3.2. 关联本地仓库
 
 在本地使用```git remote add origin https://github.com/gf9276/git_test.git```，其中```https://github.com/gf9276/git_test.git```是仓库的url，```origin```是远程仓库的别名
 
@@ -100,7 +133,7 @@ git push <远程主机名> <本地分支名>:<远程分支名>
 git push origin master:main
 ```
 
-### 分支管理
+## 3.3. 分支管理
 
 看看这个[分支管理](https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424)
 
@@ -119,33 +152,33 @@ $ git branch dev
 $ git checkout dev  或者 git switch dev
 ```
 
-```git branch```可用于查看当前分支
+使用 ```git branch``` 可用于查看当前分支
 
-```git merge```用于合并分支到当前分支上（当前分支应该版本需要比较靠前），感觉怪怪的，感觉这不叫合并，叫复制覆盖之类的差不多
+使用 ```git merge``` 用于合并分支到当前分支上（当前分支应该版本需要比较靠前），感觉怪怪的，感觉这不叫合并，叫复制覆盖之类的差不多
 
-```git branch -d <name>```删除分支
+使用 ```git branch -d <name>``` 删除分支
 
-### 解决冲突
+## 3.4. 解决冲突
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/git/20230103184307.png)
 
 这样子merge会有冲突，居然要我手动改，真是奇怪，要我说这种就不好合并，直接选一个保留就行。
 
 
-### github 做图床
+## 3.5. github 做图床
 
 小心大小超过1G，谨防
 
-#### 1、创建仓库
+### 3.5.1. 创建仓库
 
 这个你会的。。。
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/git/20221112171150.png)
 
-#### 2、下载个picgo用于上传图片
+### 3.5.2. 下载个picgo用于上传图片
 
 [官网](https://molunerfinn.com/PicGo/)，挑个稳定版本。比如 2.3.0。
 
-#### 3、获取token
+### 3.5.3. 获取token
 
 这玩意是用来调用 github API 的。直接嫖别人的图片了
 
@@ -160,7 +193,7 @@ $ git checkout dev  或者 git switch dev
 
 token过期了直接复活就行，不用重新申请
 
-#### 4、设置
+### 3.5.4. 设置
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/git/20221112171458.png)
 

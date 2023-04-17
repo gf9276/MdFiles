@@ -16,12 +16,11 @@
 
 安装和学习的资料
 
-看尚硅谷或者黑马
-
+B站看尚硅谷或者黑马
 
 # 2. 安装
 
-用代理的话, 最好是sudo su切换到root用户下再执行下面指令, **<font color=#D81D4F > 这时候一定要去掉命令前面的sudo </font>**
+用代理的话, 要么使用```sudo su -l```切换到root用户下开启代理后再执行安装指令, **root用户下命令前面就不要带sudo了**；要么修改sudo的配置文件，保留all_proxy之类的与代理相关的环境变量
 
 已经写了脚本，地址 https://github.com/gf9276/ShFiles.git ，直接运行
 
@@ -35,20 +34,20 @@
 ## 2.1. 下载指定版本的Maven到 /opt/maven 目录下
 
 ```
-sudo mkdir /opt/maven && cd /opt/maven && sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
+mkdir /opt/maven && cd /opt/maven && wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
 ```
 
 ## 2.2. 解压并删除多余的压缩包
 
 ```
-cd /opt/maven && sudo tar -zxvf apache-maven-3.9.1-bin.tar.gz && sudo rm apache-maven-3.9.1-bin.tar.gz
+cd /opt/maven && tar -zxvf apache-maven-3.9.1-bin.tar.gz && rm apache-maven-3.9.1-bin.tar.gz
 ```
 
 ## 2.3. 添加环境变量
 
 方法一、
 ```
-sudo vim /etc/profile
+vim /etc/profile
 ```
 
 在最后面加入
@@ -61,12 +60,12 @@ export PATH=${M2_HOME}/bin:${PATH}
 
 方法二、
 ```
-sudo touch /etc/profile.d/my_maven_cfg.sh
+touch /etc/profile.d/my_maven_cfg.sh
 ```
 
 打开文件 my_maven_cfg.sh
 ```
-sudo vim /etc/profile.d/my_maven_cfg.sh
+vim /etc/profile.d/my_maven_cfg.sh
 ```
 
 写入环境变量
@@ -103,7 +102,7 @@ mvn -v 里会显示java版本，这个版本是跟着环境变量 JAVA_HOME 的
 
 修改配置文件
 ```
-sudo vim /opt/maven/apache-maven-3.9.1/conf/settings.xml
+vim /opt/maven/apache-maven-3.9.1/conf/settings.xml
 ```
 
 加入

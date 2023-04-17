@@ -3,27 +3,31 @@
 
 - [1. ncross\_well\_log](#1-ncross_well_log)
 - [2. 环境搭建](#2-环境搭建)
-  - [2.1. java](#21-java)
-  - [2.2. maven](#22-maven)
-  - [2.3. opencv](#23-opencv)
-    - [2.3.1. 安装ant](#231-安装ant)
-    - [2.3.2. 安装cmake](#232-安装cmake)
-    - [2.3.3. 安装其他依赖](#233-安装其他依赖)
-    - [2.3.4. 下载opencv并解压](#234-下载opencv并解压)
-    - [2.3.5. 下载 IPPICV 并配置 （你要是能上外网，这个不需要）](#235-下载-ippicv-并配置-你要是能上外网这个不需要)
-    - [2.3.6. 准备开始编译](#236-准备开始编译)
-    - [2.3.7. 配置环境](#237-配置环境)
-    - [2.3.8. 检查安装是否成功](#238-检查安装是否成功)
-  - [2.4. mysql](#24-mysql)
-  - [2.5. minio](#25-minio)
-    - [2.5.1. 下载](#251-下载)
-    - [2.5.2. 创建静态文件放置位置](#252-创建静态文件放置位置)
-    - [2.5.3. 启动minio（不用这个）](#253-启动minio不用这个)
-    - [2.5.4. 写入配置（准备供systemd调用）](#254-写入配置准备供systemd调用)
-    - [2.5.5. 设置开机自启动](#255-设置开机自启动)
-  - [2.6. hdf5](#26-hdf5)
-    - [2.6.1. 建议](#261-建议)
-    - [2.6.2. 安装和配置](#262-安装和配置)
+  - [2.1. 代理问题](#21-代理问题)
+  - [2.2. java](#22-java)
+  - [2.3. maven](#23-maven)
+  - [2.4. opencv](#24-opencv)
+    - [2.4.1. 安装ant](#241-安装ant)
+    - [2.4.2. 安装cmake](#242-安装cmake)
+    - [2.4.3. 安装其他依赖](#243-安装其他依赖)
+    - [2.4.4. 下载opencv并解压](#244-下载opencv并解压)
+    - [2.4.5. 下载 IPPICV 并配置 （你要是能用代理，能翻墙，这个不需要）](#245-下载-ippicv-并配置-你要是能用代理能翻墙这个不需要)
+    - [2.4.6. 准备开始编译](#246-准备开始编译)
+    - [2.4.7. 配置环境](#247-配置环境)
+    - [2.4.8. 检查安装是否成功](#248-检查安装是否成功)
+  - [2.5. mysql](#25-mysql)
+  - [2.6. minio](#26-minio)
+    - [2.6.1. 下载](#261-下载)
+    - [2.6.2. 创建静态文件放置位置](#262-创建静态文件放置位置)
+    - [2.6.3. 启动minio（不用这个）](#263-启动minio不用这个)
+    - [2.6.4. 写入配置（准备供systemd调用）](#264-写入配置准备供systemd调用)
+    - [2.6.5. 设置开机自启动](#265-设置开机自启动)
+  - [2.7. hdf5](#27-hdf5)
+    - [2.7.1. 建议](#271-建议)
+    - [2.7.2. 安装hdf](#272-安装hdf)
+    - [2.7.3. 动态库关联（也可以在idea里设置）](#273-动态库关联也可以在idea里设置)
+    - [2.7.4. 将 .jar 导入到 maven 中](#274-将-jar-导入到-maven-中)
+    - [2.7.5. 项目里pom的配置](#275-项目里pom的配置)
 
 <!-- /TOC -->
 
@@ -32,38 +36,32 @@
 
 **测井相关的代码，注意事项和环境搭建**
 
-**<font color=#D81D4F > 如果你用的是代理，注意！！！ </font>**
-
-**<font color=#D81D4F > sudo命令不会带上环境变量，这也就意味着，使用sudo apt的时候，你的apt是不会走代理的，因为你的代理是通过全局变量all_proxy之类的指定的 </font>**
-
-**<font color=#D81D4F > 要想使用代理，可以使用sudo su命令成为root用户，重新开启代理后执行安装命令，安装完之后再ctrl+d退出 </font>**
-
-**<font color=#D81D4F > 要不是我突然发现 wget和sudo wget速度怎么差的这么大，我还不知道 </font>**
-
 
 # 2. 环境搭建
 
 有以下几个部分，**<font color=#D81D4F > 按照顺序来 </font>**
 
-## 2.1. java
+## 2.1. 代理问题
+
+配置环境你可能会用到代理。如果你用的是代理，注意 **<font color=#D81D4F > sudo命令不会带上环境变量，这也就意味着，使用sudo apt的时候，你的apt是不会走代理的，因为你的代理是通过全局变量all_proxy之类的指定的 </font>**。
+
+用代理的话, 要么使用```sudo su -l```切换到root用户下开启代理后再执行安装指令, **root用户下命令前面就不要带sudo了**；要么修改sudo的配置文件，保留all_proxy之类的与代理相关的环境变量。
+
+## 2.2. java
 
 看 [java.md](https://github.com/gf9276/MdFiles/blob/master/java.md)
 
-## 2.2. maven
+## 2.3. maven
 
 看 [maven.md](https://github.com/gf9276/MdFiles/blob/master/maven.md)
 
-## 2.3. opencv
+## 2.4. opencv
 
 麻烦死了
 
 注意，安装Opencv不能只有java 17, java 17不带jni的, opencv会编译失败的
 
-提前制定好java的版本，编译的时候会用的，选11或者8
-
-最好是java8，但是我为什么一直默认java11，日了，可能编译要加java路径，md，他自己不会去读 JAVA_HOME 的吗，cccccc
-
-用代理的话, 最好是sudo su（有root密码的话直接su更好）切换到root用户下再执行下面指令, **<font color=#D81D4F > 这时候一定要去掉命令前面的sudo </font>**
+提前制定好java的版本，编译的时候会用的，选11或者8，最好是java8，但是我为什么一直默认java11，日了，可能编译要加java路径，md，他自己不会去读```JAVA_HOME```的吗。
 
 [参考链接1](https://zoyi14.smartapps.cn/pages/note/index?slug=90c542ddf54a&origin=share&_swebfr=1&_swebFromHost=heytapbrowser)
 
@@ -71,7 +69,9 @@
 
 [参考链接3](https://blog.csdn.net/Undefinedefity/article/details/106180033)
 
-### 2.3.1. 安装ant
+**<font color=#D81D4F > 下面的一定按照顺序来，不然会错的 </font>**
+
+### 2.4.1. 安装ant
 
 ```
 apt update
@@ -84,7 +84,7 @@ apt install ant
 使用 ```ant -version```检查是否安装成功
 
 
-### 2.3.2. 安装cmake
+### 2.4.2. 安装cmake
 
 ```
 apt install cmake
@@ -93,7 +93,7 @@ apt install cmake
 使用 ```cmake --version```检查是否安装成功
 
 
-### 2.3.3. 安装其他依赖
+### 2.4.3. 安装其他依赖
 
 小心，sudo会清除环境变量，导致代理无法使用
 
@@ -103,9 +103,9 @@ apt install cmake
 apt install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev libgtk2.0-dev pkg-config
 ```
 
-### 2.3.4. 下载opencv并解压
+### 2.4.4. 下载opencv并解压
 
-存放到/opt/opencv下（路径其实无所谓，这只是个需要要编译的文件）
+存放到/opt/opencv下（路径其实无所谓，这只是个需要编译的文件）
 
 ```
 mkdir /opt/opencv
@@ -119,12 +119,14 @@ cd /opt/opencv
 wget https://github.com/opencv/opencv/archive/4.5.3.zip
 ```
 
-解压，没有unzip的需要apt install zip unzip
+解压，没有unzip的需要先执行```apt install zip unzip```
 ```
-unzip 4.5.3.zip && rm -rf 4.5.3.zip
+unzip 4.5.3.zip && rm 4.5.3.zip
 ```
 
-### 2.3.5. 下载 IPPICV 并配置 （你要是能上外网，这个不需要）
+### 2.4.5. 下载 IPPICV 并配置 （你要是能用代理，能翻墙，这个不需要）
+
+IPPICV 下载到这个路径下
 
 ```
 cd /opt/opencv
@@ -145,7 +147,7 @@ wget https://github.com/opencv/opencv_3rdparty/archive/refs/heads/ippicv/master_
 unzip master_20191018.zip && rm master_20191018.zip
 ```
 
-下载完是这样子的
+下载压缩完是这样子的
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/ncross_well_log/20230417120646.png)
 
@@ -159,7 +161,7 @@ vim /opt/opencv/opencv-4.5.3/3rdparty/ippicv/ippicv.cmake
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/ncross_well_log/20230417121913.png)
 
-### 2.3.6. 准备开始编译
+### 2.4.6. 准备开始编译
 
 * 创建build文件夹
 ```
@@ -169,6 +171,7 @@ cd /opt/opencv/opencv-4.5.3 && mkdir build && cd build
 * 开始cmake
 
 这里应该要用java8，这里有点奇怪，不管我怎么设置java版本，这玩意用的都是java11，不过java17是没有JNI的，但是JAVA8怎么回事，打不过11，难绷
+
 ```
 cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D  OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_ENABLE_NONFREE=True ..
 ```
@@ -180,7 +183,7 @@ cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D  OPENCV_
 
 * 开始编译
 
-j8是线程数量，cpu线程数量少一点的改成j4，前面用java11编译的，这里会报一点错，不知道有没有影响
+j8是线程数量，cpu线程数量少一点的改成j4，前面用java11编译的，**这里会报一点错，不知道有没有影响，emmmmm....**
 
 ```
 make -j8
@@ -192,7 +195,7 @@ make -j8
 make install
 ```
 
-### 2.3.7. 配置环境
+### 2.4.7. 配置环境
 
 * 修改 /etc/ld.so.conf
 
@@ -208,21 +211,21 @@ include /usr/local/lib
 
 运行
 ```
-sudo ldconfig
+ldconfig
 ```
-会报错，有两个文件一样的，把其中一个改成软连接就好了（不用改了--20230417）
+wsl下会报错，有两个文件一样的，把其中一个改成软链接就好了（[听说是无害的，还是别管了](https://superuser.com/questions/1707681/wsl-libcuda-is-not-a-symbolic-link) ——20230417）
+
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230331234339.png)
 
-[听说是无害的，还是别管了](https://superuser.com/questions/1707681/wsl-libcuda-is-not-a-symbolic-link)
-
 [另外一个讨论](https://github.com/microsoft/WSL/issues/5663)
+
 
 * 修改/etc/bash.bashrc 
 ```
 vim /etc/bash.bashrc 
 ```
 
-最后加上
+在最后加上
 
 ```
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
@@ -234,7 +237,7 @@ export PKG_CONFIG_PATH
 source /etc/bash.bashrc
 ```
 
-### 2.3.8. 检查安装是否成功
+### 2.4.8. 检查安装是否成功
 
 指令
 
@@ -260,20 +263,21 @@ ls /opt/opencv/opencv-4.5.3/build/bin/
 cp -r /opt/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 ```
 
-## 2.4. mysql
+## 2.5. mysql
 
 看 [mysql.md](https://github.com/gf9276/MdFiles/blob/master/mysql.md)
 
 **注意，按照代码里的配置**
 
+* 不要安全安装！他对密码长度有限制，这样子还得改代码里的配置，麻烦。
 * 需要创建用户 nan ，密码 nan416，并赋予所有权限（我嫌麻烦，一次给全得了）
-* 需要设置大小写不敏感
+* 需要设置大小写不敏感（low_case_table_names = 1）
 * 端口使用 3306
 
 
-## 2.5. minio
+## 2.6. minio
 
-### 2.5.1. 下载
+### 2.6.1. 下载
 
 ```
 wget https://dl.min.io/server/minio/release/linux-amd64/minio
@@ -284,19 +288,19 @@ wget https://dl.min.io/server/minio/release/linux-amd64/minio
 sudo cp minio /usr/local/bin/ && sudo chmod +x /usr/local/bin/minio
 ```
 
-### 2.5.2. 创建静态文件放置位置
+### 2.6.2. 创建静态文件放置位置
 
 ```
 sudo mkdir /data
 ```
 
-### 2.5.3. 启动minio（不用这个）
+### 2.6.3. 启动minio（不用这个）
 
 ```
 sudo minio server /data --console-address ":9099"
 ```
 
-### 2.5.4. 写入配置（准备供systemd调用）
+### 2.6.4. 写入配置（准备供systemd调用）
 
 ```
 sudo vim /etc/default/minio
@@ -326,7 +330,7 @@ MINIO_REGION="cn-north-1"
 # MINIO_DOMAIN=minio.your_domain.com
 ```
 
-### 2.5.5. 设置开机自启动
+### 2.6.5. 设置开机自启动
 
 ```
 sudo vim /usr/lib/systemd/system/minio.service
@@ -386,47 +390,86 @@ sudo systemctl status minio
 
 具体的配置有待继续
 
-## 2.6. hdf5
+## 2.7. hdf5
 
 这个找了我挺久的，日了
 
-### 2.6.1. 建议
+### 2.7.1. 建议
 
-读文件用 jhdf
+读文件用 jhdf，直接用maven坐标就可以了。有点编码问题，不过API真好用
 
-写文件用 hdf
+写文件用 hdf，需要手动下载配置。用起来麻烦死了，要不是jhdf只能读不能写，我才不用这个
 
-### 2.6.2. 安装和配置
+
+[hdf5文档](https://portal.hdfgroup.org/display/HDF5/HDF5%20javadocs)
+
+[参考链接1，写的一般般，文件还要收费，hetui](https://blog.csdn.net/luoying_1993/article/details/72979022)
+
+[参考链接2,写的很好，用于补充官方文档](https://blog.csdn.net/shyjhyp11/article/details/109011262)
+
+[这个也是手册，但是感觉乱七八糟的](http://web.mit.edu/fwtools_v3.1.0/www/H5.intro.html#Intro-APIs)
+
+### 2.7.2. 安装hdf
+
+好像需要三个.jar和一个.so
+
+1. jarhdf5-3.2.1.jar
+2. slf4j-api-1.7.5.jar
+3. slf4j-nop-1.7.5.jar
+4. libjhdf5.so
+
+其中两个.jar（2和3）可以通过maven坐标直接下载，剩下的一个.jar（1）和.so（4）需要自己装了
 
 [下载地址](https://support.hdfgroup.org/products/java/release/download.html#script)
 
 我找了很久，只找到了centos，不过能用。。。
 
-* 安装hdf
+* 下载hdf
 ```
 cd /opt && wget http://support.hdfgroup.org/ftp/HDF5/releases/HDF-JAVA/hdfjni-3.3.2/bin/HDFJava-3.3.2_Stat-centos7_64.tar.gz
 ```
 
-我懒，直接赋予最高权限了。。。
+* 解压缩并且运行脚本
+
+这里赋予权限应该不需要 -R，我只要能进hdf文件夹就行，其他的我只要能读就行
+
 ```
-tar -zxvf HDFJava-3.3.2_Stat-centos7_64.tar.gz && rm HDFJava-3.3.2_Stat-centos7_64.tar.gz && chmod -R 777 /opt/hdf
+tar -zxvf HDFJava-3.3.2_Stat-centos7_64.tar.gz && rm HDFJava-3.3.2_Stat-centos7_64.tar.gz && chmod 755 /opt/hdf
 ```
 
 ```
 cd /opt/hdf && ./HDFJava-3.3.2-Linux.sh
 ```
 
-```
-cd /opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib
-```
-
-* 导入到maven中，你得先装好maven，注意安装的仓库哈，不要安装到root用户下的.m2里了
+.jar和.so在这个目录下面
 
 ```
-mvn install:install-file -Dfile=./jarhdf5-3.3.2.jar -DgroupId=org.hdfgroup -DartifactId=hdf-java -Dversion=3.3.2 -Dpackaging=jar
+cd /opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib && ls -ahl
 ```
 
-* pom配置
+### 2.7.3. 动态库关联（也可以在idea里设置）
+
+就是设置那个 .so 文件
+
+```
+ln -s /opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib/libjhdf5.so.3.3.2 /usr/lib/libjhdf5.so
+```
+
+### 2.7.4. 将 .jar 导入到 maven 中
+
+就是设置那个 .jar 文件
+
+导入到maven中，你得先装好maven，注意安装的仓库哈
+
+**<font color=#D81D4F > 在root用户下执行这条命令默认可是安装到/root/.m2下的 </font>**
+
+所以要在普通用户下执行这条命令，而且不能加 sudo 
+
+```
+mvn install:install-file -Dfile=/opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib/jarhdf5-3.3.2.jar -DgroupId=org.hdfgroup -DartifactId=hdf-java -Dversion=3.3.2 -Dpackaging=jar
+```
+
+### 2.7.5. 项目里pom的配置
 
 ```
         <dependency>

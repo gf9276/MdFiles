@@ -49,7 +49,7 @@ mysql 学习
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/mysql/20230417102752.png)
 
-用代理的话, 最好是sudo su切换到root用户下再执行下面指令, **<font color=#D81D4F > 这时候一定要去掉命令前面的sudo </font>**
+用代理的话, 要么使用```sudo su -l```切换到root用户下开启代理后再执行安装指令, **root用户下命令前面就不要带sudo了**；要么修改sudo的配置文件，保留all_proxy之类的与代理相关的环境变量
 
 **<font color=#D81D4F > 注意注意，所有wsl和win共用一个localhost噢，端口也是公用的，这也就意味着，如果你不改默认的mysql端口，那你一台电脑只能开一个mysql服务端！ </font>**
 
@@ -58,7 +58,7 @@ mysql 学习
 wsl 要手动开启systemd
 
 ```
-sudo vim /etc/wsl.conf
+vim /etc/wsl.conf
 ```
 
 在最后两行写入
@@ -107,12 +107,12 @@ systemctl status mysql
 [参考2（我选的都是y）](https://blog.csdn.net/weixin_43279138/article/details/126872698)
 
 ```
-sudo mysql_secure_installation
+mysql_secure_installation
 ```
 
 好像会报错，先进入mysql的root用户
 ```
-sudo mysql
+mysql -u root
 ```
 
 执行命令改密码
@@ -122,12 +122,12 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mypasswo
 
 然后再执行启动安全脚本提示符就行了
 ```
-sudo mysql_secure_installation
+mysql_secure_installation
 ```
 
 之后登录需要密码
 ```
-sudo mysql -u root -p
+mysql -u root -p
 ```
 
 # 3. windows 下 mysql 安装
@@ -150,7 +150,7 @@ source /path/to/.sql
 ## 4.2. 删除mysql（ubuntu-mysql8）
 
 ```
-sudo apt purge mysql-* && sudo rm -rf /etc/mysql/ /var/lib/mysql && sudo apt autoremove && sudo apt autoclean
+apt purge mysql-* && rm -rf /etc/mysql/ /var/lib/mysql && apt autoremove && apt autoclean
 ```
 
 ## 4.3. 修改端口（ubuntu-mysql8）
@@ -293,7 +293,7 @@ mysqld --defaults-file=/etc/mysql/my.cnf --initialize-insecure --user=mysql --ba
 ### 4.5.8. 启动并修改密码
 
 ```
-systemctl start mysql.service
+systemctl start mysql
 ```
 
 ```

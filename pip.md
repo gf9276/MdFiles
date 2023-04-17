@@ -1,10 +1,20 @@
-# pip 
+<!-- TOC -->
+
+- [1. pip.md](#1-pipmd)
+- [2. windows下 pip 走代理（蓝色小猫也能用）](#2-windows下-pip-走代理蓝色小猫也能用)
+  - [2.1. 命令生成](#21-命令生成)
+
+<!-- /TOC -->
+
+# 1. pip.md
 
 pip相关的指令之类的
 
-## windows下 pip 走代理（蓝色小猫也能用）
+# 2. windows下 pip 走代理（蓝色小猫也能用）
 
-### 命令生成
+## 2.1. 命令生成
+
+powershell 执行
 
 ```
 pip config set global.proxy http://127.0.0.1:7890

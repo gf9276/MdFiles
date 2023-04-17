@@ -1,9 +1,20 @@
-# windterm 
+<!-- TOC -->
+
+- [1. windterm.md](#1-windtermmd)
+- [2. 下载](#2-下载)
+
+<!-- /TOC -->
+
+# 1. windterm.md
+
+记录windterm
 
 用着试试，省的我敲scp了。。。。。。
 
-虽然长得丑了点
+初号机风格
 
-# 下载
+但是感觉会有bug，用着用着就卡了
+
+# 2. 下载
 
 TODO

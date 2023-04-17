@@ -24,7 +24,7 @@ JAVA11 LTS版本之后，JRE集成在JDK中了，不用独立安装
 # 2. 安装
 
 
-用代理的话, 最好是sudo su切换到root用户下再执行下面指令, **<font color=#D81D4F > 这时候一定要去掉命令前面的sudo </font>**
+用代理的话, 要么使用```sudo su -l```切换到root用户下开启代理后再执行安装指令, **root用户下命令前面就不要带sudo了**；要么修改sudo的配置文件，保留all_proxy之类的与代理相关的环境变量
 
 
 [参考连接1（不需要看）](https://cloud.tencent.com/developer/article/1626610)
@@ -41,11 +41,11 @@ JAVA11 LTS版本之后，JRE集成在JDK中了，不用独立安装
 一般项目不用17，因为他太新了。。。不过我写leetcode用的17
 
 ```
-sudo apt update
+apt update
 ```
 
 ```
-sudo apt install openjdk-11-jdk
+apt install openjdk-11-jdk
 ```
 
 ## 2.2. 添加环境变量（不同java版本记得改数字）
@@ -56,7 +56,7 @@ sudo apt install openjdk-11-jdk
 
 打开 /etc/profile 文件
 ```
-sudo vim /etc/profile
+vim /etc/profile
 ```
 在文件的最后写入
 ```
@@ -70,12 +70,12 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 创建文件 my_java_cfg.sh （文件名字不重要，只要在路径 /etc/profile.d 下就行）
 
 ```
-sudo touch /etc/profile.d/my_java_cfg.sh
+touch /etc/profile.d/my_java_cfg.sh
 ```
 
 打开文件 my_java_cfg.sh
 ```
-sudo vim /etc/profile.d/my_java_cfg.sh
+vim /etc/profile.d/my_java_cfg.sh
 ```
 
 写入环境变量
@@ -89,7 +89,7 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 
 执行下面指令，并选择与环境变量中版本一致的java（虽然直接设置环境变量也可以，但是最好这么做）
 ```
-sudo update-alternatives --config java
+update-alternatives --config java
 ```
 
 该指令也可以用来查看java的安装路径

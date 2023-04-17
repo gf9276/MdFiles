@@ -1,8 +1,18 @@
-# matplot
+<!-- TOC -->
+
+- [1. matplot.md](#1-matplotmd)
+  - [1.1. 关于axes](#11-关于axes)
+
+<!-- /TOC -->
+
+
+# 1. matplot.md
+
+关于 python 绘图的知识
 
 [参考链接](https://zhuanlan.zhihu.com/p/93423829)
 
-## 关于axes
+## 1.1. 关于axes
 
 首先 matplotlib 架构上分为三层
 底层：backend layer
