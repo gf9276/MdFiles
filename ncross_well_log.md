@@ -28,6 +28,7 @@
     - [2.7.3. 动态库关联（也可以在idea里设置）](#273-动态库关联也可以在idea里设置)
     - [2.7.4. 将 .jar 导入到 maven 中](#274-将-jar-导入到-maven-中)
     - [2.7.5. 项目里pom的配置](#275-项目里pom的配置)
+- [3. idea 里的项目配置](#3-idea-里的项目配置)
 
 <!-- /TOC -->
 
@@ -491,3 +492,8 @@ mvn install:install-file -Dfile=/opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3
             <version>0.6.9</version>
         </dependency>
 ```
+
+
+# 3. idea 里的项目配置
+
+TODO
