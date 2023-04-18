@@ -6,6 +6,7 @@
   - [2.2. 添加环境变量（不同java版本记得改数字）](#22-添加环境变量不同java版本记得改数字)
   - [2.3. 多个版本java版本管理](#23-多个版本java版本管理)
   - [2.4. 刷新环境变量，并使用指令查看安装是否成功](#24-刷新环境变量并使用指令查看安装是否成功)
+  - [卸载java](#卸载java)
 
 <!-- /TOC -->
 
@@ -115,4 +116,25 @@ java -version
 成功结果如下图
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230416231943.png)
+
+
+## 卸载java
+
+使用下面命令直接卸载，**把里面的四个版本数字换成要卸载的**
+
+```
+apt -y --purge remove openjdk-8-jdk
+```
+
+```
+apt -y --purge remove openjdk-8-jdk-headless
+```
+
+```
+apt -y --purge remove openjdk-8-jre
+```
+
+```
+apt -y --purge remove openjdk-8-jre-headless
+```
 

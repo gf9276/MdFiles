@@ -84,6 +84,10 @@ apt install ant
 
 使用 ```ant -version```检查是否安装成功
 
+这里可能有坑，我在22.04没发现问题，但是在20.04上发现了
+
+[参考链接](https://blog.csdn.net/quantum7/article/details/104625253)
+
 
 ### 2.4.2. 安装cmake
 
