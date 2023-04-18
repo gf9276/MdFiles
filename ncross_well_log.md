@@ -401,14 +401,21 @@ sudo systemctl status minio
 
 写文件用 hdf，需要手动下载配置。用起来麻烦死了，要不是jhdf只能读不能写，我才不用这个
 
+[hdfview：windows下看hdf5文件的软件](https://portal.hdfgroup.org/display/support/HDFView+3.1.4#files)
 
 [hdf5文档](https://portal.hdfgroup.org/display/HDF5/HDF5%20javadocs)
 
-[参考链接1，写的一般般，文件还要收费，hetui](https://blog.csdn.net/luoying_1993/article/details/72979022)
-
-[参考链接2,写的很好，用于补充官方文档](https://blog.csdn.net/shyjhyp11/article/details/109011262)
-
 [这个也是手册，但是感觉乱七八糟的](http://web.mit.edu/fwtools_v3.1.0/www/H5.intro.html#Intro-APIs)
+
+[参考链接1，对安装有整体的概念](https://blog.csdn.net/luoying_1993/article/details/72979022)
+
+[参考链接2，用于补充官方文档](https://blog.csdn.net/shyjhyp11/article/details/109011262)
+
+[参考连接3，纯代码，一般般](https://www.cnblogs.com/Husir-boky/p/16855534.html)
+
+[参考链接4，纯代码，一般般](https://blog.csdn.net/qq_40298231/article/details/99549532)
+
+[讨论：老版本和新版本使用上的区别](https://stackoverflow.com/questions/47753363/hdf5-in-maven-project)
 
 ### 2.7.2. 安装hdf
 
