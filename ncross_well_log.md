@@ -52,6 +52,10 @@
 
 看 [java.md](https://github.com/gf9276/MdFiles/blob/master/java.md)
 
+**注意，建议先在这里安装java8，等装完opencv再安装java11...**
+
+**因为我不知道为什么，编译的时候cmake优先选择jkd11不选择jdk8，11貌似又太新了**
+
 ## 2.3. maven
 
 看 [maven.md](https://github.com/gf9276/MdFiles/blob/master/maven.md)
