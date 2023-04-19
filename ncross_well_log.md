@@ -17,11 +17,6 @@
     - [2.4.8. 检查安装是否成功](#248-检查安装是否成功)
   - [2.5. mysql](#25-mysql)
   - [2.6. minio](#26-minio)
-    - [2.6.1. 下载](#261-下载)
-    - [2.6.2. 创建静态文件放置位置](#262-创建静态文件放置位置)
-    - [2.6.3. 启动minio（不用这个）](#263-启动minio不用这个)
-    - [2.6.4. 写入配置（准备供systemd调用）](#264-写入配置准备供systemd调用)
-    - [2.6.5. 设置开机自启动](#265-设置开机自启动)
   - [2.7. hdf5](#27-hdf5)
     - [2.7.1. 建议](#271-建议)
     - [2.7.2. 安装hdf](#272-安装hdf)
@@ -29,6 +24,8 @@
     - [2.7.4. 将 .jar 导入到 maven 中](#274-将-jar-导入到-maven-中)
     - [2.7.5. 项目里pom的配置](#275-项目里pom的配置)
 - [3. idea 里的项目配置](#3-idea-里的项目配置)
+  - [3.1. maven选择](#31-maven选择)
+  - [3.2. java11要加个东西](#32-java11要加个东西)
 
 <!-- /TOC -->
 
@@ -90,8 +87,15 @@ apt install ant
 
 这里可能有坑，我在22.04没发现问题，但是在20.04上发现了
 
-[参考链接](https://blog.csdn.net/quantum7/article/details/104625253)
+[参考链接1，提出问题](https://blog.csdn.net/quantum7/article/details/104625253)
 
+[参考链接2，解决问题](https://blog.csdn.net/quantum7/article/details/104625736)
+
+如果后面cmake编译文件显示找不到ant的话，大概率是这个问题，执行该命令解决
+
+```
+ln -snf /usr/share/ant/bin/ant /bin/ant
+```
 
 ### 2.4.2. 安装cmake
 
@@ -266,6 +270,18 @@ pkg-config --modversion opencv
 ls /opt/opencv/opencv-4.5.3/build/bin/
 ```
 
+* 这里需要把.jar文件复制到项目下面，在项目下创建一个opencv文件夹，然后直接复制过去
+
+```
+mkdir ~/JavaFiles/ncross_well_log/n3rdParty/opencv
+```
+```
+cd ~/JavaFiles/ncross_well_log/n3rdParty/opencv
+```
+```
+cp /opt/opencv/opencv-4.5.3/build/bin/opencv-453.jar ./
+```
+
 * 如果idea执行代码显示opencv不在java库中，可以执行（或者在idea里面指定）
 
 ```
@@ -286,118 +302,7 @@ cp -r /opt/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 
 ## 2.6. minio
 
-### 2.6.1. 下载
-
-```
-wget https://dl.min.io/server/minio/release/linux-amd64/minio
-```
-
-挪到/usr/local/bin/下面，其实我更喜欢/opt，但是别人这么干的，我先顺从他，哈哈
-```
-sudo cp minio /usr/local/bin/ && sudo chmod +x /usr/local/bin/minio
-```
-
-### 2.6.2. 创建静态文件放置位置
-
-```
-sudo mkdir /data
-```
-
-### 2.6.3. 启动minio（不用这个）
-
-```
-sudo minio server /data --console-address ":9099"
-```
-
-### 2.6.4. 写入配置（准备供systemd调用）
-
-```
-sudo vim /etc/default/minio
-```
-
-```
-# 指定数据存储目录(注意：这个目录要存在且拥有相对应的权限)
-MINIO_VOLUMES="/data"
-
-# 监听端口
-MINIO_OPTS="--address :9000 --console-address :9099"
-
-# 老版本使用MINIO_ACCESS_KEY/MINIO_SECRET_KEY，新版本已不建议使用
-# Access key (账号)
-# MINIO_ACCESS_KEY="minioadmin"
-# Secret key (密码)
-# MINIO_SECRET_KEY="minioadmin"
-
-# 新版本使用；指定默认的用户名和密码，其中用户名必须大于3个字母，否则不能启动
-MINIO_ROOT_USER="minio"
-MINIO_ROOT_PASSWORD="miniominio"
-
-# 区域值，标准格式是“国家-区域-编号”，
-MINIO_REGION="cn-north-1"
-
-# 域名
-# MINIO_DOMAIN=minio.your_domain.com
-```
-
-### 2.6.5. 设置开机自启动
-
-```
-sudo vim /usr/lib/systemd/system/minio.service
-```
-
-```
-[Unit]
-Description=MinIO
-Documentation=https://docs.min.io
-Wants=network-online.target
-After=network-online.target
-AssertFileIsExecutable=/usr/local/bin/minio
-[Service]
-WorkingDirectory=/usr/local/
-
-ProtectProc=invisible
-
-# 指向3.1节中的配置文件
-EnvironmentFile=/etc/default/minio
-
-ExecStartPre=/bin/bash -c "if [ -z \"${MINIO_VOLUMES}\" ]; then echo \"Variable MINIO_VOLUMES not set in /etc/default/minio\"; exit 1; fi"
-ExecStart=/usr/local/bin/minio server $MINIO_OPTS $MINIO_VOLUMES
-
-# Let systemd restart this service always
-Restart=always
-
-# Specifies the maximum (1M) file descriptor number that can be opened by this process
-LimitNOFILE=1048576
-
-# Specifies the maximum number of threads this process can create
-TasksMax=infinity
-
-# Disable timeout logic and wait until process is stopped
-TimeoutStopSec=infinity
-SendSIGKILL=no
-SuccessExitStatus=0
-
-[Install]
-WantedBy=multi-user.target
-Alias=minio.service
-```
-
-```
-# 重新加载服务配置文件，使服务生效
-sudo systemctl daemon-reload
-
-# 将服务设置为开机启动
-sudo systemctl enable minio
-
-# 服务立即启动
-sudo systemctl start minio
-
-# 查看minio服务当前状态
-sudo systemctl status minio
-
-```
-
-具体的配置有待继续
+看 [minio.md](https://github.com/gf9276/MdFiles/blob/master/minio.md)
 
 ## 2.7. hdf5
 
@@ -511,4 +416,16 @@ mvn install:install-file -Dfile=/opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3
 
 # 3. idea 里的项目配置
 
-TODO
+## 3.1. maven选择
+
+在设置里选择之前装的那个，比如这样子
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/ncross_well_log/20230419220153.png)
+
+## 3.2. java11要加个东西
+
+```
+--illegal-access=deny --add-opens java.base/java.lang=ALL-UNNAMED
+```
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/ncross_well_log/20230419220243.png)

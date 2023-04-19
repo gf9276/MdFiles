@@ -20,6 +20,8 @@ B站看尚硅谷或者黑马
 
 # 2. 安装
 
+**<font color=#FFDAB9 > 该加sudo加sudo，我是建议直接 sudo su -l 登录到root用户再安装 </font>**
+
 用代理的话, 要么使用```sudo su -l```切换到root用户下开启代理后再执行安装指令, **root用户下命令前面就不要带sudo了**；要么修改sudo的配置文件，保留all_proxy之类的与代理相关的环境变量
 
 已经写了脚本，地址 https://github.com/gf9276/ShFiles.git ，直接运行
