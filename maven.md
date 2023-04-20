@@ -3,10 +3,11 @@
 - [1. maven.md](#1-mavenmd)
 - [2. 安装](#2-安装)
   - [2.1. 下载指定版本的Maven到 /opt/maven 目录下](#21-下载指定版本的maven到-optmaven-目录下)
-  - [2.2. 解压并删除多余的压缩包](#22-解压并删除多余的压缩包)
-  - [2.3. 添加环境变量](#23-添加环境变量)
-  - [2.4. 刷新环境变量并查看版本](#24-刷新环境变量并查看版本)
-  - [2.5. 添加阿里源](#25-添加阿里源)
+  - [2.2. 添加环境变量](#22-添加环境变量)
+    - [2.2.1. 方法一](#221-方法一)
+    - [2.2.2. 方法二](#222-方法二)
+  - [2.3. 刷新环境变量并查看版本](#23-刷新环境变量并查看版本)
+  - [2.4. 添加阿里源](#24-添加阿里源)
 - [3. 一些操作](#3-一些操作)
   - [3.1. 手动导入maven包的方法](#31-手动导入maven包的方法)
 
@@ -20,7 +21,7 @@ B站看尚硅谷或者黑马
 
 # 2. 安装
 
-**<font color=#FFDAB9 > 该加sudo加sudo，我是建议直接 sudo su -l 登录到root用户再安装 </font>**
+**<font color=#8470FF > 该加sudo加sudo，我是建议直接 sudo su -l 登录到root用户再安装 </font>**
 
 用代理的话, 要么使用```sudo su -l```切换到root用户下开启代理后再执行安装指令, **root用户下命令前面就不要带sudo了**；要么修改sudo的配置文件，保留all_proxy之类的与代理相关的环境变量
 
@@ -35,19 +36,30 @@ B站看尚硅谷或者黑马
 
 ## 2.1. 下载指定版本的Maven到 /opt/maven 目录下
 
+- 创建目录并来到该目录下
 ```
-mkdir /opt/maven && cd /opt/maven && wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
-```
-
-## 2.2. 解压并删除多余的压缩包
-
-```
-cd /opt/maven && tar -zxvf apache-maven-3.9.1-bin.tar.gz && rm apache-maven-3.9.1-bin.tar.gz
+mkdir /opt/maven && cd /opt/maven
 ```
 
-## 2.3. 添加环境变量
+- 下载压缩包
+```
+wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
+```
 
-方法一、
+- 解压
+
+```
+tar -zxvf apache-maven-3.9.1-bin.tar.gz
+```
+
+- 删除多余的压缩包
+```
+rm apache-maven-3.9.1-bin.tar.gz
+```
+
+## 2.2. 添加环境变量
+
+### 2.2.1. 方法一
 ```
 vim /etc/profile
 ```
@@ -60,55 +72,58 @@ export MAVEN_HOME=$M2_HOME
 export PATH=${M2_HOME}/bin:${PATH}
 ```
 
-方法二、
+### 2.2.2. 方法二
+
+- 创建.sh文件
 ```
 touch /etc/profile.d/my_maven_cfg.sh
 ```
 
-打开文件 my_maven_cfg.sh
+- 打开文件 my_maven_cfg.sh
 ```
 vim /etc/profile.d/my_maven_cfg.sh
 ```
 
-写入环境变量
+- 写入环境变量
 ```
 export M2_HOME=/opt/maven/apache-maven-3.9.1
 export MAVEN_HOME=$M2_HOME
 export PATH=${M2_HOME}/bin:${PATH}
 ```
 
-## 2.4. 刷新环境变量并查看版本
+## 2.3. 刷新环境变量并查看版本
 
+- source命令执行/etc/profile
 ```
 . /etc/profile
 ```
 
+- 恢复用户环境
 ```
-. .bashrc # 这条是为了恢复用户环境
+. .bashrc
 ```
 
+- 查看版本
 ```
 mvn -v
 ```
 
-mvn -v 里会显示java版本，这个版本是跟着环境变量 JAVA_HOME 的
+**注意：** mvn -v 里会显示```Java version```，这个版本是根据环境变量```JAVA_HOME```的
 
 如下图：
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230416232240.png)
 
-## 2.5. 添加阿里源
+## 2.4. 添加阿里源
 
 写在前面，如果想用代理而不是阿里源的话，需要在配置文件里配置具体代理（TODO）
 
-
-修改配置文件
+- 修改配置文件
 ```
 vim /opt/maven/apache-maven-3.9.1/conf/settings.xml
 ```
 
-加入
-
+- 加入镜像信息
 ```
     <mirror>
       <id>aliyun</id>
@@ -133,8 +148,10 @@ vim /opt/maven/apache-maven-3.9.1/conf/settings.xml
 mvn install:install-file -Dfile=.\jhdf5-14.12.6.jar -DgroupId=cisd -DartifactId=jhdf5 -Dversion=14.12.6 -Dpackaging=jar
 ```
 
-```
-命令中的-Dfile指向文件路径，-DgroupId指向dependency.groupId，-DartifactId指dependency.artifactId，-Dversion指向dependency.version，-Dpackaging指的是包类型。
+1. 命令中的```-Dfile```指向文件路径，
+2. 命令中的```-DgroupId```指向dependency.groupId，
+3. 命令中的```-DartifactId```指dependency.artifactId，
+4. 命令中的```-Dversion```指向dependency.version，
+5. 命令中的```-Dpackaging```指的是包类型。
 
-说的简单点, -DgroupId, -DartifactId, -Dversion就是maven包的三个坐标啦
-```
+说的简单点, -DgroupId, -DartifactId, -Dversion就是maven包的**三个坐标**

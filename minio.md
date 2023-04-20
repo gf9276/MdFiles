@@ -17,11 +17,11 @@ Min IO 的相关内容
 
 # 2. 安装 minio
 
-**<font color=#FFDAB9 > 该加sudo加sudo，我是建议直接 sudo su -l 登录到root用户再安装 </font>**
+**<font color=#8470FF > 该加sudo加sudo，我是建议直接 sudo su -l 登录到root用户再安装 </font>**
 
 ## 2.1. 下载可执行文件
 
-放到这个目录下，这个目录下放一些个人的可执行文件，/opt放的一般是源码
+放到```/usr/local/bin/```目录下，该目录下放一些个人的可执行文件，```/opt```放的一般是源码
 ```
 cd /usr/local/bin/
 ```

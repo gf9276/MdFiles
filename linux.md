@@ -62,6 +62,7 @@ vim /etc/inputrc
 ## 2.3. 复制命令
 
 下面四个命令结果相同，都是递归拷贝 packageA 文件及其任意层的结构到 packageB 中:
+
 ```
 cp -r /home/packageA /home/packageB
 cp -r /home/packageA /home/packageB/

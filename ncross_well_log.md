@@ -8,6 +8,7 @@
   - [2.3. maven](#23-maven)
   - [2.4. opencv](#24-opencv)
     - [2.4.1. 安装ant](#241-安装ant)
+      - [2.4.1.1. ant的坑](#2411-ant的坑)
     - [2.4.2. 安装cmake](#242-安装cmake)
     - [2.4.3. 安装其他依赖](#243-安装其他依赖)
     - [2.4.4. 下载opencv并解压](#244-下载opencv并解压)
@@ -85,17 +86,19 @@ apt install ant
 
 使用 ```ant -version```检查是否安装成功
 
-这里可能有坑，我在22.04没发现问题，但是在20.04上发现了
+#### 2.4.1.1. ant的坑
 
-[参考链接1，提出问题](https://blog.csdn.net/quantum7/article/details/104625253)
+可能有坑，我在22.04没发现问题，但是在20.04上发现了
 
-[参考链接2，解决问题](https://blog.csdn.net/quantum7/article/details/104625736)
-
-如果后面cmake编译文件显示找不到ant的话，大概率是这个问题，执行该命令解决
+如果后面cmake编译文件显示找不到ant的话，大概率是软链接问题，执行该命令解决
 
 ```
 ln -snf /usr/share/ant/bin/ant /bin/ant
 ```
+
+[参考链接1，提出问题](https://blog.csdn.net/quantum7/article/details/104625253)
+
+[参考链接2，解决问题](https://blog.csdn.net/quantum7/article/details/104625736)
 
 ### 2.4.2. 安装cmake
 
