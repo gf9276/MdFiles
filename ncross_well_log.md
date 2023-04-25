@@ -421,7 +421,7 @@ mvn install:install-file -Dfile=/opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3
 
 ## 3.1. maven选择
 
-在设置里选择之前装的那个，比如这样子
+在设置里选择之前装的那个，比如这样子（使用 .mvn/maven.config 中的配置不要勾选）
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/ncross_well_log/20230419220153.png)
 
