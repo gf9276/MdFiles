@@ -227,7 +227,10 @@ SHOW GRANTS FOR nan@localhost;
 
 ubuntu默认大小写敏感，和windows一样，导入win下的数据库可能会出现一点问题，所以这里改成大小写不敏感的，老版本Mysql直接写入配置文件就能解决，新版本还得删库再初始化
 
-[参开链接](https://bbs.huaweicloud.com/blogs/380008#:~:text=1%20%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99%EF%BC%8C%E9%9C%80%E8%A6%81%E5%9C%A8mysqld.cnf%20%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE%E6%9D%A5%E5%BF%BD%E7%95%A5%E5%A4%A7%E5%B0%8F%E5%86%99%EF%BC%8C%E5%91%BD%E4%BB%A4%E5%A6%82%E4%B8%8B%EF%BC%9A%20root%40ubuntu%3A%2Fetc%2Fmysql%23,vim%20.%2Fmysql.conf.d%2Fmysqld.cnf%202%20%E5%91%BD%E4%BB%A4%E8%BE%93%E5%85%A5%E5%90%8E%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%A6%82%E5%9B%BE%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%BF%9D%E5%AD%98%E9%80%80%E5%87%BA)
+[参考链接1](https://stackoverflow.com/questions/53103588/lower-case-table-names-1-on-ubuntu-18-04-doesnt-let-mysql-to-start/63141850#63141850)
+
+[参开链接2](https://bbs.huaweicloud.com/blogs/380008#:~:text=1%20%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99%EF%BC%8C%E9%9C%80%E8%A6%81%E5%9C%A8mysqld.cnf%20%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE%E6%9D%A5%E5%BF%BD%E7%95%A5%E5%A4%A7%E5%B0%8F%E5%86%99%EF%BC%8C%E5%91%BD%E4%BB%A4%E5%A6%82%E4%B8%8B%EF%BC%9A%20root%40ubuntu%3A%2Fetc%2Fmysql%23,vim%20.%2Fmysql.conf.d%2Fmysqld.cnf%202%20%E5%91%BD%E4%BB%A4%E8%BE%93%E5%85%A5%E5%90%8E%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%A6%82%E5%9B%BE%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%BF%9D%E5%AD%98%E9%80%80%E5%87%BA)
+
 
 ### 4.5.1. 备份数据库
 
