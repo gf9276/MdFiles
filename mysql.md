@@ -286,8 +286,11 @@ vim /etc/mysql/mysql.conf.d/mysqld.cnf
 
 直接使用```--initialize-insecure```无密码初始化，等下再设置，如果用的是```--initialize```，去/var/log/mysql/error.log里找临时密码
 
+
+~~```mysqld --defaults-file=/etc/mysql/my.cnf --initialize-insecure --user=mysql --basedir=/var/lib/mysql --datadir=/var/lib/mysql```~~
+
 ```
-mysqld --defaults-file=/etc/mysql/my.cnf --initialize-insecure --user=mysql --basedir=/var/lib/mysql --datadir=/var/lib/mysql
+mysqld --defaults-file=/etc/mysql/my.cnf --initialize-insecure --user=mysql --datadir=/var/lib/mysql --console
 ```
 
 ### 4.5.8. 启动并修改密码
