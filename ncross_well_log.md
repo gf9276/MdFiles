@@ -5,25 +5,35 @@
 - [2. 环境搭建](#2-环境搭建)
   - [2.1. 代理问题](#21-代理问题)
   - [2.2. java](#22-java)
+    - [2.2.1. 版本和注意事项](#221-版本和注意事项)
+    - [2.2.2. 安装](#222-安装)
   - [2.3. maven](#23-maven)
+    - [2.3.1. 版本和注意事项](#231-版本和注意事项)
+    - [2.3.2. 安装](#232-安装)
   - [2.4. opencv](#24-opencv)
-    - [2.4.1. 安装ant](#241-安装ant)
-      - [2.4.1.1. ant的坑](#2411-ant的坑)
-    - [2.4.2. 安装cmake](#242-安装cmake)
-    - [2.4.3. 安装其他依赖](#243-安装其他依赖)
-    - [2.4.4. 下载opencv并解压](#244-下载opencv并解压)
-    - [2.4.5. 下载 IPPICV 并配置 （你要是能用代理，能翻墙，这个不需要）](#245-下载-ippicv-并配置-你要是能用代理能翻墙这个不需要)
-    - [2.4.6. 准备开始编译](#246-准备开始编译)
-    - [2.4.7. 配置环境](#247-配置环境)
-    - [2.4.8. 检查安装是否成功](#248-检查安装是否成功)
+    - [2.4.1. 版本和注意事项](#241-版本和注意事项)
+    - [2.4.2. 安装ant](#242-安装ant)
+      - [2.4.2.1. ant的坑](#2421-ant的坑)
+    - [2.4.3. 安装cmake](#243-安装cmake)
+    - [2.4.4. 安装其他依赖](#244-安装其他依赖)
+    - [2.4.5. 下载opencv并解压](#245-下载opencv并解压)
+    - [2.4.6. 下载 IPPICV 并配置 （你要是能用代理，能翻墙，这个不需要）](#246-下载-ippicv-并配置-你要是能用代理能翻墙这个不需要)
+    - [2.4.7. 准备开始编译](#247-准备开始编译)
+    - [2.4.8. 配置环境](#248-配置环境)
+    - [2.4.9. 检查安装是否成功](#249-检查安装是否成功)
   - [2.5. mysql](#25-mysql)
+    - [2.5.1. 版本和注意事项](#251-版本和注意事项)
+    - [2.5.2. 安装](#252-安装)
   - [2.6. minio](#26-minio)
+    - [2.6.1. 版本和注意事项](#261-版本和注意事项)
+    - [2.6.2. 安装](#262-安装)
   - [2.7. hdf5](#27-hdf5)
-    - [2.7.1. 建议](#271-建议)
-    - [2.7.2. 安装hdf](#272-安装hdf)
-    - [2.7.3. 动态库关联（也可以在idea里设置）](#273-动态库关联也可以在idea里设置)
-    - [2.7.4. 将 .jar 导入到 maven 中](#274-将-jar-导入到-maven-中)
-    - [2.7.5. 项目里pom的配置](#275-项目里pom的配置)
+    - [2.7.1. 版本和注意事项](#271-版本和注意事项)
+    - [2.7.2. 建议](#272-建议)
+    - [2.7.3. 安装HDFJava](#273-安装hdfjava)
+    - [2.7.4. 动态库关联（也可以在idea里设置）](#274-动态库关联也可以在idea里设置)
+    - [2.7.5. 将 .jar 导入到 maven 中](#275-将-jar-导入到-maven-中)
+    - [2.7.6. 项目里pom的配置](#276-项目里pom的配置)
 - [3. idea 里的项目配置](#3-idea-里的项目配置)
   - [3.1. maven选择](#31-maven选择)
   - [3.2. java11要加个东西](#32-java11要加个东西)
@@ -48,23 +58,31 @@
 
 ## 2.2. java
 
+### 2.2.1. 版本和注意事项
+
+- 师兄和我说的java8，但是我调试的时候有点问题，所以我目前用的java11
+
+- 建议把java8和java11都装了，反正可以选择
+
+- 这里先安装java8，等后面装完opencv再安装java11。因为编译的时候cmake优先会选择jkd11不选择jdk8，而java11貌似又太新了（不过实测11也没有问题）
+
+### 2.2.2. 安装 
+
 看 [java.md](https://github.com/gf9276/MdFiles/blob/master/java.md)
 
-**注意，建议先在这里安装java8，等装完opencv再安装java11...**
-
-**因为我不知道为什么，编译的时候cmake优先选择jkd11不选择jdk8，11貌似又太新了**
-
 ## 2.3. maven
+
+### 2.3.1. 版本和注意事项
+
+- maven 3.9.1 （这个版本问题不大）
+
+### 2.3.2. 安装
 
 看 [maven.md](https://github.com/gf9276/MdFiles/blob/master/maven.md)
 
 ## 2.4. opencv
 
-麻烦死了
-
-注意，安装Opencv不能只有java 17, java 17不带jni的, opencv会编译失败的
-
-提前制定好java的版本，编译的时候会用的，选11或者8，最好是java8，但是我为什么一直默认java11，日了，可能编译要加java路径，md，他自己不会去读```JAVA_HOME```的吗。
+这个有点麻烦
 
 [参考链接1](https://zoyi14.smartapps.cn/pages/note/index?slug=90c542ddf54a&origin=share&_swebfr=1&_swebFromHost=heytapbrowser)
 
@@ -72,9 +90,20 @@
 
 [参考链接3](https://blog.csdn.net/Undefinedefity/article/details/106180033)
 
+
+### 2.4.1. 版本和注意事项
+
+- opencv 4.5.3 
+
+- 其实代码里 opencv 用的很少，几乎没有
+
+- 安装opencv需要java8或者java11，不能只有java 17, java 17不带jni的, opencv会编译失败的
+
+- 如果同时存在java8和java11，会优先选择java11的jni，我暂时没法指定
+
 **<font color=#D81D4F > 下面的一定按照顺序来，不然会错的 </font>**
 
-### 2.4.1. 安装ant
+### 2.4.2. 安装ant
 
 ```
 apt update
@@ -86,7 +115,7 @@ apt install ant
 
 使用 ```ant -version```检查是否安装成功
 
-#### 2.4.1.1. ant的坑
+#### 2.4.2.1. ant的坑
 
 可能有坑，我在22.04没发现问题，但是在20.04上发现了
 
@@ -100,7 +129,7 @@ ln -snf /usr/share/ant/bin/ant /bin/ant
 
 [参考链接2，解决问题](https://blog.csdn.net/quantum7/article/details/104625736)
 
-### 2.4.2. 安装cmake
+### 2.4.3. 安装cmake
 
 ```
 apt install cmake
@@ -109,7 +138,7 @@ apt install cmake
 使用 ```cmake --version```检查是否安装成功
 
 
-### 2.4.3. 安装其他依赖
+### 2.4.4. 安装其他依赖
 
 小心，sudo会清除环境变量，导致代理无法使用
 
@@ -119,7 +148,7 @@ apt install cmake
 apt install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev libgtk2.0-dev pkg-config
 ```
 
-### 2.4.4. 下载opencv并解压
+### 2.4.5. 下载opencv并解压
 
 存放到/opt/opencv下（路径其实无所谓，这只是个需要编译的文件）
 
@@ -140,7 +169,7 @@ wget https://github.com/opencv/opencv/archive/4.5.3.zip
 unzip 4.5.3.zip && rm 4.5.3.zip
 ```
 
-### 2.4.5. 下载 IPPICV 并配置 （你要是能用代理，能翻墙，这个不需要）
+### 2.4.6. 下载 IPPICV 并配置 （你要是能用代理，能翻墙，这个不需要）
 
 IPPICV 下载到这个路径下
 
@@ -177,7 +206,7 @@ vim /opt/opencv/opencv-4.5.3/3rdparty/ippicv/ippicv.cmake
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/ncross_well_log/20230417121913.png)
 
-### 2.4.6. 准备开始编译
+### 2.4.7. 准备开始编译
 
 * 创建build文件夹
 ```
@@ -211,7 +240,7 @@ make -j8
 make install
 ```
 
-### 2.4.7. 配置环境
+### 2.4.8. 配置环境
 
 * 修改 /etc/ld.so.conf
 
@@ -253,7 +282,7 @@ export PKG_CONFIG_PATH
 source /etc/bash.bashrc
 ```
 
-### 2.4.8. 检查安装是否成功
+### 2.4.9. 检查安装是否成功
 
 指令
 
@@ -293,29 +322,49 @@ cp -r /opt/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 
 ## 2.5. mysql
 
-看 [mysql.md](https://github.com/gf9276/MdFiles/blob/master/mysql.md)
+### 2.5.1. 版本和注意事项
 
-**注意，按照代码里的配置**
+- mysql 8.0.32 （这个版本问题不大）
+
+**注意，安装时需要做到以下几点**
 
 * 不要安全安装！他对密码长度有限制，这样子还得改代码里的配置，麻烦。
 * 需要创建用户 nan ，密码 nan416，并赋予所有权限（我嫌麻烦，一次给全得了）
 * 需要设置大小写不敏感（low_case_table_names = 1）
 * 端口使用 3306
 
+### 2.5.2. 安装
+
+看 [mysql.md](https://github.com/gf9276/MdFiles/blob/master/mysql.md)
+
 
 ## 2.6. minio
+
+### 2.6.1. 版本和注意事项
+
+- minio RELEASE.2023-03-24T21-41-23Z （这个版本问题不大）
+
+### 2.6.2. 安装
 
 看 [minio.md](https://github.com/gf9276/MdFiles/blob/master/minio.md)
 
 ## 2.7. hdf5
 
-这个找了我挺久的，日了
+这个找了我挺久的
 
-### 2.7.1. 建议
+### 2.7.1. 版本和注意事项
 
-读文件用 jhdf，直接用maven坐标就可以了。有点编码问题，不过API真好用
+- HDFJava 3.3.2 
 
-写文件用 hdf，需要手动下载配置。用起来麻烦死了，要不是jhdf只能读不能写，我才不用这个
+- jhdf 0.6.9
+
+- 只用安装 HDFJava，jhdf之类的用maven坐标就可以直接导入了
+
+### 2.7.2. 建议
+
+读文件用 jhdf，直接用maven坐标就可以了。有点编码问题，不过API很好用
+
+写文件用 hdf，需要手动下载配置。用起来很麻烦，但jhdf只能读不能写，所以必须用这个
 
 [hdfview：windows下看hdf5文件的软件](https://portal.hdfgroup.org/display/support/HDFView+3.1.4#files)
 
@@ -333,7 +382,7 @@ cp -r /opt/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 
 [讨论：老版本和新版本使用上的区别](https://stackoverflow.com/questions/47753363/hdf5-in-maven-project)
 
-### 2.7.2. 安装hdf
+### 2.7.3. 安装HDFJava
 
 好像需要三个.jar和一个.so
 
@@ -371,7 +420,7 @@ cd /opt/hdf && ./HDFJava-3.3.2-Linux.sh
 cd /opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib && ls -ahl
 ```
 
-### 2.7.3. 动态库关联（也可以在idea里设置）
+### 2.7.4. 动态库关联（也可以在idea里设置）
 
 就是设置那个 .so 文件
 
@@ -379,7 +428,7 @@ cd /opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib && ls -ahl
 ln -s /opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib/libjhdf5.so.3.3.2 /usr/lib/libjhdf5.so
 ```
 
-### 2.7.4. 将 .jar 导入到 maven 中
+### 2.7.5. 将 .jar 导入到 maven 中
 
 就是设置那个 .jar 文件
 
@@ -393,7 +442,7 @@ ln -s /opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib/libjhdf5.so.3.3.2
 mvn install:install-file -Dfile=/opt/hdf/HDFJava-3.3.2-Linux/HDF_Group/HDFJava/3.3.2/lib/jarhdf5-3.3.2.jar -DgroupId=org.hdfgroup -DartifactId=hdf-java -Dversion=3.3.2 -Dpackaging=jar
 ```
 
-### 2.7.5. 项目里pom的配置
+### 2.7.6. 项目里pom的配置
 
 ```
         <dependency>
