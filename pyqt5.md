@@ -5,6 +5,7 @@
 - [3. pyqt5操作](#3-pyqt5操作)
   - [3.1. 参考链接（暂时放在这里）](#31-参考链接暂时放在这里)
   - [3.2. ui转py的方法](#32-ui转py的方法)
+  - [打包](#打包)
 
 <!-- /TOC -->
 
@@ -57,4 +58,10 @@ pyqt5-tools designer
 ## 3.2. ui转py的方法
 ```
 pyuic5 -o 1.py 1.ui
+```
+
+## 打包
+
+```
+pyinstaller .\call_main_window.spec
 ```

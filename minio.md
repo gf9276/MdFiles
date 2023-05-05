@@ -15,6 +15,8 @@
 
 Min IO 的相关内容
 
+[官方文档](http://www.minio.org.cn/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html)
+
 # 2. 安装 minio
 
 **<font color=#8470FF > 该加sudo加sudo，我是建议直接 sudo su -l 登录到root用户再安装 </font>**
@@ -103,8 +105,8 @@ Wants=network-online.target
 After=network-online.target
 AssertFileIsExecutable=/usr/local/bin/minio
 [Service]
-# 我认为应该是 /usr/local/bin
-WorkingDirectory=/usr/local/bin
+# 我认为应该是 /usr/local/bin，但官方是下面这个
+WorkingDirectory=/usr/local
 
 # 貌似systemctl版本老旧的要删掉这个，不然会警告，不过貌似无碍
 ProtectProc=invisible
