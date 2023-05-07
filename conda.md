@@ -152,12 +152,36 @@ conda pack -n 虚拟环境名称 -o output.tar.gz
 
 ### 4.2.3. 复制压缩文件到新的电脑环境
 
-* 进到conda的安装目录：```/anaconda(或者miniconda)/envs/```
+- 进到conda的安装目录
 
-* 在该名目录下创建文件夹
+```
+cd ~/miniconda3/envs/
+```
 
-* 解压conda环境：```tar -xzvf output.tar.gz -C /anaconda(或者miniconda)/envs/创建的文件夹/```
+- 将```output.tar.gz```压缩包放置到该目录下
 
-* 查看虚拟环境：```conda env list```
 
+- 在该目录下创建文件夹，名字与虚拟环境名称一致
+
+```
+mkdir env_name
+```
+
+- 解压压缩包到该目录下
+
+```
+tar -xzvf output.tar.gz -C env_name/
+```
+
+- 查看虚拟环境
+
+```
+conda env list
+```
+
+- 随后可删除压缩包
+
+```
+rm output.tar.gz
+```
 
