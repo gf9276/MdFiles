@@ -6,7 +6,7 @@
   - [2.2. apt安装mysql](#22-apt安装mysql)
   - [2.3. 启动安全脚本提示符（别搞这个了，反正自己用的，这个规范太多了）](#23-启动安全脚本提示符别搞这个了反正自己用的这个规范太多了)
 - [3. windows 下 mysql 安装](#3-windows-下-mysql-安装)
-- [4. 一些常用操作](#4-一些常用操作)
+- [4. 一些常用操作和报错信息](#4-一些常用操作和报错信息)
   - [4.1. 命令行执行.sql文件](#41-命令行执行sql文件)
   - [4.2. 删除mysql（ubuntu-mysql8）](#42-删除mysqlubuntu-mysql8)
   - [4.3. 修改端口（ubuntu-mysql8）](#43-修改端口ubuntu-mysql8)
@@ -26,6 +26,7 @@
     - [4.5.7. 初始化mysql](#457-初始化mysql)
     - [4.5.8. 启动并修改密码](#458-启动并修改密码)
     - [4.5.9. 查看大小写不敏感设置是否成功](#459-查看大小写不敏感设置是否成功)
+  - [1055报错](#1055报错)
 
 <!-- /TOC -->
 
@@ -139,7 +140,7 @@ mysql -u root -p
 如果已经开启了，需要在管理员模式下使用命令```net stop mysql80```停止mysql运行
 
 
-# 4. 一些常用操作
+# 4. 一些常用操作和报错信息
 
 ## 4.1. 命令行执行.sql文件
 
@@ -307,7 +308,11 @@ mysql -u root
 ```
 
 ```
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'gf927621609';
+ALTER USER 'root'@'localhost' IDENTIFIED with mysql_native_password BY 'gf927621609';
+```
+
+```
+flush privileges;
 ```
 
 成功如下图所示
@@ -324,3 +329,7 @@ show global variables like '%lower_case%';
 0 表示敏感；1 表示不敏感；2 是mac下的，具体忘了
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/mysql/20230417111008.png)
+
+## 1055报错
+
+[参考链接](https://blog.csdn.net/zhuzicc/article/details/105990490)
