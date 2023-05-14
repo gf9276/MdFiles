@@ -443,33 +443,33 @@ wsl --set-default-version 2
 ## 3.1. 挪动到其他盘
 
 * 查看已安装的子系统版本
-```
-wsl -l -v
-```
+    ```
+    wsl -l -v
+    ```
 * 关闭wsl
-```
-wsl --shutdown
-```
+    ```
+    wsl --shutdown
+    ```
 * 导出分发版为tar文件到D盘
-```
-wsl --export Ubuntu-22.04 d:\wsl-ubuntu-22.04.tar
-```
+    ```
+    wsl --export Ubuntu-22.04 d:\wsl-ubuntu-22.04.tar
+    ```
 * 注销当前分发版
-```
-wsl --unregister Ubuntu-22.04
-```
+    ```
+    wsl --unregister Ubuntu-22.04
+    ```
 * 重新导入并安装wsl在D盘
-```
-wsl --import Ubuntu-22.04 d:\wsl-ubuntu-22.04 d:\wsl-ubuntu-22.04.tar --version 2
-```
+    ```
+    wsl --import Ubuntu-22.04 d:\wsl-ubuntu-22.04 d:\wsl-ubuntu-22.04.tar --version 2
+    ```
 * 设置默认登陆用户为安装时用户名
-```
-ubuntu2204 config --default-user guof
-```
+    ```
+    ubuntu2204 config --default-user guof
+    ```
 * 删除tar文件
-```
-del d:\wsl-ubuntu-22.04.tar
-```
+    ```
+    del d:\wsl-ubuntu-22.04.tar
+    ```
 
 ## 3.2. 退出
 
