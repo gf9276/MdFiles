@@ -26,7 +26,12 @@
     - [4.5.7. 初始化mysql](#457-初始化mysql)
     - [4.5.8. 启动并修改密码](#458-启动并修改密码)
     - [4.5.9. 查看大小写不敏感设置是否成功](#459-查看大小写不敏感设置是否成功)
-  - [1055报错](#1055报错)
+  - [Navicat for MySQL 1055报错](#navicat-for-mysql-1055报错)
+    - [问题](#问题)
+    - [解决方法](#解决方法)
+  - [Navicat for MySQL 版本太低导致连接失败](#navicat-for-mysql-版本太低导致连接失败)
+    - [问题](#问题-1)
+    - [解决方法](#解决方法-1)
 
 <!-- /TOC -->
 
@@ -41,6 +46,8 @@ mysql 学习
 # 2. wsl 下 mysql 安装
 
 建议先在windows上安装一个 ```Navicat for MySQL破解版``` 很好找的
+
+[安装链接，不过版本太老了](https://www.cnblogs.com/zpy1993-09/p/14929860.html)
 
 这是数据库可视化软件，缺点就是要收费
 
@@ -330,6 +337,41 @@ show global variables like '%lower_case%';
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/mysql/20230417111008.png)
 
-## 1055报错
+## Navicat for MySQL 1055报错
 
-[参考链接](https://blog.csdn.net/zhuzicc/article/details/105990490)
+[详细解决方法和原因参考这个](https://blog.csdn.net/zhuzicc/article/details/105990490)
+
+### 问题
+
+在查询时使用group by语句，出现错误代码：1055；
+
+### 解决方法
+
+```
+vim /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+最后一行添加
+
+```
+# 设置sql_mode,关闭ONLY_FULL_GROUP_BY,避免使用group by函数导致1055错误
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+```
+
+## Navicat for MySQL 版本太低导致连接失败
+
+[参考链接](https://blog.csdn.net/yaoyaoyao_zhi/article/details/115255287)
+
+[参考链接](https://blog.csdn.net/mcband/article/details/126091908#:~:text=navicat%E8%BF%9E%E6%8E%A5MySQL%20%E6%95%B0%E6%8D%AE%E6%97%B6%E9%81%87%E5%88%B01045%20%E9%94%99%E8%AF%AF%20%EF%BC%8C%E4%B8%80%E8%88%AC%E6%98%AF%E5%9B%A0%E4%B8%BA%E8%BE%93%E5%85%A5%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E6%88%96%E8%80%85,%E5%AF%86%E7%A0%81%20%E8%A2%AB%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE%EF%BC%8C%E6%AD%A4%E6%97%B6%E5%8F%AF%E4%BB%A5%E9%87%8D%E7%BD%AE%20MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%20%E5%AF%86%E7%A0%81%20%E8%A7%A3%E5%86%B3%E3%80%82)
+
+### 问题
+
+旧版本的navicat for mysql不支持新的加密方式
+
+### 解决方法
+
+更改密码的加密方式
+
+```
+ALTER USER ‘root’@‘localhost’ IDENTIFIED WITH mysql_native_password BY ‘新密码’;
+```
