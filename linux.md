@@ -1,25 +1,27 @@
 <!-- TOC -->
 
 - [1. linux.md](#1-linuxmd)
-- [2. 指令、操作和坑（ubuntu）](#2-指令操作和坑ubuntu)
-  - [2.1. 代理大坑](#21-代理大坑)
-  - [2.2. 上下键补全历史指令](#22-上下键补全历史指令)
-  - [2.3. 复制命令](#23-复制命令)
-  - [2.4. 移动命令](#24-移动命令)
-  - [2.5. 查看文件夹下的文件数](#25-查看文件夹下的文件数)
-  - [2.6. find 指令](#26-find-指令)
-  - [2.7. whereis which](#27-whereis-which)
-  - [2.8. 中文，设置中文](#28-中文设置中文)
-  - [2.9. 安装gedit](#29-安装gedit)
-  - [2.10. 安装搜狗拼音（没成功）](#210-安装搜狗拼音没成功)
-- [3. shell脚本（ubuntu）](#3-shell脚本ubuntu)
-  - [3.1. 判断格式](#31-判断格式)
-  - [3.2. 常见的判断](#32-常见的判断)
-  - [3.3. 函数 与 ifelse](#33-函数-与-ifelse)
-  - [3.4. sh脚本输入设置默认参数](#34-sh脚本输入设置默认参数)
-  - [3.5. echo 变色](#35-echo-变色)
-  - [3.6. 交互 read](#36-交互-read)
-  - [3.7. for 循环遍历arr](#37-for-循环遍历arr)
+- [2. 知识](#2-知识)
+  - [2.1. 文件](#21-文件)
+- [3. 指令、操作和坑（ubuntu）](#3-指令操作和坑ubuntu)
+  - [3.1. 代理大坑](#31-代理大坑)
+  - [3.2. 上下键补全历史指令](#32-上下键补全历史指令)
+  - [3.3. 复制命令](#33-复制命令)
+  - [3.4. 移动命令](#34-移动命令)
+  - [3.5. 查看文件夹下的文件数](#35-查看文件夹下的文件数)
+  - [3.6. find 指令](#36-find-指令)
+  - [3.7. whereis which](#37-whereis-which)
+  - [3.8. 中文，设置中文](#38-中文设置中文)
+  - [3.9. 安装gedit](#39-安装gedit)
+  - [3.10. 安装搜狗拼音（没成功）](#310-安装搜狗拼音没成功)
+- [4. shell脚本（ubuntu）](#4-shell脚本ubuntu)
+  - [4.1. 判断格式](#41-判断格式)
+  - [4.2. 常见的判断](#42-常见的判断)
+  - [4.3. 函数 与 ifelse](#43-函数-与-ifelse)
+  - [4.4. sh脚本输入设置默认参数](#44-sh脚本输入设置默认参数)
+  - [4.5. echo 变色](#45-echo-变色)
+  - [4.6. 交互 read](#46-交互-read)
+  - [4.7. for 循环遍历arr](#47-for-循环遍历arr)
 
 <!-- /TOC -->
 
@@ -29,9 +31,19 @@
 
 基本就是Ubuntu，其他发行版我也没用过。。。
 
-# 2. 指令、操作和坑（ubuntu）
 
-## 2.1. 代理大坑
+# 2. 知识
+
+## 2.1. 文件
+
+/opt 存放的是源码之类的
+
+/usr/local/bin 存放的是可执行文件
+
+
+# 3. 指令、操作和坑（ubuntu）
+
+## 3.1. 代理大坑
 
 配置环境你可能会用到代理。如果你用的是代理，注意 **<font color=#D81D4F > sudo命令不会带上环境变量，这也就意味着，使用sudo apt的时候，你的apt是不会走代理的，因为你的代理是通过全局变量all_proxy之类的指定的 </font>**。
 
@@ -41,7 +53,7 @@
 
 我也是在使用 sudo wget 和 wget，速度不一样才发现的。
 
-## 2.2. 上下键补全历史指令
+## 3.2. 上下键补全历史指令
 
 CentOS下，有一个很智能的功能，就是只输入一条历史命令的前几个字母，再按PageUp和PageDown键，就可以在以此字母为前缀的历史命令中上下切换。这个功能非常实用，而且比CTRL+R使用起来更友善、更方便。遗憾的是，ubuntu上并没有这个功能。Google上搜索才直到，这个只是linux在终端对键盘的映射而已，和linux的某个发行版无关。只是CentOS下默认打开了这个功能，而ubuntu默认禁止了而已。
 
@@ -59,7 +71,7 @@ vim /etc/inputrc
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20221112164130.png)
 
-## 2.3. 复制命令
+## 3.3. 复制命令
 
 下面四个命令结果相同，都是递归拷贝 packageA 文件及其任意层的结构到 packageB 中:
 
@@ -76,19 +88,19 @@ cp -r packageA/* packageB
 cp -r packageA/* packageB/
 ```
 
-## 2.4. 移动命令
+## 3.4. 移动命令
 
 ```
 mv IfElseTest1.java chapter03/
 ```
 
-## 2.5. 查看文件夹下的文件数
+## 3.5. 查看文件夹下的文件数
 
 ```
 ls -l | grep "-" | wc -l
 ```
 
-## 2.6. find 指令
+## 3.6. find 指令
 
 
 在当前目录下寻找文件或目录 filename
@@ -99,10 +111,10 @@ find . filename
 
 可以把 . 换成指定路径
 
-## 2.7. whereis which
+## 3.7. whereis which
 
 
-## 2.8. 中文，设置中文
+## 3.8. 中文，设置中文
 
 这个我写了脚本
 
@@ -138,7 +150,7 @@ dpkg-reconfigure locales
 apt -y install ttf-wqy-microhei ttf-wqy-zenhei xfonts-intl-chinese
 ```
 
-## 2.9. 安装gedit
+## 3.9. 安装gedit
 
 ```
 apt update
@@ -152,7 +164,7 @@ apt -y install gedit
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331205033.png)
 
 
-## 2.10. 安装搜狗拼音（没成功）
+## 3.10. 安装搜狗拼音（没成功）
 
 * 执行指令，安装```fcitx```和搜狗拼音
 ```
@@ -173,9 +185,9 @@ export XMODIFIERS=\@im=fcitx
 
 
 
-# 3. shell脚本（ubuntu）
+# 4. shell脚本（ubuntu）
 
-## 3.1. 判断格式
+## 4.1. 判断格式
 
 括号内为真，输出0；为假输出1
 
@@ -183,7 +195,7 @@ export XMODIFIERS=\@im=fcitx
 [ -f /home/guof/my_check_up_ln.sh ]; echo $?
 ```
 
-## 3.2. 常见的判断
+## 4.2. 常见的判断
 
 [参考链接](https://www.cnblogs.com/ph829/p/5057914.html)
 
@@ -258,7 +270,7 @@ else
 fi
 ```
 
-## 3.3. 函数 与 ifelse
+## 4.3. 函数 与 ifelse
 
 这个看脚本就行
 
@@ -271,13 +283,13 @@ variable=`commands`
 variable=$(commands)
 ```
 
-## 3.4. sh脚本输入设置默认参数
+## 4.4. sh脚本输入设置默认参数
 
 ```
 v1=${1:-"set"} # 第一个参数默认为字符串 "set"
 ```
 
-## 3.5. echo 变色
+## 4.5. echo 变色
 
 [参考链接](https://blog.csdn.net/Dreamhai/article/details/103432525)
 
@@ -286,12 +298,12 @@ v1=${1:-"set"} # 第一个参数默认为字符串 "set"
 echo -e "\e[36m不是yes, 退出\e[0m"
 ```
 
-## 3.6. 交互 read
+## 4.6. 交互 read
 ```
 read -ra arr  # 将输入的东西以空格为间隔，输入到数组arr, -r表示进制转义符
 ```
 
-## 3.7. for 循环遍历arr
+## 4.7. for 循环遍历arr
 ```
 for element in ${arr[*]}
 do
