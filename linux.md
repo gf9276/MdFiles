@@ -183,11 +183,15 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
   依次出现两个界面
 
   * 界面一用于添加可选时区
+
     方向键控制光标移动，空格键选中```en_US.UTF-8```、```zh_CN.GBK```、```zh_CH.UTF-8（这个前面装的语言包里有，不用选）``` ，然后Tab键到OK选项，回车确定。
+
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331202709.png)
 
   * 界面二用于选择默认时区
+
     选择```zh_CH.UTF-8```
+
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331203242.png)
 
 
