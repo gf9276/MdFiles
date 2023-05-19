@@ -363,6 +363,8 @@ cp -r /opt/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 
 写文件用 hdf，需要手动下载配置。用起来很麻烦，但jhdf只能读不能写，所以必须用这个
 
+[官方示例](https://portal.hdfgroup.org/display/HDF5/Examples+from+Learning+the+Basics)
+
 [hdfview：windows下看hdf5文件的软件](https://portal.hdfgroup.org/display/support/HDFView+3.1.4#files)
 
 [hdf5文档](https://portal.hdfgroup.org/display/HDF5/HDF5%20javadocs)
