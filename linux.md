@@ -19,7 +19,12 @@
     - [3.11.1. 安装](#3111-安装)
     - [3.11.2. 缺点](#3112-缺点)
   - [3.12. 安装idea 2022.3.3 并破解](#312-安装idea-202233-并破解)
+    - [优缺点](#优缺点)
     - [3.12.1. 解决输入法在左下角的问题](#3121-解决输入法在左下角的问题)
+  - [卸载idea](#卸载idea)
+  - [安装加破解idea](#安装加破解idea)
+  - [创建桌面快捷方式](#创建桌面快捷方式)
+  - [安装Google Chrome](#安装google-chrome)
 - [4. shell脚本（ubuntu）](#4-shell脚本ubuntu)
   - [4.1. 判断格式](#41-判断格式)
   - [4.2. 常见的判断](#42-常见的判断)
@@ -323,6 +328,11 @@ apt -y install gedit
 
 ## 3.12. 安装idea 2022.3.3 并破解
 
+### 优缺点
+
+* 可能有点Bug
+* 可能少了很多Bug（这和上面不冲突）
+
 ### 3.12.1. 解决输入法在左下角的问题
 
 [讨论情况](https://bbs.deepin.org/post/252575)
@@ -355,6 +365,131 @@ idea 13年就存在的问题 23年还没解决捏
 
   ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519201419.png)
 
+
+## 卸载idea
+
+除了安装目录，还要删除以下
+
+    ~/.config/JetBrains/<product><version>
+    ~/.cache/JetBrains/<product><version>
+    ~/.local/share/JetBrains/<product><version>
+    ~/.gnome/apps/jetbrains-idea.desktop
+    ~/.local/share/applications/jetbrains-idea.desktop
+
+还有目录 `/usr/share/applications` 与idea相关的快捷方式
+
+其实找一下就知道
+
+  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520102336.png)
+
+
+
+## 安装加破解idea
+
+[只有这一种可用](https://www.quanxiaoha.com/article/idea-jihuoma.html)
+
+注意，由于注册信息写在个人用户下，所以root用户和普通用户都得各自注册一次
+
+---
+这里是下载
+
+* 下载idea
+  
+  找到安装包，直接下载
+
+  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104020.png)
+
+* 压缩包挪到 /opt 目录下
+
+* 解压缩并删除压缩包
+
+      tar -zxvf ideaIU-2022.3.3.tar.gz && rm ideaIU-2022.3.3.tar.gz
+
+* 这里建议先解决一下输入法在左下角的问题，把 jbr 直接给替换了先
+
+---
+这里是破解
+
+* 下载破解文件
+  
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104520.png)
+
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104606.png)
+
+* 把这个 `je-netilter` 挪到/opt下
+
+* 修改文件 `idea64.vmoption`
+
+    ```
+    cd /opt/idea-IU-223.8836.41/bin/
+    ```
+    ```
+    vim idea64.vmoptions
+    ```
+
+    加上
+
+    ```
+    # 引用补丁，开头必须以 -javaagent: 开头，后面跟着补丁的绝对路径（可根据你实际的位置进行修改）,注意路径一定要填写正确，且不能包含中文，否则会导致 IDEA 无法启动
+    -javaagent:/opt/ja-netfilter/ja-netfilter.jar
+
+    # 最新 IDEA 版本需要添加下面两行，以支持 Java 17, 否则会报 Key is invalid
+    --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
+    --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
+    ```
+
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104946.png)
+
+* 打开idea
+
+    ```
+    cd /opt/idea-IU-223.8836.41/bin/
+    ```
+    ```
+    ./idea.sh
+    ```
+
+* 粘贴激活码
+
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520105214.png)
+
+## 创建桌面快捷方式
+
+```
+cd /usr/share/applications
+```
+```
+vim jetbrains-idea.desktop
+```
+
+写入以下内容（这个是官方生成的样式，因为win无法识别.svg格式的图标，所以我改成了.png）
+
+```
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Ultimate Edition
+Icon=/opt/idea-IU-223.8836.41/bin/idea.png
+Exec="/opt/idea-IU-223.8836.41/bin/idea.sh" %f
+Comment=Capable and Ergonomic IDE for JVM
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+StartupNotify=true
+```
+
+
+## 安装Google Chrome
+
+[参考](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)
+
+1. 将目录更改为 temp 文件夹：`cd /tmp`
+2. 使用 wget 下载它：`wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb`
+3. 获取当前稳定版本：`dpkg -i google-chrome-stable_current_amd64.deb`
+4. 修复包：`apt install --fix-broken -y`
+5. 配置包：`dpkg -i google-chrome-stable_current_amd64.deb`
+
+若要启动，请输入：`google-chrome`
 
 
 # 4. shell脚本（ubuntu）
