@@ -41,7 +41,7 @@ chmod +x /usr/local/bin/minio
 ## 2.2. 创建静态文件存放目录
 
 ```
-mkdir /data/minio_data && chmod 777 /data/minio_data
+mkdir -p /data/minio_data && chmod 777 /data/minio_data
 ```
 
 ## 2.3. 普通启动minio

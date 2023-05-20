@@ -163,6 +163,8 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
 
 [wsl 官方 issue](https://github.com/microsoft/wslg/issues/4)
 
+[wsl 官方 issue](https://github.com/microsoft/wslg/issues?q=Desktop+entry+creation+failed)
+
 ## 3.11. 中文，设置中文
 
 这个我写了脚本
