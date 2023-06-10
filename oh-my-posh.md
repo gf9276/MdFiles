@@ -57,6 +57,8 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 直接在wsl里下载oh my posh，打开wsl，回到根目录下，执行指令：
 
+新版本貌似有问题，我现在用的是老版本的，就没有直接下载了
+
 ```
 wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 ```

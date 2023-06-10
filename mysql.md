@@ -373,5 +373,5 @@ sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_
 更改密码的加密方式
 
 ```
-ALTER USER ‘root’@‘localhost’ IDENTIFIED WITH mysql_native_password BY ‘新密码’;
+ALTER USER 'jack'@'localhost' IDENTIFIED WITH mysql_native_password BY 'jack4321';
 ```

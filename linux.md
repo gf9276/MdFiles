@@ -14,17 +14,18 @@
   - [3.8. find 指令](#38-find-指令)
   - [3.9. whereis which](#39-whereis-which)
   - [3.10. 关于wsl2可视化界面](#310-关于wsl2可视化界面)
+  - [问题](#问题)
   - [3.11. 中文，设置中文](#311-中文设置中文)
-  - [3.12. 安装gedit](#312-安装gedit)
+  - [3.12. 安装全套（主要是补全依赖）](#312-安装全套主要是补全依赖)
   - [3.13. 安装google-pinyin](#313-安装google-pinyin)
     - [3.13.1. 安装](#3131-安装)
     - [3.13.2. 缺点](#3132-缺点)
   - [3.14. 安装idea 2022.3.3 并破解](#314-安装idea-202233-并破解)
     - [3.14.1. 优缺点](#3141-优缺点)
     - [3.14.2. 解决输入法在左下角的问题](#3142-解决输入法在左下角的问题)
-  - [3.15. 卸载idea](#315-卸载idea)
-  - [3.16. 安装加破解idea](#316-安装加破解idea)
-  - [3.17. 创建桌面快捷方式](#317-创建桌面快捷方式)
+    - [3.15. 卸载idea](#315-卸载idea)
+    - [3.16. 安装加破解idea](#316-安装加破解idea)
+    - [3.17. 创建桌面快捷方式](#317-创建桌面快捷方式)
   - [3.18. 安装Google Chrome](#318-安装google-chrome)
 - [4. shell脚本（ubuntu）](#4-shell脚本ubuntu)
   - [4.1. 判断格式](#41-判断格式)
@@ -165,6 +166,13 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
 
 [wsl 官方 issue](https://github.com/microsoft/wslg/issues?q=Desktop+entry+creation+failed)
 
+
+## 问题
+
+* 有时候无法复制，重启wsl后恢复正常
+* 要把代理写入profile里，不然浏览器用不了
+
+
 ## 3.11. 中文，设置中文
 
 这个我写了脚本
@@ -209,16 +217,14 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331203242.png)
 
 
-## 3.12. 安装gedit
-
-建议别用这个了，我觉得vim比较靠谱
+## 3.12. 安装全套（主要是补全依赖）
 
 ```
 apt -y update
 ```
 
 ```
-apt -y install gedit
+apt -y install gedit gimp nautilus vlc x11-apps 
 ```
 
 打开会有警告，无伤大雅
@@ -350,6 +356,8 @@ idea 13年就存在的问题 23年还没解决捏
 
 <font size=4 >解决办法：</font>下载大佬编译好的jbr，替换idea安装目录下本来的jbr
 
+<font size=4 >注意：</font>该办法虽然修好了输入法，但是整个idea会变态起来。。。
+
 * 下载jbr压缩文件
   
   [下载链接](https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/releases)
@@ -388,7 +396,7 @@ idea 13年就存在的问题 23年还没解决捏
   ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519201419.png)
 
 
-## 3.15. 卸载idea
+### 3.15. 卸载idea
 
 除了安装目录，还要删除以下
 
@@ -406,7 +414,7 @@ idea 13年就存在的问题 23年还没解决捏
 
 
 
-## 3.16. 安装加破解idea
+### 3.16. 安装加破解idea
 
 [只有这一种可用](https://www.quanxiaoha.com/article/idea-jihuoma.html)
 
@@ -483,7 +491,7 @@ idea 13年就存在的问题 23年还没解决捏
   ```
 
 
-## 3.17. 创建桌面快捷方式
+### 3.17. 创建桌面快捷方式
 
 ```
 cd /usr/share/applications
