@@ -6,7 +6,7 @@
   - [2.2. 添加环境变量（不同java版本记得改数字）](#22-添加环境变量不同java版本记得改数字)
   - [2.3. 多个版本java版本管理](#23-多个版本java版本管理)
   - [2.4. 刷新环境变量，并使用指令查看安装是否成功](#24-刷新环境变量并使用指令查看安装是否成功)
-  - [卸载java](#卸载java)
+  - [2.5. 卸载java](#25-卸载java)
 
 <!-- /TOC -->
 
@@ -35,11 +35,15 @@ JAVA11 LTS版本之后，JRE集成在JDK中了，不用独立安装
 
 [参考链接3（不需要看）](https://blog.csdn.net/woodwhale/article/details/119112630)
 
-已经写了脚本，地址 https://github.com/gf9276/ShFiles.git ，直接运行
+已经写了脚本，地址 https://github.com/gf9276/ShFiles.git ，bash指令直接运行
 
 ## 2.1. 更新apt并安装java
 
-使用java版本 8 或者 11, 目前我用的是11, 8怪怪的好吧(2023-04-16)
+使用java版本 8 或者 11, 目前我用的是8（项目用的就是8，我也没办法）
+
+但是注意，windows上的idea通过wsl无法调用java8（主要是maven）
+
+所以我现在都是用wslg或者直接远程桌面连接wsl里面的idea进行代码编写
 
 一般项目不用17，因为他太新了。。。不过我写leetcode用的17
 
@@ -48,7 +52,7 @@ apt update
 ```
 
 ```
-apt install openjdk-11-jdk
+apt install openjdk-8-jdk
 ```
 
 ## 2.2. 添加环境变量（不同java版本记得改数字）
@@ -97,6 +101,8 @@ update-alternatives --config java
 
 该指令也可以用来查看java的安装路径
 
+注意，这里选择的java版本要和上面环境变量写的java版本一致。不然小心掉坑里
+
 ## 2.4. 刷新环境变量，并使用指令查看安装是否成功
 
 ```
@@ -120,7 +126,7 @@ java -version
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230416231943.png)
 
 
-## 卸载java
+## 2.5. 卸载java
 
 使用下面命令直接卸载，**把里面的四个版本数字换成要卸载的**
 
