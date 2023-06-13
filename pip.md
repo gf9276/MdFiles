@@ -20,7 +20,7 @@ powershell 执行
 pip config set global.proxy http://127.0.0.1:7890
 ```
 
-默认文件路径为```C:\Users\92762\AppData\Roaming\pip\pip.ini```
+默认写入的配置文件路径为```C:\Users\92762\AppData\Roaming\pip\pip.ini```
 
 成功配置如下图所示：
 
