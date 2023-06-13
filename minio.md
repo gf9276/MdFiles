@@ -8,6 +8,7 @@
   - [2.4. systemctl启动minio](#24-systemctl启动minio)
     - [2.4.1. 设置minio启动参数](#241-设置minio启动参数)
     - [2.4.2. 设置开机自启动](#242-设置开机自启动)
+- [使用 minio](#使用-minio)
 
 <!-- /TOC -->
 
@@ -40,13 +41,15 @@ chmod +x /usr/local/bin/minio
 
 ## 2.2. 创建静态文件存放目录
 
+就是放minio文件的地方啦，-p表示逐层创建，777是赋予所有权限
+
 ```
 mkdir -p /data/minio_data && chmod 777 /data/minio_data
 ```
 
 ## 2.3. 普通启动minio
 
-可用这个，也可以用后面的systemctl
+可用这个，也可以用后面的systemctl，建议用systemctl
 
 ```
 minio server /data/minio_data --console-address ":9099"
@@ -155,3 +158,13 @@ systemctl start minio
 ```
 systemctl status minio
 ```
+
+# 使用 minio
+
+安装并且打开minio之后，直接在浏览器里输入 
+```
+http://localhost:9000/
+```
+就可以进入minio的界面了
+
+账号密码就是 `/etc/default/minio` 里面写着的那个。
