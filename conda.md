@@ -138,6 +138,10 @@ conda update conda             // 更新conda
 
 ## 4.2. 打包 conda 环境
 
+注意：迁移conda环境不要直接复制envs底下的文件夹，适配性很差的。
+
+迁移conda环境时注意，miniconda和conda是互通的，但是windows上的conda和linux上的conda不能混用。
+
 ### 4.2.1. 安装打包的工具
 
 ```
@@ -179,7 +183,7 @@ tar -xzvf output.tar.gz -C env_name/
 conda env list
 ```
 
-- 随后可删除压缩包
+- 随后可删除多余的压缩包
 
 ```
 rm output.tar.gz
