@@ -8,7 +8,7 @@
   - [2.4. systemctl启动minio](#24-systemctl启动minio)
     - [2.4.1. 设置minio启动参数](#241-设置minio启动参数)
     - [2.4.2. 设置开机自启动](#242-设置开机自启动)
-- [使用 minio](#使用-minio)
+- [3. 使用 minio](#3-使用-minio)
 
 <!-- /TOC -->
 
@@ -159,7 +159,7 @@ systemctl start minio
 systemctl status minio
 ```
 
-# 使用 minio
+# 3. 使用 minio
 
 安装并且打开minio之后，直接在浏览器里输入 
 ```
