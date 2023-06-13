@@ -73,7 +73,10 @@ cd ~/ && touch my_proxy.sh
 vi my_proxy.sh
 ```
 
-写入内容如下
+<details>
+<summary>写入内容该代码块所示</summary>
+
+[最新内容参考这里](https://github.com/gf9276/ShFiles/blob/main/my_proxy.sh)
 
 ```
 #!/bin/sh
@@ -86,14 +89,15 @@ socks_port=7890 # 看clash的配置，混合模式默认用的确实是7890
 PROXY_HTTP="http://${hostip}:${port}"
 PROXY_SOCKS="socks5h://${hostip}:${socks_port}"
 
-set_proxy(){
+set_proxy() {
   export all_proxy="${PROXY_SOCKS}"
   export ALL_PROXY="${PROXY_SOCKS}"
   export https_proxy="${PROXY_HTTP}"
   export HTTPS_PROXY="${PROXY_HTTP}"
   export http_proxy="${PROXY_HTTP}"
   export HTTP_PROXY="${PROXY_HTTP}"
-  export no_proxy="localhost,127.0.0.1,${hostip},${wslip}"
+  export no_proxy="localhost, 127.0.0.0/8, ::1, ${hostip}, ${wslip}"
+  export NO_PROXY="localhost, 127.0.0.0/8, ::1, ${hostip}, ${wslip}"
 
   git config --global http.https://github.com.proxy ${PROXY_SOCKS}
   git config --global https.https://github.com.proxy ${PROXY_SOCKS}
@@ -101,13 +105,15 @@ set_proxy(){
   echo "Proxy has been opened."
 }
 
-unset_proxy(){
+unset_proxy() {
   unset ALL_PROXY
   unset all_proxy
   unset HTTPS_PROXY
   unset https_proxy
   unset HTTP_PROXY
   unset http_proxy
+  unset NO_PROXY
+  unset no_proxy
 
   git config --global --unset http.https://github.com.proxy
   git config --global --unset https.https://github.com.proxy
@@ -115,7 +121,7 @@ unset_proxy(){
   echo "Proxy has been closed."
 }
 
-test_setting(){
+test_setting() {
   echo "Host IP:" ${hostip}
   echo "WSL IP:" ${wslip}
   echo "Try to connect to Google..."
@@ -130,32 +136,30 @@ test_setting(){
 }
 
 v1=${1:-"set"} # 设置默认为set，即开启
-if [ "$v1" = "set" ]
-then
+if [ "$v1" = "set" ]; then
   set_proxy
 
-elif [ "$v1" = "unset" ]
-then
+elif [ "$v1" = "unset" ]; then
   unset_proxy
 
-elif [ "$v1" = "test" ]
-then
+elif [ "$v1" = "test" ]; then
   test_setting
 else
   echo "Unsupported arguments."
 fi
-
 ```
+</details>
+
 
 ### 2.3.2. 配置环境变量
 
 打开.bashrc
 
 ```
-vi .bashrc
+vim .bashrc
 ```
 
-写入( . 即source 这里不可以用bash代替):
+写入( 命令`.` 即`source`这里不可以用bash代替):
 
 ```
 # 科学上网的指令映射
