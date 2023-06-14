@@ -146,3 +146,8 @@ apt -y --purge remove openjdk-8-jre
 apt -y --purge remove openjdk-8-jre-headless
 ```
 
+其实直接这样，一步到位，虽然我没试过就是了
+
+```
+apt -y --purge remove openjdk-8-*
+```
