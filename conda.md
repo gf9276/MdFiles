@@ -7,7 +7,8 @@
   - [3.2. Windows 系统下 Anaconda Powershell Prompt (miniconda3) 部署到Windows Terminal](#32-windows-系统下-anaconda-powershell-prompt-miniconda3-部署到windows-terminal)
   - [3.3. windows下 conda 走代理（蓝色小猫也能用）](#33-windows下-conda-走代理蓝色小猫也能用)
     - [3.3.1. 命令生成](#331-命令生成)
-  - [3.4. windows 系统下 powershell 加载 conda 的环境](#34-windows-系统下-powershell-加载-conda-的环境)
+  - [3.4. linux下 conda 走代理](#34-linux下-conda-走代理)
+  - [3.5. windows 系统下 powershell 加载 conda 的环境](#35-windows-系统下-powershell-加载-conda-的环境)
 - [4. 操作 conda](#4-操作-conda)
   - [4.1. 一点很简单的指令](#41-一点很简单的指令)
   - [4.2. 打包 conda 环境](#42-打包-conda-环境)
@@ -101,8 +102,11 @@ conda config --set proxy_servers.https http://127.0.0.1:7890
 
 默认文件路径为```C:\Users\92762\.condarc```
 
+## 3.4. linux下 conda 走代理
 
-## 3.4. windows 系统下 powershell 加载 conda 的环境
+不需要，它会自动调用全局代理的信息
+
+## 3.5. windows 系统下 powershell 加载 conda 的环境
 
 先在 conda 界面下执行
 ```
