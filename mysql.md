@@ -45,6 +45,8 @@ mysql 学习
 
 # 2. wsl 下 mysql 安装
 
+正常的ubuntu或者虚拟机直接跳过 **开启systemd** 就好了。
+
 建议先在windows上安装一个 ```Navicat for MySQL破解版``` 很好找的
 
 [安装链接，不过版本太老了](https://www.cnblogs.com/zpy1993-09/p/14929860.html)
