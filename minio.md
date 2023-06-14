@@ -16,7 +16,7 @@
 
 Min IO 的相关内容
 
-[官方文档](http://www.minio.org.cn/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html)
+[官方文档，里面也有安装的相关内容](http://www.minio.org.cn/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html)
 
 # 2. 安装 minio
 
