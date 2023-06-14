@@ -347,7 +347,9 @@ cp -r /opt/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 
 ## 2.7. hdf5
 
-这个找了我挺久的
+这个找了我挺久的。
+
+傻子才用java做数据处理呢。哥们直接用Python上面的h5py处理数据，然后java里面直接调用py脚本了。不用这玩意了，写起来真tm费劲 -- 2023/6/14。
 
 ### 2.7.1. 版本和注意事项
 
