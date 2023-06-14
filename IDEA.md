@@ -2,20 +2,252 @@
 <!-- TOC -->
 
 - [1. IDEA.md](#1-ideamd)
-- [2. linux下破解idea](#2-linux下破解idea)
+- [2. ubuntu内IDEA的安装、破解](#2-ubuntu内idea的安装破解)
+  - [2.1. 安装+破解——idea 2022.3.3](#21-安装破解idea-202233)
+    - [2.1.1. 这里是下载](#211-这里是下载)
+    - [2.1.2. 这里是破解](#212-这里是破解)
+  - [2.2. 安装+破解——idea 2020.1.1](#22-安装破解idea-202011)
+  - [2.3. 输入法在左下角的bug（建议忍忍，貌似新版本要解决了）](#23-输入法在左下角的bug建议忍忍貌似新版本要解决了)
+  - [2.4. 卸载idea](#24-卸载idea)
+  - [2.5. 创建桌面快捷方式](#25-创建桌面快捷方式)
+    - [2.5.1. 有完整桌面](#251-有完整桌面)
+    - [2.5.2. 如果你用的是wslg](#252-如果你用的是wslg)
+- [3. 设置](#3-设置)
+  - [3.1. 安装插件](#31-安装插件)
+  - [3.2. settings](#32-settings)
 
 <!-- /TOC -->
 
 
 # 1. IDEA.md
 
-idea相关的东东，主要是破解。。。虽然我有教育优惠账户，这玩意不一定会用就是了
+idea 安装+破解+一些设置
 
 
-# 2. linux下破解idea
+# 2. ubuntu内IDEA的安装、破解
 
-版本有点老旧，看看以后能不能搞个新一点的
+安装和破解我搜集了两个版本的（2020版本的会简单很多，但是太老旧了）。
+
+虽然我自己用的是教育优惠，用不上破解就是了。
+
+安装很简单，直接去官网下载压缩包，解压然后到他那个文件夹的bin/目录下执行 idea.sh 脚本就行。
+
+因为他不是.deb包，可以用dpkg -i 安装的那种，所以，如果你缺依赖的话，他不会自己给你补全，会直接报错的。**所以，如果你用的是wsl，你需要先多装几个桌面应用，把依赖补全了先。**
+
+## 2.1. 安装+破解——idea 2022.3.3
+
+[找来找去，只有这一种可用](https://www.quanxiaoha.com/article/idea-jihuoma.html)
+
+注意，由于注册信息写在个人用户下，所以，如果你想要用root用户打开idea的话，你得用root账户再注册一次（一般也不会用root打开idea吧，这很不安全）
+
+### 2.1.1. 这里是下载
+
+* 下载idea
+  
+  找到安装包，直接下载
+
+  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104020.png)
+
+* 压缩包挪到 /opt 目录下
+
+* 解压缩并删除压缩包
+
+      tar -zxvf ideaIU-2022.3.3.tar.gz && rm ideaIU-2022.3.3.tar.gz
+
+* 打开idea（**建议先破解完再打开**）
+
+    路径这里，换成你自己的版本名字
+
+    ```
+    cd /opt/idea-IU-231.9011.34/bin && ./idea.sh
+    ```
+
+### 2.1.2. 这里是破解
+
+* 下载破解文件
+  
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104520.png)
+
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104606.png)
+
+* 把这个 `je-netilter` 挪到/opt下
+
+* 修改文件 `idea64.vmoption`
+
+    ```
+    cd /opt/idea-IU-223.8836.41/bin/
+    ```
+    ```
+    vim idea64.vmoptions
+    ```
+
+    在最后一行写上（路径换成你自己的）
+
+    ```
+    # 引用补丁，开头必须以 -javaagent: 开头，后面跟着补丁的绝对路径（可根据你实际的位置进行修改）,注意路径一定要填写正确，且不能包含中文，否则会导致 IDEA 无法启动
+    -javaagent:/opt/ja-netfilter/ja-netfilter.jar
+
+    # 最新 IDEA 版本需要添加下面两行，以支持 Java 17, 否则会报 Key is invalid
+    --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
+    --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
+    ```
+
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104946.png)
+
+* 回到普通用户（如果你现在是root），打开idea
+
+    ```
+    ctrl+d
+    ```
+    ```
+    cd /opt/idea-IU-223.8836.41/bin/
+    ```
+    ```
+    ./idea.sh
+    ```
+
+* 粘贴激活码，（直接复制下面的）
+
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520105214.png)
+
+  ```
+  6G5NXCPJZB-eyJsaWNlbnNlSWQiOiI2RzVOWENQSlpCIiwibGljZW5zZWVOYW1lIjoic2lnbnVwIHNjb290ZXIiLCJhc3NpZ25lZU5hbWUiOiIiLCJhc3NpZ25lZUVtYWlsIjoiIiwibGljZW5zZVJlc3RyaWN0aW9uIjoiIiwiY2hlY2tDb25jdXJyZW50VXNlIjpmYWxzZSwicHJvZHVjdHMiOlt7ImNvZGUiOiJQU0kiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBEQiIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUbyI6IjIwMjUtMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiSUkiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJQUEMiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBHTyIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUbyI6IjIwMjUtMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFNXIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQV1MiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBQUyIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUbyI6IjIwMjUtMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFJCIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQQ1dNUCIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUbyI6IjIwMjUtMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX1dLCJtZXRhZGF0YSI6IjAxMjAyMjA5MDJQU0FOMDAwMDA1IiwiaGFzaCI6IlRSSUFMOi0xMDc4MzkwNTY4IiwiZ3JhY2VQZXJpb2REYXlzIjo3LCJhdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlLCJpc0F1dG9Qcm9sb25nYXRlZCI6ZmFsc2V9-SnRVlQQR1/9nxZ2AXsQ0seYwU5OjaiUMXrnQIIdNRvykzqQ0Q+vjXlmO7iAUwhwlsyfoMrLuvmLYwoD7fV8Mpz9Gs2gsTR8DfSHuAdvZlFENlIuFoIqyO8BneM9paD0yLxiqxy/WWuOqW6c1v9ubbfdT6z9UnzSUjPKlsjXfq9J2gcDALrv9E0RPTOZqKfnsg7PF0wNQ0/d00dy1k3zI+zJyTRpDxkCaGgijlY/LZ/wqd/kRfcbQuRzdJ/JXa3nj26rACqykKXaBH5thuvkTyySOpZwZMJVJyW7B7ro/hkFCljZug3K+bTw5VwySzJtDcQ9tDYuu0zSAeXrcv2qrOg==-MIIETDCCAjSgAwIBAgIBDTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTIwMTAxOTA5MDU1M1oXDTIyMTAyMTA5MDU1M1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyMDEwMTkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCUlaUFc1wf+CfY9wzFWEL2euKQ5nswqb57V8QZG7d7RoR6rwYUIXseTOAFq210oMEe++LCjzKDuqwDfsyhgDNTgZBPAaC4vUU2oy+XR+Fq8nBixWIsH668HeOnRK6RRhsr0rJzRB95aZ3EAPzBuQ2qPaNGm17pAX0Rd6MPRgjp75IWwI9eA6aMEdPQEVN7uyOtM5zSsjoj79Lbu1fjShOnQZuJcsV8tqnayeFkNzv2LTOlofU/Tbx502Ro073gGjoeRzNvrynAP03pL486P3KCAyiNPhDs2z8/COMrxRlZW5mfzo0xsK0dQGNH3UoG/9RVwHG4eS8LFpMTR9oetHZBAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUJNoRIpb1hUHAk0foMSNM9MCEAv8wSAYDVR0jBEEwP4AUo562SGdCEjZBvW3gubSgUouX8bOhHKQaMBgxFjAUBgNVBAMMDUpldFByb2ZpbGUgQ0GCCQDSbLGDsoN54TATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBaAwDQYJKoZIhvcNAQELBQADggIBABqRoNGxAQct9dQUFK8xqhiZaYPd30TlmCmSAaGJ0eBpvkVeqA2jGYhAQRqFiAlFC63JKvWvRZO1iRuWCEfUMkdqQ9VQPXziE/BlsOIgrL6RlJfuFcEZ8TK3syIfIGQZNCxYhLLUuet2HE6LJYPQ5c0jH4kDooRpcVZ4rBxNwddpctUO2te9UU5/FjhioZQsPvd92qOTsV+8Cyl2fvNhNKD1Uu9ff5AkVIQn4JU23ozdB/R5oUlebwaTE6WZNBs+TA/qPj+5/we9NH71WRB0hqUoLI2AKKyiPw++FtN4Su1vsdDlrAzDj9ILjpjJKA1ImuVcG329/WTYIKysZ1CWK3zATg9BeCUPAV1pQy8ToXOq+RSYen6winZ2OO93eyHv2Iw5kbn1dqfBw1BuTE29V2FJKicJSu8iEOpfoafwJISXmz1wnnWL3V/0NxTulfWsXugOoLfv0ZIBP1xH9kmf22jjQ2JiHhQZP7ZDsreRrOeIQ/c4yR8IQvMLfC0WKQqrHu5ZzXTH4NO3CwGWSlTY74kE91zXB5mwWAx1jig+UXYc2w4RkVhy0//lOmVya/PEepuuTTI4+UJwC7qbVlh5zfhj8oTNUXgN0AOc+Q0/WFPl1aw5VV/VrO8FCoB15lFVlpKaQ1Yh+DVU8ke+rt9Th0BCHXe0uZOEmH0nOnH/0onD
+  ```
+
+  
+## 2.2. 安装+破解——idea 2020.1.1
+
+这个是老旧版本的，这个破解起来很方便就是了，如果wslg不能拖动的话，直接去插件那里，打开文件导入就行
 
 [2020版的安装和破解过程，看这个就行](https://www.jianshu.com/p/5f2cd3bfb9a4)
 
 [安装大致过，多一个参考一下](https://blog.csdn.net/weixin_46988707/article/details/127568436)
+
+
+## 2.3. 输入法在左下角的bug（建议忍忍，貌似新版本要解决了）
+
+idea在ubuntu下面会有一个bug，就是输入法在左下角，这个bug10年前就有，他就是不修，下面是通过修改jbr解决这个问题，**我建议不要用，会有其他bug出现的**，反正官网说近期会解决（2023年6月14日留）。
+
+[deepin社区讨论情况](https://bbs.deepin.org/post/252575)
+
+[官网问题反馈情况](https://youtrack.jetbrains.com/issue/JBR-2460)
+
+idea 13年就存在的问题 23年还没解决捏
+
+<font size=4 >解决办法：</font> 下载大佬编译好的jbr，替换idea安装目录下本来的jbr
+
+<font size=4 >注意：</font> 该办法虽然修好了输入法，但是整个idea会变态起来。。。
+
+* 下载jbr压缩文件
+  
+  [下载链接](https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/releases)
+
+  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519200529.png)
+
+  指令下载（慢的话换换代理，重新开始下载记得把原来的先删除掉）：
+  
+  ```
+  cd /tmp
+  ```
+  ```
+  wget https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/releases/download/jbr-release-17.0.6b829.5/jbr_jcef-17.0.6-linux-x64-b829.5.tar.gz
+  ```
+  ```
+  tar -zxvf jbr_jcef-17.0.6-linux-x64-b829.5.tar.gz
+  ```
+
+
+* 放置到idea安装目录下
+
+  ```
+  cd /opt/idea-IU-223.8836.41
+  ```
+
+  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519200642.png)
+
+  ```
+  rm -rf jbr/
+  ```
+
+  ```
+  mv /tmp/jbr_jcef-17.0.6-linux-x64-b829.5 jbr
+  ```
+
+  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519201419.png)
+
+
+## 2.4. 卸载idea
+
+主要是本体和一些个人配置
+
+除了安装目录，还要删除以下
+
+    ~/.config/JetBrains/<product><version>
+    ~/.cache/JetBrains/<product><version>
+    ~/.local/share/JetBrains/<product><version>
+    ~/.gnome/apps/jetbrains-idea.desktop
+    ~/.local/share/applications/jetbrains-idea.desktop
+
+还有目录 `/usr/share/applications` 与idea相关的快捷方式
+
+其实在个人目录下用`find`指令找一下和idea有关的文件就知道就知道
+
+  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520102336.png)
+
+## 2.5. 创建桌面快捷方式
+
+分两种情况
+
+### 2.5.1. 有完整桌面
+
+如果你有完整的linux界面，如gnome、xfce4、KDE之类的，这个很方便，打开你的idea，直接选这个create desktop entry就行
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/IDEA/20230614180643.png)
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/IDEA/20230614180736.png)
+
+### 2.5.2. 如果你用的是wslg
+
+那就得手动生成
+
+```
+cd /usr/share/applications
+```
+```
+vim jetbrains-idea.desktop
+```
+
+写入以下内容（这个是官方生成的样式，Icon那里因为win无法识别.svg格式的图标，所以我改成了.png）
+
+```
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Ultimate Edition
+Icon=/opt/idea-IU-223.8836.41/bin/idea.png
+Exec="/opt/idea-IU-223.8836.41/bin/idea.sh" %f
+Comment=Capable and Ergonomic IDE for JVM
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+StartupNotify=true
+```
+
+# 3. 设置
+
+有些东西要设置一下
+
+## 3.1. 安装插件
+
+直接插件商店搜索就行
+
+1. CodeGlance Pro
+2. MyBatisX
+
+## 3.2. settings
+
+搬运一下尚硅谷的，我只放了对我有用的
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/IDEA/20230614181930.png)
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/IDEA/20230614182031.png)

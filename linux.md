@@ -14,19 +14,13 @@
   - [3.8. find 指令](#38-find-指令)
   - [3.9. whereis which](#39-whereis-which)
   - [3.10. 关于wsl2可视化界面](#310-关于wsl2可视化界面)
-  - [问题](#问题)
-  - [3.11. 中文，设置中文](#311-中文设置中文)
-  - [3.12. 安装全套（主要是补全依赖）](#312-安装全套主要是补全依赖)
-  - [3.13. 安装google-pinyin](#313-安装google-pinyin)
-    - [3.13.1. 安装](#3131-安装)
-    - [3.13.2. 缺点](#3132-缺点)
-  - [3.14. 安装idea 2022.3.3 并破解](#314-安装idea-202233-并破解)
-    - [3.14.1. 优缺点](#3141-优缺点)
-    - [3.14.2. 解决输入法在左下角的问题](#3142-解决输入法在左下角的问题)
-    - [3.15. 卸载idea](#315-卸载idea)
-    - [3.16. 安装加破解idea](#316-安装加破解idea)
-    - [3.17. 创建桌面快捷方式](#317-创建桌面快捷方式)
-  - [3.18. 安装Google Chrome](#318-安装google-chrome)
+  - [3.11. 问题](#311-问题)
+  - [3.12. 中文，设置中文](#312-中文设置中文)
+  - [3.13. 安装全套（主要是补全依赖）](#313-安装全套主要是补全依赖)
+  - [3.14. 安装google-pinyin](#314-安装google-pinyin)
+    - [3.14.1. 安装](#3141-安装)
+    - [3.14.2. 缺点](#3142-缺点)
+  - [3.15. 安装Google Chrome](#315-安装google-chrome)
 - [4. shell脚本（ubuntu）](#4-shell脚本ubuntu)
   - [4.1. 判断格式](#41-判断格式)
   - [4.2. 常见的判断](#42-常见的判断)
@@ -167,13 +161,13 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
 [wsl 官方 issue](https://github.com/microsoft/wslg/issues?q=Desktop+entry+creation+failed)
 
 
-## 问题
+## 3.11. 问题
 
 * 有时候无法复制，重启wsl后恢复正常
 * 要把代理写入profile里，不然浏览器用不了
 
 
-## 3.11. 中文，设置中文
+## 3.12. 中文，设置中文
 
 这个我写了脚本
 
@@ -217,7 +211,7 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331203242.png)
 
 
-## 3.12. 安装全套（主要是补全依赖）
+## 3.13. 安装全套（主要是补全依赖）
 
 ```
 apt -y update
@@ -231,9 +225,9 @@ apt -y install gedit gimp nautilus vlc x11-apps
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331205033.png)
 
 
-## 3.13. 安装google-pinyin
+## 3.14. 安装google-pinyin
 
-### 3.13.1. 安装
+### 3.14.1. 安装
 
 [参考链接1](https://patrickwu.space/2019/10/28/wsl-fcitx-setup-cn/)
 
@@ -335,189 +329,14 @@ apt -y install gedit gimp nautilus vlc x11-apps
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519152820.png)
 
 
-### 3.13.2. 缺点
+### 3.14.2. 缺点
 
 1. 功能不全
 2. gedit下拼音提示界面跑来跑去的
 3. idea里也跑来跑去的，没事，有大佬解决
 
-## 3.14. 安装idea 2022.3.3 并破解
 
-### 3.14.1. 优缺点
-
-* 可能有点Bug
-* 可能少了很多Bug（这和上面不冲突）
-
-### 3.14.2. 解决输入法在左下角的问题
-
-[讨论情况](https://bbs.deepin.org/post/252575)
-
-idea 13年就存在的问题 23年还没解决捏
-
-<font size=4 >解决办法：</font>下载大佬编译好的jbr，替换idea安装目录下本来的jbr
-
-<font size=4 >注意：</font>该办法虽然修好了输入法，但是整个idea会变态起来。。。
-
-* 下载jbr压缩文件
-  
-  [下载链接](https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/releases)
-
-  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519200529.png)
-
-  指令下载（慢的话换换代理，重新开始下载记得把原来的先删除掉）：
-  
-  ```
-  cd /tmp
-  ```
-  ```
-  wget https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/releases/download/jbr-release-17.0.6b829.5/jbr_jcef-17.0.6-linux-x64-b829.5.tar.gz
-  ```
-  ```
-  tar -zxvf jbr_jcef-17.0.6-linux-x64-b829.5.tar.gz
-  ```
-
-
-* 放置到idea安装目录下
-
-  ```
-  cd /opt/idea-IU-223.8836.41
-  ```
-
-  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519200642.png)
-
-  ```
-  rm -rf jbr/
-  ```
-
-  ```
-  mv /tmp/jbr_jcef-17.0.6-linux-x64-b829.5 jbr
-  ```
-
-  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519201419.png)
-
-
-### 3.15. 卸载idea
-
-除了安装目录，还要删除以下
-
-    ~/.config/JetBrains/<product><version>
-    ~/.cache/JetBrains/<product><version>
-    ~/.local/share/JetBrains/<product><version>
-    ~/.gnome/apps/jetbrains-idea.desktop
-    ~/.local/share/applications/jetbrains-idea.desktop
-
-还有目录 `/usr/share/applications` 与idea相关的快捷方式
-
-其实找一下就知道
-
-  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520102336.png)
-
-
-
-### 3.16. 安装加破解idea
-
-[只有这一种可用](https://www.quanxiaoha.com/article/idea-jihuoma.html)
-
-注意，由于注册信息写在个人用户下，所以root用户和普通用户都得各自注册一次
-
----
-这里是下载
-
-* 下载idea
-  
-  找到安装包，直接下载
-
-  ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104020.png)
-
-* 压缩包挪到 /opt 目录下
-
-* 解压缩并删除压缩包
-
-      tar -zxvf ideaIU-2022.3.3.tar.gz && rm ideaIU-2022.3.3.tar.gz
-
-* 这里建议先解决一下输入法在左下角的问题，把 jbr 直接给替换了先
-
----
-这里是破解
-
-* 下载破解文件
-  
-    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104520.png)
-
-    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104606.png)
-
-* 把这个 `je-netilter` 挪到/opt下
-
-* 修改文件 `idea64.vmoption`
-
-    ```
-    cd /opt/idea-IU-223.8836.41/bin/
-    ```
-    ```
-    vim idea64.vmoptions
-    ```
-
-    加上
-
-    ```
-    # 引用补丁，开头必须以 -javaagent: 开头，后面跟着补丁的绝对路径（可根据你实际的位置进行修改）,注意路径一定要填写正确，且不能包含中文，否则会导致 IDEA 无法启动
-    -javaagent:/opt/ja-netfilter/ja-netfilter.jar
-
-    # 最新 IDEA 版本需要添加下面两行，以支持 Java 17, 否则会报 Key is invalid
-    --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
-    --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
-    ```
-
-    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520104946.png)
-
-* 回到普通用户（如果你现在是root），打开idea
-
-    ```
-    ctrl+d
-    ```
-    ```
-    cd /opt/idea-IU-223.8836.41/bin/
-    ```
-    ```
-    ./idea.sh
-    ```
-
-* 粘贴激活码
-
-    ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230520105214.png)
-
-  ```
-  6G5NXCPJZB-eyJsaWNlbnNlSWQiOiI2RzVOWENQSlpCIiwibGljZW5zZWVOYW1lIjoic2lnbnVwIHNjb290ZXIiLCJhc3NpZ25lZU5hbWUiOiIiLCJhc3NpZ25lZUVtYWlsIjoiIiwibGljZW5zZVJlc3RyaWN0aW9uIjoiIiwiY2hlY2tDb25jdXJyZW50VXNlIjpmYWxzZSwicHJvZHVjdHMiOlt7ImNvZGUiOiJQU0kiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBEQiIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUbyI6IjIwMjUtMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiSUkiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJQUEMiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBHTyIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUbyI6IjIwMjUtMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFNXIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQV1MiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBQUyIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUbyI6IjIwMjUtMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFJCIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0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
-  ```
-
-
-### 3.17. 创建桌面快捷方式
-
-```
-cd /usr/share/applications
-```
-```
-vim jetbrains-idea.desktop
-```
-
-写入以下内容（这个是官方生成的样式，因为win无法识别.svg格式的图标，所以我改成了.png）
-
-```
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=IntelliJ IDEA Ultimate Edition
-Icon=/opt/idea-IU-223.8836.41/bin/idea.png
-Exec="/opt/idea-IU-223.8836.41/bin/idea.sh" %f
-Comment=Capable and Ergonomic IDE for JVM
-Categories=Development;IDE;
-Terminal=false
-StartupWMClass=jetbrains-idea
-StartupNotify=true
-```
-
-
-## 3.18. 安装Google Chrome
+## 3.15. 安装Google Chrome
 
 [参考](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)
 
