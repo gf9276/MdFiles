@@ -10,7 +10,7 @@
 
 # 1. vscode.md
 
-记录 vscode 的一些设置
+记录 vscode 的一些设置，配置文件地址 https://github.com/gf9276/CfgFiles
 
 # 2. windows 安装vscode
 

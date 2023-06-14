@@ -1,9 +1,9 @@
 <!-- TOC -->
 
 - [1. oh-my-posh.md](#1-oh-my-poshmd)
-- [2. 安装](#2-安装)
-  - [2.1. 下载字体](#21-下载字体)
-  - [2.2. 安装oh my posh](#22-安装oh-my-posh)
+- [2. 安装 oh-my-posh](#2-安装-oh-my-posh)
+  - [2.1. 先要下载字体](#21-先要下载字体)
+  - [2.2. 再安装 oh my posh](#22-再安装-oh-my-posh)
     - [2.2.1. windows powershell](#221-windows-powershell)
     - [2.2.2. wsl](#222-wsl)
   - [2.3. 修改终端配置文件](#23-修改终端配置文件)
@@ -20,17 +20,18 @@
 
 oh my posh 是一个美化终端的东西，主要是用在powershell上的，也支持ubuntu就是了
 
-我主要是用在 windows terminal 上的
+我主要是用在 windows terminal 上的，所以这里写的都是美化windows terminal的内容
 
 博客参考链接如下：[博客参考链接](https://sspai.com/post/69911#!)  
 
 官方文档如下：[oh my posh 官方文档](https://ohmyposh.dev/docs/installation/windows)  
 
-# 2. 安装
+# 2. 安装 oh-my-posh
 
-## 2.1. 下载字体
+## 2.1. 先要下载字体
 
-部分 Oh my posh 主题有一些特殊的字符，例如表示系统类型的徽标、GitHub 标志，这些字符需要特殊的字体支持。如果读者看上了一款有这些字符的主题，必须提前下载安装合适的字体，并将它们设置为终端显示的字体。使用[Agave Nerd Fonts](https://www.nerdfonts.com/font-downloads)字体，打开并安装。windows terminal下设置成这样比较好看：
+部分 Oh my posh 主题有一些特殊的字符，例如表示系统类型的徽标、GitHub 标志，这些字符需要特殊的字体支持。如果读者看上了一款有这些字符的主题，必须提前下载安装合适的字体，并将它们设置为终端显示的字体。建议使用[Agave Nerd Fonts](https://www.nerdfonts.com/font-downloads)字体，打开并安装。windows terminal下设置配置文件成这样比较好看：
+
 ```
 "font": 
 {
@@ -39,29 +40,44 @@ oh my posh 是一个美化终端的东西，主要是用在powershell上的，�
     "weight": "semi-light"
 }
 ```
-或者默认配置如下图所示：
+
+所以，我们需要直接设置默认配置如下图所示（不仅限于字体）：
+
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/20221109142953.png)
 
-## 2.2. 安装oh my posh
+![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/20230614193855.png)
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20221109193242.png)
+
+## 2.2. 再安装 oh my posh
 
 具体指令查看 [oh my posh 官方文档](https://ohmyposh.dev/docs/installation/windows)。或者直接按照下面的执行
 
 ### 2.2.1. windows powershell  
 
 执行以下指令，下载oh my posh
+
 ```
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
 ### 2.2.2. wsl
 
-直接在wsl里下载oh my posh，打开wsl，回到根目录下，执行指令：
+直接在wsl里下载oh my posh，打开wsl，回到根目录下，执行指令下载on-my-posh，这里有两个版本，建议用老的
 
-新版本貌似有问题，我现在用的是老版本的，就没有直接下载了
+1. 新版本貌似有问题，我现在用的是老版本的，就没有直接下载了
 
-```
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-```
+  ```
+  wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+  ```
+
+2. 推荐用老版本（我保存到github上了）
+
+  ```
+  wget https://github.com/gf9276/CfgFiles/releases/download/oh_my_posh.v0/oh-my-posh -O /usr/local/bin/oh-my-posh
+  ```
+
+随后，
 
 ```
 chmod +x /usr/local/bin/oh-my-posh
@@ -137,7 +153,10 @@ eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/night-owl.omp.json
 所以还是用下面的比较好
 
 ## 3.2. 1_shell
-对源码进行更改，如下所示：
+
+<details>
+<summary>对源码进行更改，如下所示:（点此展开）</summary>
+
 ```
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
@@ -361,11 +380,20 @@ eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/night-owl.omp.json
 }
 ```
 
-windows terminal 的配色方案为
+</details>
+
+随后，在~/路径下按照上面代码创建 my_1_shell.omp.json 文件，.bashrc 里添加如下代码：
 
 ```
+# oh my posh 的主题路径
+eval "$(oh-my-posh --init --shell bash --config ~/my_1_shell.omp.json)"
+```
+
+windows terminal 的配色方案为，直接创建一个新的配色方案叫做`my_1_shell`，然后用这个配色方案覆盖就行
+
+``` json
         {
-            "background": "#292D3E",
+            "background": "#0F111A",
             "black": "#282C34",
             "blue": "#61AFEF",
             "brightBlack": "#5A6374",
@@ -388,7 +416,11 @@ windows terminal 的配色方案为
             "yellow": "#E5C07B"
         }
 ```
-背景色建议改成`15,17,26`（十进制）
+
+效果是这样子的
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/20230614193422.png)
+
 
 当然了，终端字体都需要更改。terminal效果图如下所示：
 
@@ -397,10 +429,3 @@ windows terminal 的配色方案为
 vscode效果图如下所示（别忘了换字体）：
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/oh-my-posh/vscode_1_shell.png)
-
-在~/路径下按照上面代码创建 my_1_shell.omp.json 文件，.bashrc 里添加如下代码：
-
-```
-# oh my posh 的主题路径
-eval "$(oh-my-posh --init --shell bash --config ~/my_1_shell.omp.json)"
-```

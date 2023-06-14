@@ -5,22 +5,20 @@
   - [2.1. 文件](#21-文件)
 - [3. 指令、操作和坑（ubuntu）](#3-指令操作和坑ubuntu)
   - [3.1. 代理大坑](#31-代理大坑)
-  - [3.2. apt指令介绍](#32-apt指令介绍)
-  - [3.3. 上下键补全历史指令](#33-上下键补全历史指令)
-  - [3.4. 设置root密码](#34-设置root密码)
-  - [3.5. 复制命令](#35-复制命令)
-  - [3.6. 移动命令](#36-移动命令)
-  - [3.7. 查看文件夹下的文件数](#37-查看文件夹下的文件数)
-  - [3.8. find 指令](#38-find-指令)
-  - [3.9. whereis which](#39-whereis-which)
-  - [3.10. 关于wsl2可视化界面](#310-关于wsl2可视化界面)
-  - [3.11. 问题](#311-问题)
-  - [3.12. 中文，设置中文](#312-中文设置中文)
-  - [3.13. 安装全套（主要是补全依赖）](#313-安装全套主要是补全依赖)
-  - [3.14. 安装google-pinyin](#314-安装google-pinyin)
-    - [3.14.1. 安装](#3141-安装)
-    - [3.14.2. 缺点](#3142-缺点)
-  - [3.15. 安装Google Chrome](#315-安装google-chrome)
+  - [3.2. 修改密码](#32-修改密码)
+  - [3.3. apt指令介绍](#33-apt指令介绍)
+  - [3.4. 安装apt-fast](#34-安装apt-fast)
+  - [3.5. 设置snap代理](#35-设置snap代理)
+  - [3.6. 上下键补全历史指令](#36-上下键补全历史指令)
+  - [3.7. nload](#37-nload)
+  - [3.8. 复制命令](#38-复制命令)
+  - [3.9. 移动命令](#39-移动命令)
+  - [3.10. 查看文件夹下的文件数](#310-查看文件夹下的文件数)
+  - [3.11. find 指令](#311-find-指令)
+  - [3.12. whereis which](#312-whereis-which)
+  - [3.13. 关于wsl2可视化界面](#313-关于wsl2可视化界面)
+  - [3.14. 中文化配置](#314-中文化配置)
+  - [3.15. 安装google-pinyin](#315-安装google-pinyin)
 - [4. shell脚本（ubuntu）](#4-shell脚本ubuntu)
   - [4.1. 判断格式](#41-判断格式)
   - [4.2. 常见的判断](#42-常见的判断)
@@ -62,7 +60,15 @@ wsl和正常ubuntu都有
 
 我也是在使用 sudo wget 和 wget，速度不一样才发现的。
 
-## 3.2. apt指令介绍
+## 3.2. 修改密码
+
+后面是具体的用户，sudo 能修改 root 的密码，也是挺有意思的事情
+
+```
+sudo passwd root
+```
+
+## 3.3. apt指令介绍
 
 [参考链接](https://blog.csdn.net/LEON1741/article/details/85114318)
 
@@ -77,7 +83,37 @@ wsl和正常ubuntu都有
 | apt-get autoclean | 删除为了满足某些依赖安装的，但现在不再需要的软件包；apt的底层包是dpkg, 而dpkg安装软件包时, 会将*.deb文件放在/var/cache/apt/archives/中；因此本命令会删除该目录下已经过期的deb； |
 | apt-get clean | 删除已经安装过的的软件安装包；即自动将/var/cache/apt/archives/下的所有deb删掉，相当于清理下载的软件安装包； |
 
-## 3.3. 上下键补全历史指令
+## 3.4. 安装apt-fast
+
+apt太慢了，这玩意是单线程的，太折磨了，apt-fast是多线程的，下载起来很快，[我写了脚本](https://github.com/gf9276/ShFiles.git)，直接bash执行就行。或者像下面一样手动安装。
+
+```
+add-apt-repository ppa:apt-fast/stable && apt-get install apt-fast -y
+```
+
+接下来选择，第一个是包管理器，现在一般都用apt的吧，我反正很少用apt-get；第二个是线程数，看自己CPU线程数选就是了；第三个是安装包的时候是否跳过询问（是这样吗），我反正直接选No（默认的）。
+
+apt --> 12 --> No
+
+
+## 3.5. 设置snap代理
+
+ubuntu 现在强推snap，22.04版本里，火狐和软件商店用的都是snap，然鹅这玩意不会读取全局代理，我们要是不设置代理的话，下载东西会很慢的。
+
+看看代理ip是啥（前提是你设置了代理ip）
+
+```
+echo $http_proxy
+```
+
+换成你自己的代理ip，分开执行（下面那个也是没有s的）
+```
+snap set system proxy.http="http://172.22.160.1:7890"
+
+snap set system proxy.https="http://172.22.160.1:7890"
+```
+
+## 3.6. 上下键补全历史指令
 
 CentOS下，有一个很智能的功能，就是只输入一条历史命令的前几个字母，再按PageUp和PageDown键，就可以在以此字母为前缀的历史命令中上下切换。这个功能非常实用，而且比CTRL+R使用起来更友善、更方便。遗憾的是，ubuntu上并没有这个功能。Google上搜索才直到，这个只是linux在终端对键盘的映射而已，和linux的某个发行版无关。只是CentOS下默认打开了这个功能，而ubuntu默认禁止了而已。
 
@@ -95,13 +131,23 @@ vim /etc/inputrc
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20221112164130.png)
 
-## 3.4. 设置root密码
+## 3.7. nload
+
+安装nload
 
 ```
-sudo passwd root
+sudo apt-get install nload
 ```
 
-## 3.5. 复制命令
+使用nload
+
+```
+nload -m
+```
+
+这东西能检测网卡流量，挺好用的
+
+## 3.8. 复制命令
 
 下面四个命令结果相同，都是递归拷贝 packageA 文件及其任意层的结构到 packageB 中:
 
@@ -118,19 +164,19 @@ cp -r packageA/* packageB
 cp -r packageA/* packageB/
 ```
 
-## 3.6. 移动命令
+## 3.9. 移动命令
 
 ```
 mv IfElseTest1.java chapter03/
 ```
 
-## 3.7. 查看文件夹下的文件数
+## 3.10. 查看文件夹下的文件数
 
 ```
 ls -l | grep "-" | wc -l
 ```
 
-## 3.8. find 指令
+## 3.11. find 指令
 
 
 在当前目录下寻找文件或目录 filename
@@ -141,10 +187,12 @@ find . filename
 
 可以把 . 换成指定路径
 
-## 3.9. whereis which
+## 3.12. whereis which
 TODO
 
-## 3.10. 关于wsl2可视化界面
+## 3.13. 关于wsl2可视化界面
+
+**现在我装上了，用起来还行 2023/6/14，详情看[这里](https://github.com/gf9276/MdFiles/blob/master/wsl2.md)**
 
 [Linux桌面系统介绍](https://www.eet-china.com/mp/a10976.html)
 
@@ -161,13 +209,7 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
 [wsl 官方 issue](https://github.com/microsoft/wslg/issues?q=Desktop+entry+creation+failed)
 
 
-## 3.11. 问题
-
-* 有时候无法复制，重启wsl后恢复正常
-* 要把代理写入profile里，不然浏览器用不了
-
-
-## 3.12. 中文，设置中文
+## 3.14. 中文化配置
 
 这个我写了脚本
 
@@ -211,23 +253,9 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331203242.png)
 
 
-## 3.13. 安装全套（主要是补全依赖）
+## 3.15. 安装google-pinyin
 
-```
-apt -y update
-```
-
-```
-apt -y install gedit gimp nautilus vlc x11-apps 
-```
-
-打开会有警告，无伤大雅
-![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331205033.png)
-
-
-## 3.14. 安装google-pinyin
-
-### 3.14.1. 安装
+**这里的安装考虑到了wslg**
 
 [参考链接1](https://patrickwu.space/2019/10/28/wsl-fcitx-setup-cn/)
 
@@ -246,15 +274,22 @@ apt -y install gedit gimp nautilus vlc x11-apps
   
     不用担心，现在的wsl有systemctl，会自动启动dbus，所以不需要设置自启动
 
+    至于正常的linux或者虚拟机就更不需要担心了。。。
+
 
 3. 使用root账号生成dbus机器码（**这一步很重要**）
 
     我看很多csdn上都没这一步，坑死了，唉，主要是这玩意只能在国内找，国外的又不用中文输入法。
 
-    我不知道机器码是什么，这好像是个随机数，机器标识符？
+    我不知道机器码是什么，这好像是个随机数，机器标识符？这玩意如果有桌面环境的话，他就会有，如果没装过桌面环境的话，他就没有。
 
     反正是给dbus用的，没这玩意fcitx启动不了
 
+    查看一下机器码
+    ```
+    cat /var/lib/dbus/machine-id
+    ```
+    没有东西的话，生成一个
     ```
     dbus-uuidgen > /var/lib/dbus/machine-id
     ```
@@ -280,6 +315,8 @@ apt -y install gedit gimp nautilus vlc x11-apps
     fcitx-autostart &>/dev/null
     ```
 
+    如果使用远程连接，这时候右上角会有两个键盘，因为桌面自己启动了一个，你在profile里又启动了一个，不影响使用。
+
 5. wsl --shutdown 后重启 wsl（可能有点慢）
   
 6. 设置fcitx
@@ -298,9 +335,11 @@ apt -y install gedit gimp nautilus vlc x11-apps
 
 
 
-7. 安装可视化的 gnome-language-selector （可选）
+7. 安装可视化的 gnome-language-selector
     
-    这个没装问题也不大
+    如果用wslg，它会提示没有装完语言，不要点击安装，因为装不了。
+    
+    如果用完整的桌面，打开 gnome-language-selector，它会提示没有装完语言，安装没装完的，然后下面选项里语言换成中文（记得输入法换成Fcitx 4，省得后面调）。这样整个系统的中文环境就完善了。
 
     ```
     apt -y install language-selector-gnome
@@ -328,25 +367,6 @@ apt -y install gedit gimp nautilus vlc x11-apps
 
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230519152820.png)
 
-
-### 3.14.2. 缺点
-
-1. 功能不全
-2. gedit下拼音提示界面跑来跑去的
-3. idea里也跑来跑去的，没事，有大佬解决
-
-
-## 3.15. 安装Google Chrome
-
-[参考](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)
-
-1. 将目录更改为 temp 文件夹：`cd /tmp`
-2. 使用 wget 下载它：`wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb`
-3. 获取当前稳定版本：`dpkg -i google-chrome-stable_current_amd64.deb`
-4. 修复包：`apt install --fix-broken -y`
-5. 配置包：`dpkg -i google-chrome-stable_current_amd64.deb`
-
-若要启动，请输入：`google-chrome`
 
 
 # 4. shell脚本（ubuntu）
