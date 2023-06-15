@@ -366,7 +366,7 @@ touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
 
 打开软件与更新
 
-https://www.testufo.com/ 显示帧率59（实际估计只有40）
+https://www.testufo.com/ 显示帧率59（实际估计只有40）（好像火狐是59，谷歌就是50了，不过看nload数据传输情况，都是在35Mbps左右）
 
 一切正常
 
