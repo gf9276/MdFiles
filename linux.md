@@ -16,6 +16,7 @@
   - [3.10. 查看文件夹下的文件数](#310-查看文件夹下的文件数)
   - [3.11. find 指令](#311-find-指令)
   - [3.12. whereis which](#312-whereis-which)
+  - [nohup](#nohup)
   - [3.13. 关于wsl2可视化界面](#313-关于wsl2可视化界面)
   - [3.14. 中文化配置](#314-中文化配置)
   - [3.15. 安装google-pinyin](#315-安装google-pinyin)
@@ -189,6 +190,14 @@ find . filename
 
 ## 3.12. whereis which
 TODO
+
+## nohup
+
+nohup 后台执行并保存pid与log
+
+```
+nohup  java -jar ~/JavaFiles/tmp/nLogging/nWeb/admin/target/admin.jar > command.log 2>&1 & echo $! > command.pid
+```
 
 ## 3.13. 关于wsl2可视化界面
 
