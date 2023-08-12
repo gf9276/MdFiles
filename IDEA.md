@@ -4,7 +4,8 @@
 - [1. IDEA.md](#1-ideamd)
 - [2. windows下idea的设置](#2-windows下idea的设置)
   - [2.1. 安装](#21-安装)
-  - [2.2. wsl连接](#22-wsl连接)
+  - [2.2. 删除](#22-删除)
+  - [2.3. wsl连接](#23-wsl连接)
 - [3. ubuntu内IDEA的安装、破解](#3-ubuntu内idea的安装破解)
   - [3.1. 安装+破解——idea 2022.3.3](#31-安装破解idea-202233)
     - [3.1.1. 这里是下载](#311-这里是下载)
@@ -32,7 +33,25 @@ idea 安装+破解+一些设置
 
 安装直接装就行了
 
-## 2.2. wsl连接
+## 2.2. 删除
+
+[参考连接](https://www.quanxiaoha.com/idea/uninstall-idea.html)
+
+如果是通过jetbrain toolbox装的，注意这些目录
+
+```
+C:\用户\${用户名称}\IdeaProjects\
+# 如果你想删除 IDEA 相关，则只需要删除 JetBrains 目录下包含 IDEA 的文件夹即可
+C:\用户\${用户名称}\AppData\Roaming\JetBrains
+# 如果你想删除 IDEA 相关，则只需要删除 JetBrains 目录下包含 IDEA 的文件夹即可
+C:\用户\${用户名称}\AppData\Local\JetBrains
+C:\用户\公用\.jetbrains
+# 如果你想删除 IDEA 相关，则只需要删除 JetBrains 目录下包含 IDEA 的文件夹即可
+C:\Program Files\JetBrains
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\JetBrains\
+```
+
+## 2.3. wsl连接
 
 注意下这一点，要加个排除项
 
