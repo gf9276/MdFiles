@@ -60,6 +60,11 @@ mysql 学习
 
   [navicat 16 的资源从这里面下载](https://www.cnblogs.com/kkdaj/p/16260681.html)
 
+  或者直接从网盘下载：
+
+      链接：https://pan.baidu.com/s/1fKVhzMbHHQefyK1Y906dfg?pwd=tssw 
+      提取码：tssw
+
 这是数据库可视化软件，缺点就是要收费
 
 我是感觉这玩意比mysql workbench好用
