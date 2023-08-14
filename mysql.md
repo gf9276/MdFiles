@@ -50,7 +50,15 @@ mysql 学习
 
 建议先在windows上安装一个 ```Navicat for MySQL破解版``` 很好找的
 
-[安装链接，不过版本太老了](https://www.cnblogs.com/zpy1993-09/p/14929860.html)
+* 旧版
+
+  [安装链接，不过版本太老了](https://www.cnblogs.com/zpy1993-09/p/14929860.html)
+
+* 新版
+
+  [新的安装链接，注意断网并且关掉安全中心](https://www.cnblogs.com/zktww/p/16327163.html)
+
+  [navicat 16 的资源从这里面下载](https://www.cnblogs.com/kkdaj/p/16260681.html)
 
 这是数据库可视化软件，缺点就是要收费
 
