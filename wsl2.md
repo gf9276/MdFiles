@@ -31,14 +31,15 @@
     - [5.2.2. 安装谷歌拼音](#522-安装谷歌拼音)
     - [5.2.3. 显卡问题](#523-显卡问题)
     - [5.2.4. todo](#524-todo)
-- [6. 坑](#6-坑)
-  - [6.1. wslg代理问题](#61-wslg代理问题)
-  - [6.2. wslg无法复制](#62-wslg无法复制)
-  - [6.3. wslg下idea报错](#63-wslg下idea报错)
-  - [6.4. Error code: Wsl/Service/0x8007273d](#64-error-code-wslservice0x8007273d)
-    - [6.4.1. 解决方法1](#641-解决方法1)
-    - [6.4.2. 解决方法2](#642-解决方法2)
-    - [6.4.3. 最好用的方法](#643-最好用的方法)
+- [6. 更流畅的远程桌面--\>nomachine](#6-更流畅的远程桌面--nomachine)
+- [7. 坑](#7-坑)
+  - [7.1. wslg代理问题](#71-wslg代理问题)
+  - [7.2. wslg无法复制](#72-wslg无法复制)
+  - [7.3. wslg下idea报错](#73-wslg下idea报错)
+  - [7.4. Error code: Wsl/Service/0x8007273d](#74-error-code-wslservice0x8007273d)
+    - [7.4.1. 解决方法1](#741-解决方法1)
+    - [7.4.2. 解决方法2](#742-解决方法2)
+    - [7.4.3. 最好用的方法](#743-最好用的方法)
 
 <!-- /TOC -->
 
@@ -413,13 +414,18 @@ www.github.com
 
 然后就可以随便玩了，安装vscode，安装idea之类的和普通的ubuntu没有一点区别。
 
-# 6. 坑
 
-## 6.1. wslg代理问题
+# 6. 更流畅的远程桌面-->nomachine
+
+详见nomachine.md
+
+# 7. 坑
+
+## 7.1. wslg代理问题
 
 * 要把代理写入profile里，不然浏览器用不了
 
-## 6.2. wslg无法复制
+## 7.2. wslg无法复制
 
 解决不了，md
 
@@ -427,17 +433,17 @@ www.github.com
 
 [问题链接2](https://github.com/microsoft/wslg/issues/1066)
 
-## 6.3. wslg下idea报错
+## 7.3. wslg下idea报错
 
 多半是依赖不全，多装一点桌面应用没准就补全了。
 
-## 6.4. Error code: Wsl/Service/0x8007273d
+## 7.4. Error code: Wsl/Service/0x8007273d
 
 这种就没法用了
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/L%]TR~I6_K`0NR98OO]YWBQ.png)
 
-### 6.4.1. 解决方法1
+### 7.4.1. 解决方法1
 
 管理员权限打开 powershell
 
@@ -448,7 +454,7 @@ netsh winsock reset
 
 然后重新打开wsl2
 
-### 6.4.2. 解决方法2
+### 7.4.2. 解决方法2
 
 这种方法我用不了
 
@@ -467,7 +473,7 @@ netsh winsock reset
 
 但是这个方法我用不了
 
-### 6.4.3. 最好用的方法
+### 7.4.3. 最好用的方法
 
 不如重新下载，然后再导入分发包（记得提前导出）
 
