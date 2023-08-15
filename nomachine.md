@@ -60,6 +60,8 @@
 
 ubuntu 肯定是.deb啊
 
+[速达链接](https://downloads.nomachine.com/download/?id=3)
+
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815213009.png)
 
 点进去后都写着呢
