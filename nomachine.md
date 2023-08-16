@@ -1,23 +1,40 @@
 <!-- TOC -->
 
 - [1. nomachine](#1-nomachine)
-- [2. window端安装nomachine](#2-window端安装nomachine)
-  - [2.1. windows作为服务端的server设置](#21-windows作为服务端的server设置)
-  - [2.2. windows作为客户端的player设置](#22-windows作为客户端的player设置)
-- [3. ubuntu 安装](#3-ubuntu-安装)
-  - [3.1. ubuntu作为服务端server设置](#31-ubuntu作为服务端server设置)
-- [4. 连接](#4-连接)
-  - [4.1. 屏幕设置](#41-屏幕设置)
+- [2. 前置条件：wsl安装桌面](#2-前置条件wsl安装桌面)
+  - [2.1. 安装](#21-安装)
+    - [2.1.1. 安装apt-fast](#211-安装apt-fast)
+    - [2.1.2. 设置snap代理](#212-设置snap代理)
+    - [2.1.3. 锁住！](#213-锁住)
+    - [2.1.4. 安装桌面环境](#214-安装桌面环境)
+    - [2.1.5. 安装gnome](#215-安装gnome)
+    - [2.1.6. 重装dbus](#216-重装dbus)
+    - [2.1.7. 修复网络](#217-修复网络)
+  - [2.2. 完善处理](#22-完善处理)
+    - [2.2.1. 中文化](#221-中文化)
+    - [2.2.2. 安装谷歌拼音](#222-安装谷歌拼音)
+    - [2.2.3. 显卡问题](#223-显卡问题)
+- [3. window端安装nomachine](#3-window端安装nomachine)
+  - [3.1. windows作为服务端的server设置](#31-windows作为服务端的server设置)
+  - [3.2. windows作为客户端的player设置](#32-windows作为客户端的player设置)
+- [4. ubuntu 安装](#4-ubuntu-安装)
+  - [4.1. ubuntu作为服务端server设置](#41-ubuntu作为服务端server设置)
+- [5. 连接](#5-连接)
+  - [5.1. 屏幕设置](#51-屏幕设置)
+    - [5.1.1. 按钮介绍](#511-按钮介绍)
+    - [5.1.2. display settings](#512-display-settings)
 
 <!-- /TOC -->
 
 # 1. nomachine
 
-还是ubuntu20.04bug少点
+感觉还是ubuntu20.04bug少点
 
 局域网内连接软件，我主要是用于wsl2
 
 这玩意用在wsl2上，丝滑到一种境界了，吊着xrdp打
+
+nomachine甚至可以传输声音。。。
 
 [nomachine官网](https://www.nomachine.com/)
 
@@ -25,9 +42,171 @@
 
 [Knowledge Base](https://kb.nomachine.com/)
 
-随便折腾一下就会了
+**wsl至少这个版本**
 
-# 2. window端安装nomachine
+```
+WSL 版本： 1.3.15.0
+内核版本： 5.15.90.4-1
+WSLg 版本： 1.0.55
+MSRDC 版本： 1.2.4419
+Direct3D 版本： 1.608.2-61064218
+DXCore 版本： 10.0.25880.1000-230602-1350.main
+Windows 版本： 10.0.19045.3324
+```
+
+# 2. 前置条件：wsl安装桌面
+
+安装前把科学上网搞好或者把下载源给换了，不然装不好的。
+
+## 2.1. 安装
+
+### 2.1.1. 安装apt-fast
+
+apt-fast 下载更快，不然安装gnome要一个小时
+
+```
+add-apt-repository ppa:apt-fast/stable && apt-get install apt-fast -y
+```
+
+### 2.1.2. 设置snap代理
+
+22.04火狐和软件商店用的都是snap，然鹅这玩意不会读取全局代理，所以得自己设置
+
+换成你自己的代理ip，分开执行（下面那个的http也是没有s的）
+```
+snap set system proxy.http="http://172.22.160.1:7890"
+
+snap set system proxy.https="http://172.22.160.1:7890"
+```
+
+### 2.1.3. 锁住！
+
+安装gnome前，锁住三个东西，避免变得不幸。如果你安装了，直接apt purge -y 删掉他们
+
+```
+apt-mark hold acpid acpi-support modemmanager
+```
+
+acpid是管理电源的，systemctl检测到容器（就是wsl2）会因为这玩意卡死的
+
+[参考链接](https://github.com/microsoft/WSL/discussions/9350#discussioncomment-6119188)
+
+modemmanager是管理网络的，也是检测到容器网络设置直接卡死
+
+[参考链接](https://forum.ubuntu.com.cn/viewtopic.php?t=490583)
+
+
+### 2.1.4. 安装桌面环境
+
+**安装snap-firefox会卡在那里一会儿，不要惊讶**
+
+1. 更新
+
+    ```
+    apt update -y && apt upgrade -y
+    ```
+
+2. 使用`apt-fast`下载（apt-fast快很多，不然大半个小时）
+
+    **挑一个，不要装多个，会出问题的**
+
+    推荐gnome，kde卡卡的，不知道为什么
+
+    <details>
+      <summary>安装gnome</summary>
+      <pre><code>apt-fast install ubuntu-desktop gnome -y && apt install ubuntu-desktop gnome -y</code></pre>
+    </details>
+
+    <details>
+      <summary>安装kde，不要用kde-desktop，kde-desktop会扫描全部磁盘（包括/mnt下的window磁盘），导致卡死在"Initializing plocate database; this may take some time..."</summary>
+      <pre><code>apt-fast install kde-full -y</code></pre>
+    </details>
+
+    <details>
+      <summary>安装xfce4</summary>
+      <pre><code>apt-fast install xfce4 -y</code></pre>
+    </details>
+
+    不需要往 ~/.xinitrc 或 ~/.xsession 或 ~/.xsessionrc 写任何东西，如果出了问题，可以把这三个文件删了。
+    [~/.xinitrc 与 ~/.xsession 与 ~/.xsessionrc的作用与区别](https://qastack.cn/unix/281858/difference-between-xinitrc-xsession-and-xsessionrc)。
+
+### 2.1.5. 安装gnome
+
+**安装snap-firefox会卡在那里一会儿，不要惊讶**
+
+先更新
+
+```
+apt update -y && apt upgrade -y
+```
+
+再下载（apt-fast快很多，不然大半个小时）
+
+```
+apt-fast install ubuntu-desktop gnome -y
+```
+
+执行完，再执行这个，看看有没有漏的
+
+```
+apt install ubuntu-desktop gnome -y
+```
+
+### 2.1.6. 重装dbus
+
+必须重装，不然会不幸（su -l进入root）
+
+不重装，进不了 **软件与更新** 这个应用界面
+
+```
+apt install --reinstall dbus
+```
+
+下面的命令**不要执行**，我只是记录一下（这玩意权限是`-rwsr-xr--`就是对的）
+
+<details>
+  <summary>不要执行我</summary>
+  <pre><code>sudo chmod 4754 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+sudo chown root:messagebus /usr/lib/dbus-1.0/dbus-daemon-launch-helper</code></pre>
+</details>
+
+
+### 2.1.7. 修复网络
+
+这文件就是空的，不过这么干能把网络图标给搞回来。。。
+
+而且不搞这个 **软件与更新** 还是进不去，说识别不到网络。。。
+
+```
+touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
+```
+
+## 2.2. 完善处理
+
+### 2.2.1. 中文化
+
+[这里有写](https://github.com/gf9276/MdFiles/blob/master/linux.md)
+
+中文化之后，如果再进入远程连接，如果他让你选是否保留文件名字，选择保留英文的。如果文件夹名字换成中文的以后会很麻烦的。
+
+### 2.2.2. 安装谷歌拼音
+
+[这里有写](https://github.com/gf9276/MdFiles/blob/master/linux.md)
+
+在wslg下有以下缺点
+
+1. 功能不全
+2. gedit下拼音提示界面跑来跑去的
+
+完整界面就没这个问题了
+
+
+### 2.2.3. 显卡问题
+
+直接命令行 `ln -s /usr/lib/wsl/lib/nvidia-smi /usr/bin/nvidia-smi` 显卡，这样就可以正常识别`nvidia-smi`命令了，因为正常显卡驱动就是在后面那个路径下面的。
+
+
+# 3. window端安装nomachine
 
 直接下载.exe安装就行
 
@@ -41,13 +220,13 @@
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/3.png)
 
-## 2.1. windows作为服务端的server设置
+## 3.1. windows作为服务端的server设置
 
 直接把所有server关了，反正连接wsl，windows不做服务端。其他都不用改
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815211220.png)
 
-## 2.2. windows作为客户端的player设置
+## 3.2. windows作为客户端的player设置
 
 改几个默认快捷键就行（为了防止快捷键冲突，所以没用的最好关了，有用的改的复杂一点）
 
@@ -56,7 +235,7 @@
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815211611.png)
 
 
-# 3. ubuntu 安装
+# 4. ubuntu 安装
 
 ubuntu 肯定是.deb啊
 
@@ -64,22 +243,24 @@ ubuntu 肯定是.deb啊
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815213009.png)
 
-点进去后都写着呢
+点进去后都写着呢: `sudo dpkg -i nomachine_8.8.1_1_amd64.deb`
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815213049.png)
 
 装完都是开机默认自动启动的，不用管，自启动才好
 
-## 3.1. ubuntu作为服务端server设置
+## 4.1. ubuntu作为服务端server设置
 
 关掉server，然后把端口改成4001，防止和windows打起来（好像不改也不会咋样），其他默认。
 
-这里需要先用Xrdp连接进去，然后才能改，命令行我没试过。
+可以用wslg打开（装好nomachine后，window的开始菜单里会出现的，直接点一下就可以打开了）
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230816134751.png)
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815213214.png)
 
 
-# 4. 连接
+# 5. 连接
 
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815211913.png)
@@ -92,7 +273,9 @@ ubuntu 肯定是.deb啊
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815212206.png)
 
-## 4.1. 屏幕设置
+## 5.1. 屏幕设置
+
+### 5.1.1. 按钮介绍
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815212250.png)
 
@@ -110,16 +293,17 @@ ubuntu 肯定是.deb啊
 
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/s2.png)
 
-(･∀･)​ 20:10:45
-fullscreen 全屏
+4. fullscreen 全屏
 
-(･∀･)​ 20:11:21
-fullscreen on all monitors 拼接所有屏幕
+5. fullscreen on all monitors 拼接所有屏幕
 
-(･∀･)​ 20:11:39
-iconize 缩小为图标
+6. iconize 缩小为图标
 
-质量设置为最佳，wslg难道还会缺网速？
+7. display settings 屏幕设置
+
+### 5.1.2. display settings
+
+质量设置为最佳，wslg难道还会缺网速？？？
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230815214357.png)
 

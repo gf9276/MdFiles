@@ -12,34 +12,35 @@
   - [3.1. 挪动到其他盘](#31-挪动到其他盘)
   - [3.2. 退出](#32-退出)
   - [3.3. 设置默认登录用户](#33-设置默认登录用户)
-- [4. wslg](#4-wslg)
-  - [4.1. 安装](#41-安装)
-  - [4.2. wslg效果](#42-wslg效果)
-  - [4.3. wslg缺点](#43-wslg缺点)
-- [5. xrdp远程桌面](#5-xrdp远程桌面)
-  - [5.1. 安装](#51-安装)
-    - [5.1.1. 安装apt-fast](#511-安装apt-fast)
-    - [5.1.2. 设置snap代理](#512-设置snap代理)
-    - [5.1.3. 锁住！](#513-锁住)
-    - [5.1.4. 安装gnome](#514-安装gnome)
-    - [5.1.5. 安装xrdp](#515-安装xrdp)
-    - [5.1.6. 重装dbus](#516-重装dbus)
-    - [5.1.7. 修复网络](#517-修复网络)
-    - [5.1.8. 重启并远程连接](#518-重启并远程连接)
-  - [5.2. 完善处理](#52-完善处理)
-    - [5.2.1. 中文化](#521-中文化)
-    - [5.2.2. 安装谷歌拼音](#522-安装谷歌拼音)
-    - [5.2.3. 显卡问题](#523-显卡问题)
-    - [5.2.4. todo](#524-todo)
-- [6. 更流畅的远程桌面--\>nomachine](#6-更流畅的远程桌面--nomachine)
-- [7. 坑](#7-坑)
-  - [7.1. wslg代理问题](#71-wslg代理问题)
-  - [7.2. wslg无法复制](#72-wslg无法复制)
-  - [7.3. wslg下idea报错](#73-wslg下idea报错)
-  - [7.4. Error code: Wsl/Service/0x8007273d](#74-error-code-wslservice0x8007273d)
-    - [7.4.1. 解决方法1](#741-解决方法1)
-    - [7.4.2. 解决方法2](#742-解决方法2)
-    - [7.4.3. 最好用的方法](#743-最好用的方法)
+- [4. wsl桌面](#4-wsl桌面)
+  - [4.1. wslg](#41-wslg)
+    - [4.1.1. 安装（直接复制微软教程的）](#411-安装直接复制微软教程的)
+    - [4.1.2. wslg效果](#412-wslg效果)
+    - [4.1.3. wslg缺点](#413-wslg缺点)
+  - [4.2. xrdp远程桌面](#42-xrdp远程桌面)
+    - [4.2.1. 安装](#421-安装)
+      - [4.2.1.1. 安装apt-fast](#4211-安装apt-fast)
+      - [4.2.1.2. 设置snap代理](#4212-设置snap代理)
+      - [4.2.1.3. 锁住！](#4213-锁住)
+      - [4.2.1.4. 安装gnome](#4214-安装gnome)
+      - [4.2.1.5. 安装xrdp](#4215-安装xrdp)
+      - [4.2.1.6. 重装dbus](#4216-重装dbus)
+      - [4.2.1.7. 修复网络](#4217-修复网络)
+      - [4.2.1.8. 重启并远程连接](#4218-重启并远程连接)
+    - [4.2.2. 完善处理](#422-完善处理)
+      - [4.2.2.1. 中文化](#4221-中文化)
+      - [4.2.2.2. 安装谷歌拼音](#4222-安装谷歌拼音)
+      - [4.2.2.3. 显卡问题](#4223-显卡问题)
+      - [4.2.2.4. todo](#4224-todo)
+  - [4.3. 更流畅的远程桌面--\>nomachine](#43-更流畅的远程桌面--nomachine)
+- [5. 坑](#5-坑)
+  - [5.1. wslg代理问题](#51-wslg代理问题)
+  - [5.2. wslg无法复制](#52-wslg无法复制)
+  - [5.3. wslg下idea报错](#53-wslg下idea报错)
+  - [5.4. Error code: Wsl/Service/0x8007273d](#54-error-code-wslservice0x8007273d)
+    - [5.4.1. 解决方法1](#541-解决方法1)
+    - [5.4.2. 解决方法2](#542-解决方法2)
+    - [5.4.3. 最好用的方法](#543-最好用的方法)
 
 <!-- /TOC -->
 
@@ -50,6 +51,8 @@
 **其实大部分ubuntu普通发行版也是通用的**
 
 [官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/)
+
+[wsl的github](https://github.com/microsoft/WSL/releases)
 
 **<font color=#D81D4F > 官方文档很好用的，大部分直接看官方文档就行了 </font>**
 
@@ -177,17 +180,22 @@ echo -e "[user]\ndefault=guof" >> /etc/wsl.conf
 所以ubuntu2204.exe是什么？这玩意可以直接在powershell里设置，我怀疑是微软下载的软件自带的。这个的权限高于```/etc/wsl.conf```
 
 
-# 4. wslg
+# 4. wsl桌面
 
-想要wsl的可视化界面，有两种方法，一种是使用官方的wslg，另外一种是安装完整的桌面系统，然后使用windows远程桌面或者vcxsrv远程连接。
+方案大致分为两种：想要wsl的可视化界面，有两种方法，一种是使用官方的wslg，另外一种是安装完整的桌面系统，然后使用windows远程桌面或者vcxsrv远程连接。
 
-wslg的话，直接看这里就好了 ———— [链接](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)
+第二种方案可以用xrdp连接windows远程桌面，也可以用vcxsrv连接，但我更推荐nomachine（甚至可以共享音频，太吊了）
 
-注意：为了防止后面安装其他软件，比如idea的时候出现什么依赖缺失的bug，建议把他这里提到的东西都给装了，能补全大部分的环境依赖。当然最好的还是直接装一个gnome、xfce4之类的了（很大就是了）。
+## 4.1. wslg
 
-## 4.1. 安装
+更新到最新的wsl内核后（忘了具体版本号了），wslg直接就可以用。[微软教程](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)。[wslg的github](https://github.com/microsoft/wslg)。
 
-这东西直接可以用，但是我还是推荐把这些应用都装一下，完善依赖
+**注意：为了防止后面安装其他软件，比如idea的时候出现什么依赖缺失的bug，建议把[微软教程](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)提到的东西都给装了，能补全大部分的环境依赖。当然最好的还是直接装一个gnome的桌面环境，会自动把一些依赖都装上的（如果不想用完整桌面，可以装xfce4，xfc4会比gnome小很多）。**
+
+
+### 4.1.1. 安装（直接复制微软教程的）
+
+wslg直接可以用，但是我还是推荐把这些应用都装一下，完善依赖
 
 安装官网推荐的全套应用指令如下
 
@@ -214,7 +222,11 @@ apt -y install gedit gimp nautilus vlc x11-apps
 
 若要启动，请输入：`google-chrome`
 
-## 4.2. wslg效果
+### 4.1.2. wslg效果
+
+这是windows的开始菜单，右下角有个小企鹅的是ubuntu里的软件，点一下就可以打开了
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20230816133446.png)
 
 如果需要中文化或者安装谷歌拼音什么的直接看[这里](https://github.com/gf9276/MdFiles/blob/master/linux.md)就行
 
@@ -222,7 +234,7 @@ apt -y install gedit gimp nautilus vlc x11-apps
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20230614201317.png)
 
-## 4.3. wslg缺点
+### 4.1.3. wslg缺点
 
 1. 复制有问题，复制内容过长，会导致无法从win复制东西到wslg里面。我提了issues，也没管，日了。这问题去微软在github上的wslg项目里搜搜就知道了，一大堆，多少年了，微软就这水平，我呸。
    
@@ -232,17 +244,21 @@ apt -y install gedit gimp nautilus vlc x11-apps
 
 2. IDEA有时候会崩溃，就是debug的时候，突然动不了了，这时候你得`wsl --shutdown`重启wsl，很影响我的体验啊
 
-3. 依赖问题，有时候不是用apt或者.deb包安装的应用，不会自动补全依赖，运行界面会报错的。所以最好还是装一个gnome或者xfc4，这种ubuntu桌面能把99%的依赖补全咯。
+3. IDEA弹出的框框有问题，都在左上角，而且新的UI有很多的bug，比如没法缩小全屏、没法挪动。用起来很难受。
 
-# 5. xrdp远程桌面
+4. 依赖问题，有时候不是用apt或者.deb包安装的应用，不会自动补全依赖，运行界面会报错的。所以最好还是装一个gnome或者xfce4，这种ubuntu桌面能把99%的依赖补全咯。
 
-其实远程桌面有两种，一种是vnc协议的，这种要在win里下载一个 vcxsrc 软件，然后连接wsl，这种方法其实挺流畅的，但是我实际用下来还是有点bug，比如黑屏、卡顿、崩溃，最重要的是在里面快捷键会和windows冲突，难绷。第二种是使用Xrdp的，xrdp是基于微软rdp的一种开源实现，ubuntu安装xrdp就可以直接用windows的远程桌面连接ubuntu了，流畅度会稍微差一点，但是用起来很稳定，非常不错。
+## 4.2. xrdp远程桌面
 
-这一块主要是参考[这里](https://github.com/microsoft/WSL/discussions/9350#discussioncomment-6119188)和[这里](https://github.com/microsoft/WSL/issues/3344#issuecomment-1589103251)，没错就是我，哼哼
+其实远程桌面有两种，一种是vnc协议的，这种要在win里下载一个 vcxsrc 软件，然后连接wsl，这种方法其实挺流畅的，但是我实际用下来还是有点bug，比如黑屏、卡顿、崩溃，最重要的是在里面快捷键(alt+tab)会和windows冲突，难绷。第二种是使用Xrdp的，xrdp是基于微软rdp的一种开源实现，ubuntu安装xrdp就可以直接用windows的远程桌面连接ubuntu了，流畅度会稍微差一点，但是用起来很稳定，非常不错。
 
-## 5.1. 安装
+这一块主要是参考[这里](https://github.com/microsoft/WSL/discussions/9350#discussioncomment-6119188)和[这里](https://github.com/microsoft/WSL/issues/3344#issuecomment-1589103251)
 
-### 5.1.1. 安装apt-fast
+### 4.2.1. 安装
+
+安装前把科学上网搞好或者把下载源给换了，不然装不好的。
+
+#### 4.2.1.1. 安装apt-fast
 
 apt-fast 下载更快，不然安装gnome要一个小时
 
@@ -250,7 +266,7 @@ apt-fast 下载更快，不然安装gnome要一个小时
 add-apt-repository ppa:apt-fast/stable && apt-get install apt-fast -y
 ```
 
-### 5.1.2. 设置snap代理
+#### 4.2.1.2. 设置snap代理
 
 22.04火狐和软件商店用的都是snap，然鹅这玩意不会读取全局代理，所以得自己设置
 
@@ -261,7 +277,7 @@ snap set system proxy.http="http://172.22.160.1:7890"
 snap set system proxy.https="http://172.22.160.1:7890"
 ```
 
-### 5.1.3. 锁住！
+#### 4.2.1.3. 锁住！
 
 安装gnome前，锁住三个东西，避免变得不幸。如果你安装了，直接apt purge -y 删掉他们
 
@@ -277,7 +293,7 @@ modemmanager是管理网络的，也是检测到容器网络设置直接卡死
 
 [参考链接](https://forum.ubuntu.com.cn/viewtopic.php?t=490583)
 
-### 5.1.4. 安装gnome
+#### 4.2.1.4. 安装gnome
 
 **安装snap-firefox会卡在那里一会儿，不要惊讶**
 
@@ -299,7 +315,7 @@ apt-fast install ubuntu-desktop gnome -y
 apt install ubuntu-desktop gnome -y
 ```
 
-### 5.1.5. 安装xrdp
+#### 4.2.1.5. 安装xrdp
 
 **远程连接.md 里面也有写**
 
@@ -320,6 +336,8 @@ apt install ubuntu-desktop gnome -y
 
 2. 设置
 
+    [~/.xinitrc 与 ~/.xsession 与 ~/.xsessionrc的作用与区别](https://qastack.cn/unix/281858/difference-between-xinitrc-xsession-and-xsessionrc)
+
     写入信息（切回普通用户）
     ```
     vim ~/.xsessionrc
@@ -333,9 +351,9 @@ apt install ubuntu-desktop gnome -y
     export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
     ```
 
-### 5.1.6. 重装dbus
+#### 4.2.1.6. 重装dbus
 
-必须重装，不然会不幸（su -l变回root）
+必须重装，不然会不幸（su -l进入root）
 
 不重装，进不了 **软件与更新** 这个应用界面
 
@@ -343,13 +361,16 @@ apt install ubuntu-desktop gnome -y
 apt install --reinstall dbus
 ```
 
-下面的**不要执行**，我只是记录一下（这玩意权限是`-rwsr-xr--`就是对的）
-```
-sudo chmod 4754 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
-sudo chown root:messagebus /usr/lib/dbus-1.0/dbus-daemon-launch-helper
-```
+下面的命令**不要执行**，我只是记录一下（这玩意权限是`-rwsr-xr--`就是对的）
 
-### 5.1.7. 修复网络
+<details>
+  <summary>不要执行我</summary>
+  <pre><code>sudo chmod 4754 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+sudo chown root:messagebus /usr/lib/dbus-1.0/dbus-daemon-launch-helper</code></pre>
+</details>
+
+
+#### 4.2.1.7. 修复网络
 
 这文件就是空的，不过这么干能把网络图标给搞回来。。。
 
@@ -359,9 +380,9 @@ sudo chown root:messagebus /usr/lib/dbus-1.0/dbus-daemon-launch-helper
 touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
 ```
 
-### 5.1.8. 重启并远程连接
+#### 4.2.1.8. 重启并远程连接
 
-想要优化的话，看远程连接.md
+想要优化的话，看[这里](https://github.com/gf9276/MdFiles/blob/master/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5.md)
 
 测试了一下打开设置
 
@@ -386,15 +407,15 @@ www.github.com
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20230614203415.png)
 
 
-## 5.2. 完善处理
+### 4.2.2. 完善处理
 
-### 5.2.1. 中文化
+#### 4.2.2.1. 中文化
 
 [这里有写](https://github.com/gf9276/MdFiles/blob/master/linux.md)
 
 中文化之后，如果再进入远程连接，他让你选是否保留文件名字，选择保留英文的。如果文件夹名字换成中文的以后会很麻烦的。
 
-### 5.2.2. 安装谷歌拼音
+#### 4.2.2.2. 安装谷歌拼音
 
 [这里有写](https://github.com/gf9276/MdFiles/blob/master/linux.md)
 
@@ -406,26 +427,26 @@ www.github.com
 完整界面就没这个问题了
 
 
-### 5.2.3. 显卡问题
+#### 4.2.2.3. 显卡问题
 
 直接命令行 `ln -s /usr/lib/wsl/lib/nvidia-smi /usr/bin/nvidia-smi` 显卡，这样就可以正常识别`nvidia-smi`命令了，因为正常显卡驱动就是在后面那个路径下面的。
 
-### 5.2.4. todo
+#### 4.2.2.4. todo
 
 然后就可以随便玩了，安装vscode，安装idea之类的和普通的ubuntu没有一点区别。
 
 
-# 6. 更流畅的远程桌面-->nomachine
+## 4.3. 更流畅的远程桌面-->nomachine
 
 详见nomachine.md
 
-# 7. 坑
+# 5. 坑
 
-## 7.1. wslg代理问题
+## 5.1. wslg代理问题
 
 * 要把代理写入profile里，不然浏览器用不了
 
-## 7.2. wslg无法复制
+## 5.2. wslg无法复制
 
 解决不了，md
 
@@ -433,17 +454,17 @@ www.github.com
 
 [问题链接2](https://github.com/microsoft/wslg/issues/1066)
 
-## 7.3. wslg下idea报错
+## 5.3. wslg下idea报错
 
 多半是依赖不全，多装一点桌面应用没准就补全了。
 
-## 7.4. Error code: Wsl/Service/0x8007273d
+## 5.4. Error code: Wsl/Service/0x8007273d
 
 这种就没法用了
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/L%]TR~I6_K`0NR98OO]YWBQ.png)
 
-### 7.4.1. 解决方法1
+### 5.4.1. 解决方法1
 
 管理员权限打开 powershell
 
@@ -454,7 +475,7 @@ netsh winsock reset
 
 然后重新打开wsl2
 
-### 7.4.2. 解决方法2
+### 5.4.2. 解决方法2
 
 这种方法我用不了
 
@@ -473,7 +494,7 @@ netsh winsock reset
 
 但是这个方法我用不了
 
-### 7.4.3. 最好用的方法
+### 5.4.3. 最好用的方法
 
 不如重新下载，然后再导入分发包（记得提前导出）
 
