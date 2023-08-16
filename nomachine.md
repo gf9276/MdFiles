@@ -114,17 +114,30 @@ modemmanager是管理网络的，也是检测到容器网络设置直接卡死
 
     <details>
       <summary>安装gnome</summary>
-      <pre><code>apt-fast install ubuntu-desktop gnome -y && apt install ubuntu-desktop gnome -y</code></pre>
+      
+      推荐这个，起码50hz，接近60hz
+
+      ```
+      apt-fast install ubuntu-desktop gnome -y && apt install ubuntu-desktop gnome -y
+      ```
     </details>
 
     <details>
-      <summary>安装kde，不要用kde-desktop，kde-desktop会扫描全部磁盘（包括/mnt下的window磁盘），导致卡死在"Initializing plocate database; this may take some time..."</summary>
-      <pre><code>apt-fast install kde-full -y</code></pre>
+      <summary>安装kde</summary>
+
+      不要用kde-desktop包安装，kde-desktop会扫描全部磁盘（包括/mnt下的window磁盘），导致卡死在"Initializing plocate database; this may take some time..."
+
+      ```
+      apt-fast install kde-full -y
+      ```
     </details>
 
     <details>
       <summary>安装xfce4</summary>
-      <pre><code>apt-fast install xfce4 -y</code></pre>
+
+      ```
+      apt-fast install xfce4 -y
+      ```
     </details>
 
     不需要往 ~/.xinitrc 或 ~/.xsession 或 ~/.xsessionrc 写任何东西，如果出了问题，可以把这三个文件删了。
