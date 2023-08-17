@@ -84,7 +84,7 @@ MINIO_OPTS="--address :9000 --console-address :9099"
 
 # 新版本使用；指定默认的用户名和密码，其中用户名必须大于3个字母，否则不能启动
 MINIO_ROOT_USER="minio"
-MINIO_ROOT_PASSWORD="miniominio"
+MINIO_ROOT_PASSWORD="minio@2023"
 
 # 区域值，标准格式是“国家-区域-编号”，
 MINIO_REGION="cn-north-1"
