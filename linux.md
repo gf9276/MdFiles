@@ -3,6 +3,7 @@
 - [1. linux.md](#1-linuxmd)
 - [2. 知识](#2-知识)
   - [2.1. 文件](#21-文件)
+    - [举个例子](#举个例子)
 - [3. 指令、操作和坑（ubuntu）](#3-指令操作和坑ubuntu)
   - [3.1. 代理大坑](#31-代理大坑)
   - [3.2. 修改密码](#32-修改密码)
@@ -44,9 +45,28 @@ wsl和正常ubuntu都有
 
 ## 2.1. 文件
 
-/opt 存放的是源码之类的
+/opt 存放的是源码之类的（独立的那种，删掉直接就能把整个软件删掉的那种）
 
-/usr/local/bin 存放的是可执行文件
+/usr/local/bin 存放的是用户自己编译的可执行文件
+
+/usr/local 用户级的软件目录，用来存放用户安装编译的软件，用户自己编译安装的软件也默认存放在这里
+
+/usr/local/src 这个目录是存放用户编译软件所用的源码的
+
+### 举个例子
+
+1. idea或者maven应该放在/opt下面
+
+2. 自己编译的opencv源码应该放在 /usr/local/src下面，执行make install 指令后，opencv安装路径如下
+
+    ```
+    make install 指令的默认安装路径为：
+    /usr/local/bin - executable files
+    /usr/local/lib - libraries (.so)
+    /usr/local/cmake/opencv4 - cmake package
+    /usr/local/include/opencv4 - headers
+    /usr/local/share/opencv4 - other files (e.g. trained cascades in XML format)
+    ```
 
 
 # 3. 指令、操作和坑（ubuntu）

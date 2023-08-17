@@ -82,6 +82,14 @@
 
 ## 2.4. opencv
 
+20230817 update:
+
+    目前没用上，不用装了，我看这东西不爽很久了
+
+---
+老内容: 
+
+
 这个有点麻烦
 
 [参考链接1](https://zoyi14.smartapps.cn/pages/note/index?slug=90c542ddf54a&origin=share&_swebfr=1&_swebFromHost=heytapbrowser)
@@ -150,14 +158,16 @@ apt install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg
 
 ### 2.4.5. 下载opencv并解压
 
-存放到/opt/opencv下（路径其实无所谓，这只是个需要编译的文件）
+/usr/local/src ：这个目录是存放用户编译软件所用的源码的
+
+存放到/usr/local/src/opencv下（路径其实无所谓，这只是个需要编译的文件）
 
 ```
-mkdir /opt/opencv
+mkdir /usr/local/src/opencv
 ```
 
 ```
-cd /opt/opencv
+cd /usr/local/src/opencv
 ```
 
 ```
@@ -174,7 +184,7 @@ unzip 4.5.3.zip && rm 4.5.3.zip
 IPPICV 下载到这个路径下
 
 ```
-cd /opt/opencv
+cd /usr/local/src/opencv
 ```
 
 * 下载压缩包
@@ -199,10 +209,10 @@ unzip master_20191018.zip && rm master_20191018.zip
 * 改一下ippv的地址
 
 ```
-vim /opt/opencv/opencv-4.5.3/3rdparty/ippicv/ippicv.cmake
+vim /usr/local/src/opencv/opencv-4.5.3/3rdparty/ippicv/ippicv.cmake
 ```
 
-光标在的那一行，改成 ```file:/opt/opencv/opencv_3rdparty-ippicv-master_20191018/ippicv/```
+光标在的那一行，改成 ```file:/usr/local/src/opencv/opencv_3rdparty-ippicv-master_20191018/ippicv/```
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/ncross_well_log/20230417121913.png)
 
@@ -210,7 +220,7 @@ vim /opt/opencv/opencv-4.5.3/3rdparty/ippicv/ippicv.cmake
 
 * 创建build文件夹
 ```
-cd /opt/opencv/opencv-4.5.3 && mkdir build && cd build
+cd /usr/local/src/opencv/opencv-4.5.3 && mkdir build && cd build
 ```
 
 * 开始cmake
@@ -238,6 +248,15 @@ make -j8
 
 ```
 make install
+```
+
+```
+make install 指令的默认安装路径为：
+/usr/local/bin - executable files
+/usr/local/lib - libraries (.so)
+/usr/local/cmake/opencv4 - cmake package
+/usr/local/include/opencv4 - headers
+/usr/local/share/opencv4 - other files (e.g. trained cascades in XML format)
 ```
 
 ### 2.4.8. 配置环境
@@ -299,7 +318,7 @@ pkg-config --modversion opencv
 * 看看有没有.jar文件
   
 ```
-ls /opt/opencv/opencv-4.5.3/build/bin/
+ls /usr/local/src/opencv/opencv-4.5.3/build/bin/
 ```
 
 * 这里需要把.jar文件复制到项目下面，在项目下创建一个opencv文件夹，然后直接复制过去
@@ -311,13 +330,13 @@ mkdir ~/JavaFiles/ncross_well_log/n3rdParty/opencv
 cd ~/JavaFiles/ncross_well_log/n3rdParty/opencv
 ```
 ```
-cp /opt/opencv/opencv-4.5.3/build/bin/opencv-453.jar ./
+cp /usr/local/src/opencv/opencv-4.5.3/build/bin/opencv-453.jar ./
 ```
 
 * 如果idea执行代码显示opencv不在java库中，可以执行（或者在idea里面指定）
 
 ```
-cp -r /opt/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
+cp -r /usr/local/src/opencv/opencv-4.5.3/build/lib/libopencv_java453.so /usr/lib
 ```
 
 ## 2.5. mysql
