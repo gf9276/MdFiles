@@ -46,6 +46,18 @@
 
 # 1. wsl2.md
 
+**<font size=7>写在前面：玩转wsl2很关键的一个点就是关闭防火墙（windows defender之类的），或者把wsl2加入白名单。</font>**
+
+添加白名单是绝对可行的
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/QQ图片20230826233143.png)
+
+这种我没试过
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/v2-50442dee852a321fdc44b0ac407a91dc.png)
+
+---
+
 记录 wsl2 的操作，包括软件安装、UI之类的
 
 **其实大部分ubuntu普通发行版也是通用的**
