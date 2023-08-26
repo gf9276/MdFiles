@@ -39,17 +39,16 @@ idea 安装+破解+一些设置
 
 如果是通过jetbrain toolbox装的，注意这些目录
 
-```
-C:\用户\${用户名称}\IdeaProjects\
-# 如果你想删除 IDEA 相关，则只需要删除 JetBrains 目录下包含 IDEA 的文件夹即可
-C:\用户\${用户名称}\AppData\Roaming\JetBrains
-# 如果你想删除 IDEA 相关，则只需要删除 JetBrains 目录下包含 IDEA 的文件夹即可
-C:\用户\${用户名称}\AppData\Local\JetBrains
-C:\用户\公用\.jetbrains
-# 如果你想删除 IDEA 相关，则只需要删除 JetBrains 目录下包含 IDEA 的文件夹即可
-C:\Program Files\JetBrains
-C:\ProgramData\Microsoft\Windows\Start Menu\Programs\JetBrains\
-```
+*如果你想删除 IDEA 相关，则只需要删除 JetBrains 目录下包含 IDEA 的文件夹即可*
+
+1. C:\用户\${用户名称}\IdeaProjects\
+2. C:\用户\${用户名称}\AppData\Roaming\JetBrains
+3.C:\用户\${用户名称}\AppData\Local\JetBrains
+4.C:\Users\${用户名称}\AppData\Local\JetBrains\Toolbox\apps
+5.C:\用户\公用\.jetbrains
+6.C:\Program Files\JetBrains （软件本体）
+7.C:\ProgramData\Microsoft\Windows\Start Menu\Programs\JetBrains\ （快捷方式）
+
 
 ## 2.3. wsl连接
 
