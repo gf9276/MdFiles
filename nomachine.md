@@ -7,9 +7,8 @@
     - [2.1.2. 设置snap代理](#212-设置snap代理)
     - [2.1.3. 锁住！](#213-锁住)
     - [2.1.4. 安装桌面环境](#214-安装桌面环境)
-    - [2.1.5. 安装gnome](#215-安装gnome)
-    - [2.1.6. 重装dbus](#216-重装dbus)
-    - [2.1.7. 修复网络](#217-修复网络)
+    - [2.1.5. 重装dbus](#215-重装dbus)
+    - [2.1.6. 修复网络](#216-修复网络)
   - [2.2. 完善处理](#22-完善处理)
     - [2.2.1. 中文化](#221-中文化)
     - [2.2.2. 安装谷歌拼音](#222-安装谷歌拼音)
@@ -53,6 +52,12 @@ Direct3D 版本： 1.608.2-61064218
 DXCore 版本： 10.0.25880.1000-230602-1350.main
 Windows 版本： 10.0.19045.3324
 ```
+
+截止到2023年8月27日，上面这个版本微软还没有正式发布，所以需要去github上面手动下载，下载下来直接双击运行就行。
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230827164949.png)
+
+![wsl发行版链接](https://github.com/microsoft/WSL/releases)
 
 # 2. 前置条件：wsl安装桌面
 
@@ -100,6 +105,10 @@ modemmanager是管理网络的，也是检测到容器网络设置直接卡死
 
 **安装snap-firefox会卡在那里一会儿，不要惊讶**
 
+**如果你前面设置了snap代理，你会发现clash是在下载东西的**
+
+**但是你要是没有设置，大概率会直接卡死在那里**
+
 1. 更新
 
     ```
@@ -143,29 +152,8 @@ modemmanager是管理网络的，也是检测到容器网络设置直接卡死
     不需要往 ~/.xinitrc 或 ~/.xsession 或 ~/.xsessionrc 写任何东西，如果出了问题，可以把这三个文件删了。
     [~/.xinitrc 与 ~/.xsession 与 ~/.xsessionrc的作用与区别](https://qastack.cn/unix/281858/difference-between-xinitrc-xsession-and-xsessionrc)。
 
-### 2.1.5. 安装gnome
 
-**安装snap-firefox会卡在那里一会儿，不要惊讶**
-
-先更新
-
-```
-apt update -y && apt upgrade -y
-```
-
-再下载（apt-fast快很多，不然大半个小时）
-
-```
-apt-fast install ubuntu-desktop gnome -y
-```
-
-执行完，再执行这个，看看有没有漏的
-
-```
-apt install ubuntu-desktop gnome -y
-```
-
-### 2.1.6. 重装dbus
+### 2.1.5. 重装dbus
 
 必须重装，不然会不幸（su -l进入root）
 
@@ -184,7 +172,7 @@ sudo chown root:messagebus /usr/lib/dbus-1.0/dbus-daemon-launch-helper</code></p
 </details>
 
 
-### 2.1.7. 修复网络
+### 2.1.6. 修复网络
 
 这文件就是空的，不过这么干能把网络图标给搞回来。。。
 
