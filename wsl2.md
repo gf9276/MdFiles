@@ -52,7 +52,9 @@
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/QQ图片20230826233143.png)
 
-这种我没试过
+我试了，这个没用，还是添加白名单好
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20230827142321.png)
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/v2-50442dee852a321fdc44b0ac407a91dc.png)
 
