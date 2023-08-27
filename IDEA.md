@@ -4,14 +4,14 @@
 - [1. IDEA.md](#1-ideamd)
 - [2. windows下idea的设置](#2-windows下idea的设置)
   - [2.1. 安装](#21-安装)
-  - [2.2. 删除](#22-删除)
-  - [2.3. wsl连接](#23-wsl连接)
+  - [2.2. wsl连接](#22-wsl连接)
+  - [2.3. 删除](#23-删除)
 - [3. ubuntu内IDEA的安装、破解](#3-ubuntu内idea的安装破解)
   - [3.1. 安装+破解——idea 2022.3.3](#31-安装破解idea-202233)
     - [3.1.1. 这里是下载](#311-这里是下载)
     - [3.1.2. 这里是破解](#312-这里是破解)
   - [3.2. 安装+破解——idea 2020.1.1](#32-安装破解idea-202011)
-  - [3.3. 输入法在左下角的bug（建议忍忍，貌似新版本要解决了）](#33-输入法在左下角的bug建议忍忍貌似新版本要解决了)
+  - [3.3. 输入法在左下角的bug（官方的2023.3版本将会解决）](#33-输入法在左下角的bug官方的20233版本将会解决)
   - [3.4. 卸载idea](#34-卸载idea)
   - [3.5. 创建桌面快捷方式](#35-创建桌面快捷方式)
     - [3.5.1. 有完整桌面](#351-有完整桌面)
@@ -31,9 +31,27 @@ idea 安装+破解+一些设置
 
 ## 2.1. 安装
 
-安装直接装就行了
+安装直接装就行了，安装完先别打开，加个排除项先，不然会一直detect jdk，直接卡死。
 
-## 2.2. 删除
+进程就在你安装的idea目录下，我的目录是这个
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230314121424.png)
+
+## 2.2. wsl连接
+
+**<font size=7>还要把wsl加入排除项</font>**
+
+1. 方法一：添加白名单是绝对可行的
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/QQ图片20230826233143.png)
+
+2. 方法二：我试了，这个没用，还是添加白名单好
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/20230827142321.png)
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/wsl2/v2-50442dee852a321fdc44b0ac407a91dc.png)
+
+## 2.3. 删除
 
 [参考连接](https://www.quanxiaoha.com/idea/uninstall-idea.html)
 
@@ -48,13 +66,6 @@ idea 安装+破解+一些设置
 5. C:\用户\公用\.jetbrains
 6. C:\Program Files\JetBrains （软件本体）
 7. C:\ProgramData\Microsoft\Windows\Start Menu\Programs\JetBrains\ （快捷方式）
-
-
-## 2.3. wsl连接
-
-注意下这一点，要加个排除项
-
-![](https://cdn.jsdelivr.net/gh/gf9276/image/java/20230314121424.png)
 
 
 # 3. ubuntu内IDEA的安装、破解
@@ -157,7 +168,7 @@ idea 安装+破解+一些设置
 [安装大致过，多一个参考一下](https://blog.csdn.net/weixin_46988707/article/details/127568436)
 
 
-## 3.3. 输入法在左下角的bug（建议忍忍，貌似新版本要解决了）
+## 3.3. 输入法在左下角的bug（官方的2023.3版本将会解决）
 
 idea在ubuntu下面会有一个bug，就是输入法在左下角，这个bug10年前就有，他就是不修，下面是通过修改jbr解决这个问题，**我建议不要用，会有其他bug出现的**，反正官网说近期会解决（2023年6月14日留）。
 
@@ -252,6 +263,8 @@ vim jetbrains-idea.desktop
 
 写入以下内容（这个是官方生成的样式，Icon那里因为win无法识别.svg格式的图标，所以我改成了.png）
 
+wslg官方在`WSLg 版本： 1.0.54`解决了无法识别svg格式图片的问题 --> guof, add in 2023/8/27
+
 ```
 [Desktop Entry]
 Version=1.0
@@ -275,7 +288,8 @@ StartupNotify=true
 直接插件商店搜索就行
 
 1. CodeGlance Pro
-2. MyBatisX
+2. atom icon
+3. MyBatisX
 
 ## 4.2. settings
 
