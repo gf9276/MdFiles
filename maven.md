@@ -46,7 +46,7 @@ mkdir /opt/maven && cd /opt/maven
 
 - 下载压缩包
 ```
-wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
+wget https://archive.apache.org/dist/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
 ```
 
 - 解压
