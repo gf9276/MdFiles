@@ -67,7 +67,7 @@ conda config --set show_channel_urls yes
 
 他会自动创建一个 ~/.condarc 文件
 
-执行以下命令，换回默认源
+执行以下命令，换回默认源（就是把channels这个键值给删了）
 
 ```
 conda config --remove-key channels
@@ -104,7 +104,7 @@ conda config --set proxy_servers.https http://127.0.0.1:7890
 
 ## 3.4. linux下 conda 走代理
 
-不需要，它会自动调用全局代理的信息
+不需要，它会自动调用全局代理的信息，起码我是这样的，如果不能调用，就和windows一样，执行添加代理的命令就行
 
 ## 3.5. windows 系统下 powershell 加载 conda 的环境
 
@@ -142,9 +142,11 @@ conda update conda             // 更新conda
 
 ## 4.2. 打包 conda 环境
 
-注意：迁移conda环境不要直接复制envs底下的文件夹，适配性很差的。
+**注意：迁移conda环境不要直接复制envs底下的文件夹，适配性很差的。**
 
-迁移conda环境时注意，miniconda和conda是互通的，但是windows上的conda和linux上的conda不能混用。
+**不会有人直接复制envs底下的文件夹吧，不会吧不会吧 😎**
+
+迁移conda环境时注意，miniconda和conda是互通的，但是windows上的conda和linux上的conda应该是不能混用的（我没试过）。
 
 ### 4.2.1. 安装打包的工具
 

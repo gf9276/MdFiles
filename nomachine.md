@@ -57,7 +57,7 @@ Windows 版本： 10.0.19045.3324
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/nomachine/20230827164949.png)
 
-![wsl发行版链接](https://github.com/microsoft/WSL/releases)
+[wsl发行版链接](https://github.com/microsoft/WSL/releases)
 
 # 2. 前置条件：wsl安装桌面
 
@@ -122,7 +122,7 @@ modemmanager是管理网络的，也是检测到容器网络设置直接卡死
     推荐gnome，kde卡卡的，不知道为什么
 
     <details>
-      <summary>安装gnome</summary>
+      <summary>选择1（推荐）：安装gnome</summary>
       
       推荐这个，起码50hz，接近60hz
 
@@ -132,7 +132,7 @@ modemmanager是管理网络的，也是检测到容器网络设置直接卡死
     </details>
 
     <details>
-      <summary>安装kde</summary>
+      <summary>选择2：安装kde</summary>
 
       不要用kde-desktop包安装，kde-desktop会扫描全部磁盘（包括/mnt下的window磁盘），导致卡死在"Initializing plocate database; this may take some time..."
 
@@ -142,7 +142,7 @@ modemmanager是管理网络的，也是检测到容器网络设置直接卡死
     </details>
 
     <details>
-      <summary>安装xfce4</summary>
+      <summary>选择3：安装xfce4</summary>
 
       ```
       apt-fast install xfce4 -y

@@ -364,6 +364,16 @@ apt install ubuntu-desktop gnome -y
     export WAYLAND_DISPLAY=
     export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
     ```
+    
+3. 设置断开连接自动关闭桌面会话
+
+    防止断开连接但是没有注销界面导致一堆bug
+   
+    ```
+    sudo vim /etc/xrdp/sesman.ini
+    ```
+
+    ![](https://cdn.jsdelivr.net/gh/gf9276/image/远程连接/20230905141409.png)
 
 #### 4.2.1.6. 重装dbus
 

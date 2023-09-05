@@ -41,7 +41,7 @@ JAVA11 LTS版本之后，JRE集成在JDK中了，不用独立安装
 
 使用java版本 8 或者 11, 目前我用的是8（项目用的就是8，我也没办法）
 
-但是注意，windows上的idea通过wsl无法调用java8（主要是maven）
+但是注意，windows上的idea通过wsl无法调用java8（主要是maven）（2023/9/5 可以调用）
 
 所以我现在都是用wslg或者直接远程桌面连接wsl里面的idea进行代码编写
 

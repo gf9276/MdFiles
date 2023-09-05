@@ -27,9 +27,14 @@
 
 ## 2.1. 注意事项
 
-如果没有在clash里设置的话
+非常重要！！！非常重要！！！非常重要！！！非常重要！！！非常重要！！！非常重要！！！
 
-clash是默认 mix_port=7890，就是http和socks都是7890端口的
+**如果没有在clash里设置的话，clash是默认 mix_port=7890，就是http和socks都是7890端口的**
+
+**所以写代码的时候不要自作聪明，http的端口用7890，socks的端口用7891，简直蠢爆了**
+
+![](https://cdn.jsdelivr.net/gh/gf9276/image/clash/20230905142206.png)
+
 
 ## 2.2. windows
 

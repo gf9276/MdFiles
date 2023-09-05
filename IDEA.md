@@ -27,6 +27,14 @@
 
 idea 安装+破解+一些设置
 
+1. 项目目前用的是jdk8，wsl有三种方案：a. windows下安装idea并调用wsl里的jdk; b. wsl里装idea, 使用wslg进行开发; c. wsl里装idea和桌面, 使用xrdp或者nomachine远程连接桌面进行开发。兜兜转转我还是回到了a。
+
+2. windows里的idea调用wsl里的jdk8，需要wsl里另外装有至少11或以上版本的jdk，建议17。
+
+3. 如果windows里的idea无法调用wsl里的jdk8，检查windows defender是否添加wsl排除项和idea进程排除项。（idea版本为2023.2.1）
+
+4. 如果windows里的idea打开项目卡在什么detecting jdk，或者什么扫描maven库啊，不用怀疑，百分之一百因为你没有把wsl加入病毒扫描排除项。
+
 # 2. windows下idea的设置
 
 ## 2.1. 安装

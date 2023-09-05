@@ -3,7 +3,7 @@
 - [1. linux.md](#1-linuxmd)
 - [2. 知识](#2-知识)
   - [2.1. 文件](#21-文件)
-    - [举个例子](#举个例子)
+    - [2.1.1. 举个例子](#211-举个例子)
 - [3. 指令、操作和坑（ubuntu）](#3-指令操作和坑ubuntu)
   - [3.1. 代理大坑](#31-代理大坑)
   - [3.2. 修改密码](#32-修改密码)
@@ -17,10 +17,10 @@
   - [3.10. 查看文件夹下的文件数](#310-查看文件夹下的文件数)
   - [3.11. find 指令](#311-find-指令)
   - [3.12. whereis which](#312-whereis-which)
-  - [nohup](#nohup)
-  - [3.13. 关于wsl2可视化界面](#313-关于wsl2可视化界面)
-  - [3.14. 中文化配置](#314-中文化配置)
-  - [3.15. 安装google-pinyin](#315-安装google-pinyin)
+  - [3.13. nohup](#313-nohup)
+  - [3.14. 关于wsl2可视化界面](#314-关于wsl2可视化界面)
+  - [3.15. 中文化配置](#315-中文化配置)
+  - [3.16. 安装google-pinyin](#316-安装google-pinyin)
 - [4. shell脚本（ubuntu）](#4-shell脚本ubuntu)
   - [4.1. 判断格式](#41-判断格式)
   - [4.2. 常见的判断](#42-常见的判断)
@@ -53,7 +53,7 @@ wsl和正常ubuntu都有
 
 /usr/local/src 这个目录是存放用户编译软件所用的源码的
 
-### 举个例子
+### 2.1.1. 举个例子
 
 1. idea或者maven应该放在/opt下面
 
@@ -211,7 +211,7 @@ find . filename
 ## 3.12. whereis which
 TODO
 
-## nohup
+## 3.13. nohup
 
 nohup 后台执行并保存pid与log
 
@@ -219,7 +219,7 @@ nohup 后台执行并保存pid与log
 nohup  java -jar ~/JavaFiles/tmp/nLogging/nWeb/admin/target/admin.jar > command.log 2>&1 & echo $! > command.pid
 ```
 
-## 3.13. 关于wsl2可视化界面
+## 3.14. 关于wsl2可视化界面
 
 **现在我装上了，用起来还行 2023/6/14，详情看[这里](https://github.com/gf9276/MdFiles/blob/master/wsl2.md)**
 
@@ -238,7 +238,7 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
 [wsl 官方 issue](https://github.com/microsoft/wslg/issues?q=Desktop+entry+creation+failed)
 
 
-## 3.14. 中文化配置
+## 3.15. 中文化配置
 
 这个我写了脚本
 
@@ -282,7 +282,7 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331203242.png)
 
 
-## 3.15. 安装google-pinyin
+## 3.16. 安装google-pinyin
 
 **这里的安装考虑到了wslg**
 
