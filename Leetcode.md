@@ -8,6 +8,7 @@
     - [2.2.2. int\[\] 转 Integer\[\]](#222-int-转-integer)
     - [2.2.3. List 转 int\[\]](#223-list-转-int)
     - [2.2.4. Integer\[\] 转 int\[\]](#224-integer-转-int)
+  - [找子集（暂时记录一下，我揣摩揣摩）](#找子集暂时记录一下我揣摩揣摩)
 
 <!-- /TOC -->
 
@@ -71,3 +72,7 @@ int[] arr2 = Arrays.stream(integers1).mapToIn(Integer::valueOf).toArray();
 ```
 
 思路同上。先将Integer[]转成Stream<Integer>，再转成IntStream。
+
+## 找子集（暂时记录一下，我揣摩揣摩）
+
+ p = (p - 1) & j
