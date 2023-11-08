@@ -3,21 +3,21 @@
 - [1. clash.md](#1-clashmd)
 - [2. 代理设置](#2-代理设置)
   - [2.1. 注意事项](#21-注意事项)
-  - [屏蔽设置（随时更新）](#屏蔽设置随时更新)
-  - [2.2. windows](#22-windows)
-    - [2.2.1. 下载 clash for windows](#221-下载-clash-for-windows)
-    - [2.2.2. 下载中文包](#222-下载中文包)
-  - [2.3. wsl2](#23-wsl2)
-    - [2.3.1. 在 ~/ 下写一个脚本：](#231-在--下写一个脚本)
-    - [2.3.2. 配置环境变量](#232-配置环境变量)
-    - [2.3.3. 可用指令](#233-可用指令)
-  - [2.4. linux 服务器](#24-linux-服务器)
-    - [2.4.1. 下载内核](#241-下载内核)
-    - [2.4.2. 设置](#242-设置)
-    - [2.4.3. 使用](#243-使用)
-    - [2.4.4. 测试](#244-测试)
-    - [2.4.5. 关闭](#245-关闭)
-  - [2.4. linux 服务器（docker版）](#24-linux-服务器docker版)
+  - [2.2. 屏蔽设置（随时更新）](#22-屏蔽设置随时更新)
+  - [2.3. windows](#23-windows)
+    - [2.3.1. 下载 clash for windows](#231-下载-clash-for-windows)
+    - [2.3.2. 下载中文包](#232-下载中文包)
+  - [2.4. wsl2](#24-wsl2)
+    - [2.4.1. 在 ~/ 下写一个脚本：](#241-在--下写一个脚本)
+    - [2.4.2. 配置环境变量](#242-配置环境变量)
+    - [2.4.3. 可用指令](#243-可用指令)
+  - [2.5. linux 服务器](#25-linux-服务器)
+    - [2.5.1. 下载内核](#251-下载内核)
+    - [2.5.2. 设置](#252-设置)
+    - [2.5.3. 使用](#253-使用)
+    - [2.5.4. 测试](#254-测试)
+    - [2.5.5. 关闭](#255-关闭)
+  - [2.6. linux 服务器（docker版）](#26-linux-服务器docker版)
 
 <!-- /TOC -->
 
@@ -38,7 +38,7 @@
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/clash/20230905142206.png)
 
 
-## 屏蔽设置（随时更新）
+## 2.2. 屏蔽设置（随时更新）
 
 bypass:
   - "*.cn*" # 国内网站
@@ -70,16 +70,16 @@ bypass:
   
 
 
-## 2.2. windows
+## 2.3. windows
 
-### 2.2.1. 下载 clash for windows
+### 2.3.1. 下载 clash for windows
 直接安装 [clash for windows](https://github.com/Fndroid/clash_for_windows_pkg/releases) 
 
 找一个合适版本的便携版就行了，比如：
 
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/clash/QD]A0KGPUJ0SGMM2AZITYWM.png)
 
-### 2.2.2. 下载中文包
+### 2.3.2. 下载中文包
 
 [clahs for windows 中文包](https://github.com/BoyceLig/Clash_Chinese_Patch/releases/)
 
@@ -87,7 +87,7 @@ bypass:
 
 至于代理，自己找
 
-## 2.3. wsl2
+## 2.4. wsl2
 
 先设置 windows for clash，（主要是允许局域网连接）
 ![](https://cdn.jsdelivr.net/gh/gf9276/image/clash/20221120134915.png)
@@ -98,7 +98,7 @@ bypass:
 
 wsl2是依托于windows的，具体的config应该就是按照windows走的
 
-### 2.3.1. 在 ~/ 下写一个脚本：
+### 2.4.1. 在 ~/ 下写一个脚本：
 
 **<font color=#D81D4F >注意：是 ~/ 路径下</font>**
 
@@ -190,7 +190,7 @@ fi
 </details>
 
 
-### 2.3.2. 配置环境变量
+### 2.4.2. 配置环境变量
 
 打开.bashrc
 
@@ -209,7 +209,7 @@ alias my_proxy="source /home/guof/my_proxy.sh"
 
 重启 bash，生效
 
-### 2.3.3. 可用指令
+### 2.4.3. 可用指令
 
 可用指令如下：
 
@@ -228,7 +228,7 @@ my_proxy unset
 my_proxy test
 ```
 
-## 2.4. linux 服务器
+## 2.5. linux 服务器
 
 实验室的服务器上没有docker，我也没办法通过云端调配具体的config，总之先用着吧
 
@@ -239,7 +239,7 @@ my_proxy test
 * [参考连接3](https://maintao.com/2021/use-clash-as-a-proxy/#:~:text=%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84%20Clash%20Clash%20%E5%9C%A8%20github%20%E4%B8%8A%E6%98%AF%E4%B8%AA%E6%B4%BB%E8%B7%83%E7%9A%84%E9%A1%B9%E7%9B%AE%EF%BC%8C%E7%BB%B4%E6%8A%A4%E8%80%85%E6%98%AF%E4%B8%AD%E5%9B%BD%E4%BA%BA%EF%BC%8C%E7%9B%AE%E5%89%8D%E5%B7%B2%E7%BB%8F%E6%9C%89%E4%B8%A4%E4%B8%87%E4%B8%AA,star%E3%80%82%20%E8%BF%99%E4%B8%AA%20Clash%20%E6%98%AF%E7%94%A8%20Go%20%E8%AF%AD%E8%A8%80%E5%86%99%E7%9A%84%E4%B8%8D%E5%B8%A6%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A8%8B%E5%BA%8F%E3%80%82)
 
 
-### 2.4.1. 下载内核
+### 2.5.1. 下载内核
 [github 地址](https://github.com/Dreamacro/clash/releases)
 
 以1.8版本为例，选这个
@@ -257,7 +257,7 @@ cd && mkdir clash
 chmod +x clash
 ```
 
-### 2.4.2. 设置
+### 2.5.2. 设置
 
 创建配置目录
 
@@ -277,26 +277,26 @@ mv ~/Clash/Country.mmdb ~/.config/clash
 config文件可以从windows上嫖过去，Country.mmdb也可以直接从链接下载
 
 
-### 2.4.3. 使用
+### 2.5.3. 使用
 
 ```
 export all_proxy=http://127.0.0.1:7890 && setsid ~/clash/clash
 ```
 
-### 2.4.4. 测试
+### 2.5.4. 测试
 
 ```
 curl www.google.com
 ```
 
-### 2.4.5. 关闭 
+### 2.5.5. 关闭 
 ```
 ps -ef | grep clash
 kill 进程号
 ```
 
 
-## 2.4. linux 服务器（docker版）
+## 2.6. linux 服务器（docker版）
 
 如果你能用docker，那真是再好不过了
 
