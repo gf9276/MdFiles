@@ -17,6 +17,7 @@
     - [2.4.3. 使用](#243-使用)
     - [2.4.4. 测试](#244-测试)
     - [2.4.5. 关闭](#245-关闭)
+  - [2.4. linux 服务器（docker版）](#24-linux-服务器docker版)
 
 <!-- /TOC -->
 
@@ -293,3 +294,32 @@ curl www.google.com
 ps -ef | grep clash
 kill 进程号
 ```
+
+
+## 2.4. linux 服务器（docker版）
+
+如果你能用docker，那真是再好不过了
+
+[参考链接](https://blog.laoyutang.cn/linux/clash.html)
+
+直接执行以下命令:
+
+```
+docker run -d \
+  --name clash \
+  --restart=always \
+  --log-opt max-size=1m \
+  -v /home/guof/.config/clash/config.yaml:/root/.config/clash/config.yaml \
+  -p 7888:8080 -p 7890:7890 \
+  laoyutang/clash-and-dashboard:latest
+```
+
+-v /home/guof/.config/clash/config.yaml:/root/.config/clash/config.yaml : 数据卷挂载, 提供clash的yaml文件，文件如何获取请读者自行解决
+
+-p 7888:8080 管理页面端口
+
+-p 7890:7890 http代理端口 socks端口使用7891
+
+laoyutang/clash-and-dashboard:latest 博主修改后的镜像
+
+访问Ip:7888管理页面即可，注意非本机使用，请勾选允许局域网连接
