@@ -4,7 +4,8 @@
 - [2. 安装 docker](#2-安装-docker)
   - [2.1. wsl（wsl的ubuntu） 下安装](#21-wslwsl的ubuntu-下安装)
   - [2.2. linux（普通ubuntu） 下安装](#22-linux普通ubuntu-下安装)
-    - [解决gpu无法调用问题](#解决gpu无法调用问题)
+    - [解决gpu无法调用问题（小心，会导致显卡驱动崩溃）](#解决gpu无法调用问题小心会导致显卡驱动崩溃)
+  - [命令](#命令)
 
 <!-- /TOC -->
 
@@ -45,6 +46,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 安装完之后 自动 systemctl 启动
 
-### 解决gpu无法调用问题
+### 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）
 
 [参考链接](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+## 命令
+
+* docker ps
+
+* docker images
+
+* docker run -d --name ???? -p ??:?? ???
