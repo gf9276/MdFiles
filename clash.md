@@ -322,4 +322,4 @@ docker run -d \
 
 laoyutang/clash-and-dashboard:latest 博主修改后的镜像
 
-访问Ip:7888管理页面即可，注意非本机使用，请勾选允许局域网连接
+访问Ip:7888管理页面即可，注意非本机使用，**请勾选允许局域网连接，每次重新start都得允许一次，不然没法用**
