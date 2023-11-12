@@ -16,12 +16,14 @@
   - [3.8. 复制命令](#38-复制命令)
   - [3.9. 移动命令](#39-移动命令)
   - [3.10. 查看文件夹下的文件数](#310-查看文件夹下的文件数)
-  - [3.11. find 指令](#311-find-指令)
-  - [3.12. whereis which](#312-whereis-which)
-  - [3.13. nohup](#313-nohup)
-  - [3.14. 关于wsl2可视化界面](#314-关于wsl2可视化界面)
-  - [3.15. 中文化配置](#315-中文化配置)
-  - [3.16. 安装google-pinyin](#316-安装google-pinyin)
+  - [3.11. 查看磁盘](#311-查看磁盘)
+  - [3.12. 查看文件夹大小（有的文件没权限的是看不了的）](#312-查看文件夹大小有的文件没权限的是看不了的)
+  - [3.13. find 指令](#313-find-指令)
+  - [3.14. whereis which](#314-whereis-which)
+  - [3.15. nohup](#315-nohup)
+  - [3.16. 关于wsl2可视化界面](#316-关于wsl2可视化界面)
+  - [3.17. 中文化配置](#317-中文化配置)
+  - [3.18. 安装google-pinyin](#318-安装google-pinyin)
 - [4. shell脚本（ubuntu）](#4-shell脚本ubuntu)
   - [4.1. 判断格式](#41-判断格式)
   - [4.2. 常见的判断](#42-常见的判断)
@@ -207,7 +209,20 @@ mv IfElseTest1.java chapter03/
 ls -l | grep "-" | wc -l
 ```
 
-## 3.11. find 指令
+## 3.11. 查看磁盘
+
+```
+df -h
+```
+
+## 3.12. 查看文件夹大小（有的文件没权限的是看不了的）
+
+```
+du -sh ./
+```
+
+
+## 3.13. find 指令
 
 
 在当前目录下寻找文件或目录 filename
@@ -218,10 +233,10 @@ find . filename
 
 可以把 . 换成指定路径
 
-## 3.12. whereis which
+## 3.14. whereis which
 TODO
 
-## 3.13. nohup
+## 3.15. nohup
 
 nohup 后台执行并保存pid与log
 
@@ -229,7 +244,7 @@ nohup 后台执行并保存pid与log
 nohup  java -jar ~/JavaFiles/tmp/nLogging/nWeb/admin/target/admin.jar > command.log 2>&1 & echo $! > command.pid
 ```
 
-## 3.14. 关于wsl2可视化界面
+## 3.16. 关于wsl2可视化界面
 
 **现在我装上了，用起来还行 2023/6/14，详情看[这里](https://github.com/gf9276/MdFiles/blob/master/wsl2.md)**
 
@@ -248,7 +263,7 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
 [wsl 官方 issue](https://github.com/microsoft/wslg/issues?q=Desktop+entry+creation+failed)
 
 
-## 3.15. 中文化配置
+## 3.17. 中文化配置
 
 这个我写了脚本
 
@@ -292,7 +307,7 @@ xfce4我装上了，但是不支持显卡，nvidia-smi命令无效，win10给wsl
     ![](https://cdn.jsdelivr.net/gh/gf9276/image/linux/20230331203242.png)
 
 
-## 3.16. 安装google-pinyin
+## 3.18. 安装google-pinyin
 
 **这里的安装考虑到了wslg**
 
