@@ -33,6 +33,8 @@
   - [4.8. Navicat for MySQL 版本太低导致连接失败](#48-navicat-for-mysql-版本太低导致连接失败)
     - [4.8.1. 问题](#481-问题)
     - [4.8.2. 解决方法](#482-解决方法)
+  - [4.9. 允许远程连接](#49-允许远程连接)
+  - [4.10. MySQL篇之解决启动时报错：Warning: World-writable config file ‘/etc/my.cnf’ is ignored](#410-mysql篇之解决启动时报错warning-world-writable-config-file-etcmycnf-is-ignored)
 
 <!-- /TOC -->
 
@@ -410,4 +412,32 @@ sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_
 
 ```
 ALTER USER 'jack'@'localhost' IDENTIFIED WITH mysql_native_password BY 'jack4321';
+```
+
+## 4.9. 允许远程连接
+
+[参考连接](https://blog.csdn.net/qq_54042324/article/details/122202893)
+
+
+```
+use mysql;
+```
+
+```
+update user set host = ’%’ where user = ’root’;
+```
+
+```
+select host,user from user;
+```
+
+只要 允许远程连接的 用户 host 那里是 % 就可以了
+
+
+## 4.10. MySQL篇之解决启动时报错：Warning: World-writable config file ‘/etc/my.cnf’ is ignored
+
+mysql要求配置文件的权限为644，不然就忽略
+
+```
+chmod 644 /etc/my.cnf
 ```
