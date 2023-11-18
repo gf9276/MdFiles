@@ -4,9 +4,10 @@
 - [2. 安装 docker](#2-安装-docker)
   - [2.1. wsl（wsl的ubuntu） 下安装](#21-wslwsl的ubuntu-下安装)
   - [2.2. linux（普通ubuntu） 下安装](#22-linux普通ubuntu-下安装)
-    - [2.2.1. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）](#221-解决gpu无法调用问题小心会导致显卡驱动崩溃)
+  - [2.2.1. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）](#221-解决gpu无法调用问题小心会导致显卡驱动崩溃)
   - [2.3. 命令](#23-命令)
   - [2.4. 挪动docker的目录](#24-挪动docker的目录)
+  - [docker pull 使用代理](#docker-pull-使用代理)
 
 <!-- /TOC -->
 
@@ -47,7 +48,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 安装完之后 自动 systemctl 启动
 
-### 2.2.1. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）
+## 2.2.1. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）
 
 [参考链接](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
@@ -102,4 +103,49 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
     ```
     systemctl start docker 
+    ```
+
+## docker pull 使用代理
+
+[官方文档](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)
+
+[参考链接2](https://www.cnblogs.com/cocoajin/p/15513305.html)
+
+实际上docker pull这种命令归docker daemon管，即docker的守护进程。而官方文档的操作正是把docker daemon进行代理。
+
+操作前记得不要跑重要容器，因为后面要重启docker的
+
+
+1. 创建docker.service的目录
+
+    ```
+    sudo mkdir -p /etc/systemd/system/docker.service.d
+    ```
+
+2. 写入配置
+
+    ```
+    sudo vim /etc/systemd/system/docker.service.d/http_proxy.conf 
+    ```
+
+    内容如下：
+
+    ```
+    [Service]
+    Environment="HTTP_PROXY=http://127.0.0.1:7890" 
+    Environment="HTTPS_PROXY=http://127.0.0.1:7890"
+    Environment="NO_PROXY=localhost,127.0.0.1"
+    ```
+
+3. 加载配置并重启
+
+    ```
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
+    ```
+
+4. 查看环境变量
+
+    ```
+    sudo systemctl show --property=Environment docker
     ```
