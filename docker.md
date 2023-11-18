@@ -4,10 +4,13 @@
 - [2. 安装 docker](#2-安装-docker)
   - [2.1. wsl（wsl的ubuntu） 下安装](#21-wslwsl的ubuntu-下安装)
   - [2.2. linux（普通ubuntu） 下安装](#22-linux普通ubuntu-下安装)
-  - [2.2.1. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）](#221-解决gpu无法调用问题小心会导致显卡驱动崩溃)
-  - [2.3. 命令](#23-命令)
-  - [2.4. 挪动docker的目录](#24-挪动docker的目录)
-  - [docker pull 使用代理](#docker-pull-使用代理)
+  - [2.3. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）](#23-解决gpu无法调用问题小心会导致显卡驱动崩溃)
+  - [2.4. 命令](#24-命令)
+  - [2.5. 挪动docker的目录](#25-挪动docker的目录)
+  - [2.6. docker pull 使用代理](#26-docker-pull-使用代理)
+- [3. 问题](#3-问题)
+  - [3.1. docker下使用 `dpkg-reconfigure locales` 无效](#31-docker下使用-dpkg-reconfigure-locales-无效)
+  - [3.2. docker启动时，不会执行/etc/profile](#32-docker启动时不会执行etcprofile)
 
 <!-- /TOC -->
 
@@ -48,11 +51,11 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 安装完之后 自动 systemctl 启动
 
-## 2.2.1. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）
+## 2.3. 解决gpu无法调用问题（小心，会导致显卡驱动崩溃）
 
 [参考链接](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
-## 2.3. 命令
+## 2.4. 命令
 
 * docker ps
 
@@ -60,7 +63,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 * docker run -d --name ???? -p ??:?? ???
 
-## 2.4. 挪动docker的目录
+## 2.5. 挪动docker的目录
 
 本来我只是想挪动一下镜像目录的，但是我发现不好挪动，干脆把整个都挪过去了
 
@@ -105,7 +108,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
     systemctl start docker 
     ```
 
-## docker pull 使用代理
+## 2.6. docker pull 使用代理
 
 [官方文档](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)
 
@@ -149,3 +152,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
     ```
     sudo systemctl show --property=Environment docker
     ```
+
+# 3. 问题
+
+## 3.1. docker下使用 `dpkg-reconfigure locales` 无效
+
+需要自己在启动容器的时候-e指定的语言，怪
+
+## 3.2. docker启动时，不会执行/etc/profile
+
+需要手动将环境变量永久化，ENV如果写到一行里，是没办法$调用的，不同行的ENV就可以
