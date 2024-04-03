@@ -35,6 +35,7 @@
     - [4.8.2. 解决方法](#482-解决方法)
   - [4.9. 允许远程连接](#49-允许远程连接)
   - [4.10. MySQL篇之解决启动时报错：Warning: World-writable config file ‘/etc/my.cnf’ is ignored](#410-mysql篇之解决启动时报错warning-world-writable-config-file-etcmycnf-is-ignored)
+- [docker部署mysql](#docker部署mysql)
 
 <!-- /TOC -->
 
@@ -440,4 +441,18 @@ mysql要求配置文件的权限为644，不然就忽略
 
 ```
 chmod 644 /etc/my.cnf
+```
+
+# docker部署mysql
+
+```
+docker run -d \
+  --name nlogging_mysql \
+  -p 3306:3306 \
+  -e TZ=Asia/Shanghai \
+  -e MYSQL_ROOT_PASSWORD=123456 \
+  -v /data1/guof/DockerVolume/nLogging/mysql/data:/var/lib/mysql \
+  -v /data1/guof/DockerVolume/nLogging/mysql/init:/docker-entrypoint-initdb.d \
+  -v /data1/guof/DockerVolume/nLogging/mysql/conf:/etc/mysql/conf.d \
+  mysql
 ```

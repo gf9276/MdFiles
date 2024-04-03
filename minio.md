@@ -9,6 +9,7 @@
     - [2.4.1. 设置minio启动参数](#241-设置minio启动参数)
     - [2.4.2. 设置开机自启动](#242-设置开机自启动)
 - [3. 使用 minio](#3-使用-minio)
+- [4. docker运行minio](#4-docker运行minio)
 
 <!-- /TOC -->
 
@@ -169,3 +170,20 @@ http://localhost:9000/
 就可以进入minio的界面了
 
 账号密码就是 `/etc/default/minio` 里面写着的那个。
+
+# 4. docker运行minio
+
+```
+docker pull /minio/minio
+```
+
+```
+docker run -p 9000:9000 -p 9099:9099 \
+     --name nlogging_minio \
+     -d --restart=always \
+     -e "MINIO_ACCESS_KEY=minio" \
+     -e "MINIO_SECRET_KEY=minio@2023" \
+     -v /data1/guof/DockerVolume/nLogging/minio/data:/data \
+     minio/minio server \
+     /data --console-address ":9099" -address ":9000"
+```
