@@ -68,7 +68,7 @@ vim /etc/profile
 在文件的最后写入
 ```
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-export JRE_HOME=$JAVA_HOME/jre
+export JRE_HOME=$JAVA_HOME/jre # jdk8以上没有jre了，jre_home就是java_home
 export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 ```
 
@@ -88,7 +88,8 @@ vim /etc/profile.d/my_java_cfg.sh
 写入环境变量
 ```
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-export JRE_HOME=$JAVA_HOME/jre
+export JRE_HOME=$JAVA_HOME/jre # jdk8 选这个
+# export JRE_HOME=$JAVA_HOME # jdk11及之后选择这个
 export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 ```
 
