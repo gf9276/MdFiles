@@ -4,12 +4,12 @@
 - [2. 安装 minio](#2-安装-minio)
   - [2.1. 下载可执行文件](#21-下载可执行文件)
   - [2.2. 创建静态文件存放目录](#22-创建静态文件存放目录)
-  - [2.3. 普通启动minio](#23-普通启动minio)
-  - [2.4. systemctl启动minio](#24-systemctl启动minio)
-    - [2.4.1. 设置minio启动参数](#241-设置minio启动参数)
+  - [2.3. 普通启动 minio](#23-普通启动-minio)
+  - [2.4. systemctl 启动 minio](#24-systemctl-启动-minio)
+    - [2.4.1. 设置 minio 启动参数](#241-设置-minio-启动参数)
     - [2.4.2. 设置开机自启动](#242-设置开机自启动)
 - [3. 使用 minio](#3-使用-minio)
-- [4. docker运行minio](#4-docker运行minio)
+- [4. docker 运行 minio](#4-docker-运行-minio)
 
 <!-- /TOC -->
 
@@ -21,54 +21,58 @@ Min IO 的相关内容
 
 # 2. 安装 minio
 
-**<font color=#8470FF > 该加sudo加sudo，我是建议直接 sudo su -l 登录到root用户再安装 </font>**
+**<font color=#8470FF > 该加 sudo 加 sudo，我是建议直接 sudo su -l 登录到 root 用户再安装 </font>**
 
 ## 2.1. 下载可执行文件
 
-放到```/usr/local/bin/```目录下，该目录下放一些个人的可执行文件（这是官方推荐的位置。。。）我觉得/opt倒也不错emmm
+放到`/usr/local/bin/`目录下，该目录下放一些个人的可执行文件（这是官方推荐的位置。。。）我觉得/opt 倒也不错 emmm
 
 ```
 cd /usr/local/bin/
 ```
 
 下载
+
 ```
 wget https://dl.min.io/server/minio/release/linux-amd64/minio
 ```
 
 赋予可执行权限
+
 ```
 chmod +x /usr/local/bin/minio
 ```
 
 ## 2.2. 创建静态文件存放目录
 
-就是放minio文件的地方啦，-p表示逐层创建，777是赋予所有权限
+就是放 minio 文件的地方啦，-p 表示逐层创建，777 是赋予所有权限
 
 ```
 mkdir -p /data/minio_data && chmod 777 /data/minio_data
 ```
 
-## 2.3. 普通启动minio
+## 2.3. 普通启动 minio
 
-可用这个，也可以用后面的systemctl，建议用systemctl
+可用这个，也可以用后面的 systemctl，建议用 systemctl
 
 ```
 minio server /data/minio_data --console-address ":9099"
 ```
 
-## 2.4. systemctl启动minio
+## 2.4. systemctl 启动 minio
 
-### 2.4.1. 设置minio启动参数
+### 2.4.1. 设置 minio 启动参数
 
-该参数文件是准备供systemd调用的
+该参数文件是准备供 systemd 调用的
 
 - 创建默认的配置文件（话说居然没有后缀名。。。）
+
 ```
 vim /etc/default/minio
 ```
 
 - 写入如下内容
+
 ```
 # 指定数据存储目录(注意：这个目录要存在且拥有相对应的权限)
 # 该目录与前面创建的目录一致
@@ -96,12 +100,14 @@ MINIO_REGION="cn-north-1"
 
 ### 2.4.2. 设置开机自启动
 
-- 创建并编辑.service文件
+- 创建并编辑.service 文件
+
 ```
 vim /usr/lib/systemd/system/minio.service
 ```
 
 - 写入如下内容
+
 ```
 [Unit]
 Description=MinIO
@@ -142,36 +148,42 @@ Alias=minio.service
 ```
 
 - 重新加载服务配置文件，使服务生效
+
 ```
 systemctl daemon-reload
 ```
 
 - 将服务设置为开机启动
+
 ```
 systemctl enable minio
 ```
 
 - 服务立即启动
+
 ```
 systemctl start minio
 ```
 
-- 查看minio服务当前状态
+- 查看 minio 服务当前状态
+
 ```
 systemctl status minio
 ```
 
 # 3. 使用 minio
 
-安装并且打开minio之后，直接在浏览器里输入 
+安装并且打开 minio 之后，直接在浏览器里输入
+
 ```
 http://localhost:9000/
 ```
-就可以进入minio的界面了
+
+就可以进入 minio 的界面了
 
 账号密码就是 `/etc/default/minio` 里面写着的那个。
 
-# 4. docker运行minio
+# 4. docker 运行 minio
 
 ```
 docker pull /minio/minio
