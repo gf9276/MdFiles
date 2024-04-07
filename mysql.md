@@ -446,7 +446,7 @@ chmod 644 /etc/my.cnf
 # 5. docker部署mysql
 
 ```
-docker run -d \
+docker run -d --restart=always\
   --name nlogging_mysql \
   -p 3306:3306 \
   -e TZ=Asia/Shanghai \
