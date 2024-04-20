@@ -137,8 +137,14 @@ modemmanager 是管理网络的，也是检测到容器网络设置直接卡死
 
    不要用 kde-desktop 包安装，kde-desktop 会扫描全部磁盘（包括/mnt 下的 window 磁盘），导致卡死在"Initializing plocate database; this may take some time..."
 
+   kde-standard（2G）或者 kde-full（4G）都可以，后者会大一点
+
+   不过 kde 在 wsl 上的兼容性真的不好，平时打开界面反应会很迟钝，我猜测他在打开软件的时候会进行一个检测之类的，wsl 里检测估计是失败了
+
+   但是，命令行输入指令的时候他又没有反馈，晕
+
    ```
-   apt-fast install kde-full -y
+   apt-fast install kde-standard -y
    ```
 
    </details>
@@ -186,6 +192,8 @@ touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
 ## 2.2. 完善处理
 
 ### 2.2.1. 中文化
+
+建议在中文化之前先进入一次界面，把 Documents、Downloads 这些文件先确定为英文
 
 [这里有写](https://github.com/gf9276/MdFiles/blob/master/linux.md)
 
