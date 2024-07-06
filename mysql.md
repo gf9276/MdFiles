@@ -425,7 +425,7 @@ use mysql;
 ```
 
 ```
-update user set host = ’%’ where user = ’root’;
+update user set host = '%' where user = 'root';
 ```
 
 ```
@@ -434,6 +434,12 @@ select host,user from user;
 
 只要 允许远程连接的 用户 host 那里是 % 就可以了
 
+
+还要修改一下配置文件
+
+```
+# bind-address          = 127.0.0.1
+```
 
 ## 4.10. MySQL篇之解决启动时报错：Warning: World-writable config file ‘/etc/my.cnf’ is ignored
 
@@ -451,8 +457,20 @@ docker run -d --restart=always\
   -p 3306:3306 \
   -e TZ=Asia/Shanghai \
   -e MYSQL_ROOT_PASSWORD=123456 \
+  -v /data1/guof/DockerVolume/nLogging/mysql/log:/var/log/mysql \
   -v /data1/guof/DockerVolume/nLogging/mysql/data:/var/lib/mysql \
   -v /data1/guof/DockerVolume/nLogging/mysql/init:/docker-entrypoint-initdb.d \
   -v /data1/guof/DockerVolume/nLogging/mysql/conf:/etc/mysql/conf.d \
   mysql
+```
+
+mysql:5.7 命令如下
+
+```
+docker run -p 3310:3306 --name mysql5.7 \
+-v /data/mysql5.7/log:/var/log/mysql \
+-v /data/mysql5.7/data:/var/lib/mysql \
+-v /data/mysql5.7/conf:/etc/mysql/conf.d \
+-e MYSQL_ROOT_PASSWORD=root \
+-d mysql:5.7
 ```

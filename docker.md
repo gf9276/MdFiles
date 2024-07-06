@@ -7,7 +7,8 @@
   - [2.3. 解决 gpu 无法调用问题（小心，会导致显卡驱动崩溃）](#23-解决-gpu-无法调用问题小心会导致显卡驱动崩溃)
   - [2.4. 命令](#24-命令)
   - [2.5. 挪动 docker 的目录](#25-挪动-docker-的目录)
-  - [2.6. docker pull 使用代理](#26-docker-pull-使用代理)
+  - [2.6. 加镜像](#26-加镜像)
+  - [2.7. docker pull 使用代理](#27-docker-pull-使用代理)
 - [3. 问题](#3-问题)
   - [3.1. docker 下使用 `dpkg-reconfigure locales` 无效](#31-docker-下使用-dpkg-reconfigure-locales-无效)
   - [3.2. docker 启动时，不会执行/etc/profile](#32-docker-启动时不会执行etcprofile)
@@ -33,14 +34,30 @@
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
 sudo install -m 0755 -d /etc/apt/keyrings
+
+
+# 阿里 官方 二选一
+# 阿里
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+# 官方
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-# Add the repository to Apt sources:
+
+# 阿里  官方  二选一
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 官方 Add the repository to Apt sources:
 echo \
   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+
 sudo apt-get update
 ```
 
@@ -114,7 +131,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
    systemctl start docker
    ```
 
-## 2.6. docker pull 使用代理
+## 2.6. 加镜像
+
+[按照这个来](https://cr.console.aliyun.com/cn-huhehaote/instances/mirrors)
+
+难用死了，还是用代理吧
+
+## 2.7. docker pull 使用代理
 
 [官方文档](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)
 
