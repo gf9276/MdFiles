@@ -27,10 +27,10 @@ docker run -p 6379:6379 --name redis \
 下面这个没有问题
 
 ```
-docker run -p 6379:6379 --name nlogging_redis \
+docker run -p 20100:6379 --name gulimall_redis \
 --restart=always \
--v /data1/guof/DockerVolume/nLogging/redis/data:/data \
--v /data1/guof/DockerVolume/nLogging/redis/conf:/usr/local/etc/redis \
+-v /data1/guof/DockerVolume/gulimall/redis/data:/data \
+-v /data1/guof/DockerVolume/gulimall/redis/conf:/usr/local/etc/redis \
 -d redis redis-server /usr/local/etc/redis/redis.conf
 ```
 

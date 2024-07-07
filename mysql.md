@@ -474,3 +474,12 @@ docker run -p 3310:3306 --name mysql5.7 \
 -e MYSQL_ROOT_PASSWORD=root \
 -d mysql:5.7
 ```
+
+```
+docker run -p 20101:3306 --name mysql5.7 \
+-v /data1/guof/DockerVolume/gulimall/mysql5.7/log:/var/log/mysql \
+-v /data1/guof/DockerVolume/gulimall/mysql5.7/data:/var/lib/mysql \
+-v /data1/guof/DockerVolume/gulimall/mysql5.7/conf:/etc/mysql/conf.d \
+-e MYSQL_ROOT_PASSWORD=root \
+-d mysql:5.7
+```
