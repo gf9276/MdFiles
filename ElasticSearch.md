@@ -39,3 +39,9 @@ docker run --name kibana \
 -p 20104:5601 \
 -d kibana:7.4.2
 ```
+
+# Java REST Client API
+
+已经被抛弃了
+
+(官方文档，已经被抛弃了)[https://www.elastic.co/guide/en/elasticsearch/client/java-rest/7.4/java-rest-high-search.html#_source_filtering]
