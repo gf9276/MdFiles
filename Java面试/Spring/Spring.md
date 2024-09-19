@@ -2,6 +2,31 @@
 
 ![](./images/Spring%E6%A1%86%E6%9E%B6.png)
 
+[教程，这个还行，就是有点老了](https://www.bilibili.com/video/BV135411A7td?p=11&spm_id_from=pageDriver&vd_source=c7d5a94f91eb431153ada86d1d56c0ba)
+
+
+# spring容器启动过程，源码
+
+spring是一个ioc容器，这合理吗？哈哈
+
+
+## 获取应用上下文
+
+我们用的最多的就是 AnnotationConfigApplicationContext (加载Configuration注解标注的类), ClassPathXmlApplicationContext (加载xml文件写的配置)
+
+以 AnnotationConfigApplicationContext 为主
+
+AnnotationConfigApplicationContext 的有参构造函数里主要分为三个部分 this() register() refresh()
+
+前两个是容器初始化，refresh是刷新容器，容器启动
+
+下面这个不是很懂
+
+AnnotatedBeanDefinitionReader用于获取一个或多个带有注解的具体类，之后将他们解析为BeanDefintion，之后注册到Registry中;ClassPathBeanDefinitionScanner用获取一个或多个包下的带有注解的类，之后将他们解析为BeanDefintion，注册到Registry中。
+
+
+
+
 
 ## 理解
 
@@ -36,6 +61,8 @@ ioc容器管理service层和dao层的联系，aop实现事务管理、日志等�
 ## ioc和aop通过什么机制实现
 
 ioc 通过 反射、di，依赖注入，工厂模式、ioc容器
+
+https://blog.csdn.net/qq_27610647/article/details/115704426
 
 aop 通过动态代理（todo 我还是不懂代理啊）
 

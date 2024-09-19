@@ -1,5 +1,45 @@
 # 1. mysql
 
+## explain
+
+https://blog.csdn.net/qq_37149892/article/details/108531135
+
+### id
+
+### table
+
+查的哪张表
+
+### select_type
+
+普通 复杂 子查询
+
+### possible_key
+
+可能用到的索引
+
+### key
+
+实际用到的索引
+
+### key_len
+
+索引字段的长度
+
+### type
+
+all 全表
+
+index 走索引的全表
+
+range 范围，基于索引
+
+ref 一个值的多条记录
+
+eq_red 一个值的一条记录
+
+const 秒杀，直接查出一条记录？？？
+
 ## 1.1. 基本概念
 
 什么是元组, 码, 候选码, 主码, 外码, 主属性, 非主属性？
