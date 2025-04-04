@@ -18,6 +18,7 @@
     - [2.5.4. 测试](#254-测试)
     - [2.5.5. 关闭](#255-关闭)
   - [2.6. linux 服务器（docker版）](#26-linux-服务器docker版)
+  - [linux安装界面](#linux安装界面)
 
 <!-- /TOC -->
 
@@ -323,3 +324,9 @@ docker run -d \
 laoyutang/clash-and-dashboard:latest 博主修改后的镜像
 
 访问Ip:7888管理页面即可，注意非本机使用，**请勾选允许局域网连接，每次重新start都得允许一次，不然没法用**
+
+## linux安装界面
+
+直接参考这个：https://devpn.github.io/docs/start/ubuntu/clash/
+
+用 clash-verge
