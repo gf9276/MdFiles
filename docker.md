@@ -27,9 +27,13 @@
 
 ## 2.2. linux（普通 ubuntu） 下安装
 
+[参考链接](https://docs.docker.net.cn/engine/install/ubuntu/)
+
 1. Set up Docker's repository `.apt`
 
 ```
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
 # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
